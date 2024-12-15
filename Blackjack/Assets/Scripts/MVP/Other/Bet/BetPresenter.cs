@@ -31,12 +31,16 @@ public class BetPresenter : IBetProvider
     public void ActivateEvents()
     {
         view.OnClickToMaxBetButton += model.MaxBet;
+        view.OnClickToDoubleBetButton += model.DoubleBet;
 
         model.OnChangeBet += view.DisplayChangeBet;
     }
 
     public void DeactivateEvents()
     {
+        view.OnClickToMaxBetButton -= model.MaxBet;
+        view.OnClickToDoubleBetButton -= model.DoubleBet;
+
         model.OnChangeBet -= view.DisplayChangeBet;
     }
 

@@ -41,7 +41,27 @@ public class BetModel : MonoBehaviour
 
     public void MaxBet()
     {
-        OnCountForMaxBet?.Invoke(maxBet - currentBet);
+        var bet = moneyProvider.GetMoney() - currentBet;
+
+        if(bet >= maxBet - currentBet)
+        {
+            OnCountForMaxBet?.Invoke(maxBet - currentBet);
+        }
+    }
+
+    private void MaxBetDouble()
+    {
+        var bet = moneyProvider.GetMoney() - currentBet;
+
+        if(bet > currentBet * 2)
+        {
+            OnCountForMaxBet?.Invoke(currentBet);
+        }
+    }
+
+    public void DoubleBet()
+    {
+        MaxBetDouble();
     }
 
     public bool IsAvailable(int bet)
