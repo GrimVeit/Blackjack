@@ -3,6 +3,7 @@ using UnityEngine;
 public class GameSceneEntryPoint : MonoBehaviour
 {
     [SerializeField] private Sounds sounds;
+    [SerializeField] private CardDatas cardDatas;
     //[SerializeField] private UIGameRoot sceneRootPrefab;
 
     [SerializeField] private UIGameRoot sceneRoot;
@@ -15,6 +16,11 @@ public class GameSceneEntryPoint : MonoBehaviour
     private PseudoChipPresenter pseudoChipPresenter;
     private ChipPresenter chipPresenter;
     private BetPresenter betPresenter;
+
+    private CardPresenter cardPresenter_Player;
+    private CardPresenter cardPresenter_Dealer;
+
+    private GlobalStateMachine globalStateMachine;
 
     public void Awake()
     {
@@ -38,7 +44,7 @@ public class GameSceneEntryPoint : MonoBehaviour
         bankPresenter = new BankPresenter(new BankModel(), viewContainer.GetView<BankView>());
         bankPresenter.Initialize();
 
-        betPresenter = new BetPresenter(new BetModel(3, 69, bankPresenter), viewContainer.GetView<BetView>());
+        betPresenter = new BetPresenter(new BetModel(3, 119, bankPresenter), viewContainer.GetView<BetView>());
         betPresenter.Initialize();
 
         pseudoChipPresenter = new PseudoChipPresenter(new PseudoChipModel(bankPresenter, betPresenter, soundPresenter), viewContainer.GetView<PseudoChipView>());
@@ -47,35 +53,25 @@ public class GameSceneEntryPoint : MonoBehaviour
         chipPresenter = new ChipPresenter(new ChipModel(soundPresenter), viewContainer.GetView<ChipView>());
         chipPresenter.Initialize();
 
+        cardPresenter_Player = new CardPresenter(new CardModel(cardDatas), viewContainer.GetView<CardView>("Player"));
+        cardPresenter_Player.Initialize();
+
+        cardPresenter_Dealer = new CardPresenter(new CardModel(cardDatas), viewContainer.GetView<CardView>("Dealer"));
+        cardPresenter_Dealer.Initialize();
+
+        globalStateMachine = new GlobalStateMachine(pseudoChipPresenter, chipPresenter, betPresenter, cardPresenter_Player, cardPresenter_Dealer);
+        globalStateMachine.Initialize();
+
         ActivateTransferEvents();
-        ActivateEvents();
 
         sceneRoot.SetSoundProvider(soundPresenter);
         sceneRoot.Initialize();
         sceneRoot.Activate();
     }
 
-    private void ActivateEvents()
-    {
-        betPresenter.OnCountForMaxBet += chipPresenter.SpawnNumbers;
-
-        pseudoChipPresenter.OnSpawnChip += chipPresenter.SpawnChip;
-        chipPresenter.OnAddChip += betPresenter.AddBet;
-        chipPresenter.OnRemoveChip += betPresenter.RemoveBet;
-        chipPresenter.OnRemoveAllChips += betPresenter.ClearBet; 
-    }
-
     private void ActivateTransferEvents()
     {
 
-    }
-
-    private void DeactivateEvents()
-    {
-        pseudoChipPresenter.OnSpawnChip -= chipPresenter.SpawnChip;
-        chipPresenter.OnAddChip -= betPresenter.AddBet;
-        chipPresenter.OnRemoveChip -= betPresenter.RemoveBet;
-        chipPresenter.OnRemoveAllChips -= betPresenter.ClearBet;
     }
 
     private void DeactivateTransferEvents()
@@ -85,7 +81,6 @@ public class GameSceneEntryPoint : MonoBehaviour
 
     private void Dispose()
     {
-        DeactivateEvents();
         DeactivateTransferEvents();
         sceneRoot?.Deactivate();
 

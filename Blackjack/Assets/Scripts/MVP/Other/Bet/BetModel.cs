@@ -1,8 +1,13 @@
 using System;
 using UnityEngine;
 
-public class BetModel : MonoBehaviour
+public class BetModel
 {
+    public event Action OnStartGame;
+
+    public event Action OnActivateGameButton;
+    public event Action OnDeactivateGameButton;
+
     public event Action<int> OnCountForMaxBet;
     public event Action<int> OnChangeBet;
 
@@ -11,6 +16,8 @@ public class BetModel : MonoBehaviour
     private int currentBet = 0;
     private IMoneyProvider moneyProvider;
 
+    private bool isActive = false;
+
     public BetModel(int minBet, int maxBet, IMoneyProvider moneyProvider)
     {
         this.minBet = minBet;
@@ -18,39 +25,86 @@ public class BetModel : MonoBehaviour
         this.moneyProvider = moneyProvider;
     }
 
+    public void StartGame()
+    {
+        OnStartGame?.Invoke();
+    }
+
     public void AddBet(int bet)
     {
+        if (!isActive) return;
+
         moneyProvider.SendMoney(-bet);
         currentBet += bet;
         OnChangeBet?.Invoke(currentBet);
+
+        if(currentBet >= minBet && currentBet <= maxBet)
+        {
+            OnActivateGameButton?.Invoke();
+        }
+        else
+        {
+            OnDeactivateGameButton?.Invoke();
+        }
     }
 
     public void RemoveBet(int bet)
     {
+        if (!isActive) return;
+
         moneyProvider.SendMoney(bet);
         currentBet -= bet;
         OnChangeBet?.Invoke(currentBet);
+
+        if (currentBet >= minBet && currentBet <= maxBet)
+        {
+            OnActivateGameButton?.Invoke();
+        }
+        else
+        {
+            OnDeactivateGameButton?.Invoke();
+        }
     }
 
     public void ClearBet()
     {
+        if (!isActive) return;
+
         moneyProvider.SendMoney(currentBet);
         currentBet = 0;
         OnChangeBet?.Invoke(currentBet);
+
+        if (currentBet >= minBet && currentBet <= maxBet)
+        {
+            OnActivateGameButton?.Invoke();
+        }
+        else
+        {
+            OnDeactivateGameButton?.Invoke();
+        }
     }
 
     public void MaxBet()
     {
-        var bet = moneyProvider.GetMoney() - currentBet;
+        if (!isActive) return;
 
-        if(bet >= maxBet - currentBet)
+        var bet = moneyProvider.GetMoney();
+
+        if(bet >= maxBet)
         {
-            OnCountForMaxBet?.Invoke(maxBet - currentBet);
+            OnCountForMaxBet?.Invoke(maxBet);
+        }
+
+        if(bet >= minBet && bet < maxBet)
+        {
+            OnCountForMaxBet?.Invoke(bet);
         }
     }
 
     private void MaxBetDouble()
     {
+        if (!isActive) return;
+
         var bet = moneyProvider.GetMoney() - currentBet;
 
         if(bet > currentBet * 2)
@@ -67,5 +121,15 @@ public class BetModel : MonoBehaviour
     public bool IsAvailable(int bet)
     {
         return bet <= maxBet - currentBet;
+    }
+
+    public void Activate()
+    {
+        isActive = true;
+    }
+
+    public void Deactivate()
+    {
+        isActive = false;
     }
 }

@@ -28,9 +28,9 @@ public class CardSpawnerView : View, IIdentify
 
     public void SpawnCard(CardValue cardValue)
     {
-        currentCardView = Instantiate(cardViewPrefab, cardViewParent);
-        currentCardView.transform.SetLocalPositionAndRotation(Vector3.zero, cardViewPrefab.transform.rotation);
-        currentCardView.SetData(cardValue);
+        //currentCardView = Instantiate(cardViewPrefab, cardViewParent);
+        //currentCardView.transform.SetLocalPositionAndRotation(Vector3.zero, cardViewPrefab.transform.rotation);
+        //currentCardView.SetData(cardValue);
     }
 
     public void DestroyCard()

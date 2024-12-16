@@ -35,7 +35,7 @@ public class SlotMachineModel
     private int[,] combination;
 
     private int slotCount;
-    private float winMoney;
+    private int winMoney;
 
     private Dictionary<WinType, Action> winTypeActions = new Dictionary<WinType, Action>();
 
@@ -260,7 +260,7 @@ public class SlotMachineModel
 
             if (isWinningCombination)
             {
-                winMoney += Bet * grid.BetMultyply;
+                //winMoney += Bet * grid.BetMultyply;
 
                 if(grid.WinType == WinType.Big)
                    winType = grid.WinType;

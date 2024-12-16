@@ -65,5 +65,15 @@ public class PseudoChipPresenter
         remove { pseudoChipModel.OnSpawnChip -= value; }
     }
 
+    public void Activate()
+    {
+        pseudoChipModel.Activate();
+    }
+
+    public void Deactivate()
+    {
+        pseudoChipModel.Deactivate();
+    }
+
     #endregion
 }

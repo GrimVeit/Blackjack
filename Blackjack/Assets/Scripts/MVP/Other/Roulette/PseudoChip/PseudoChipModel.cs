@@ -12,7 +12,7 @@ public class PseudoChipModel
     public event Action OnEndMove;
     public event Action OnTeleporting;
 
-    private bool isActive = true;
+    private bool isActive = false;
 
     private IMoneyProvider moneyProvider;
     private IBetProvider betProvider;

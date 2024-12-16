@@ -30,21 +30,33 @@ public class BetPresenter : IBetProvider
 
     public void ActivateEvents()
     {
+        view.OnClickToPlayButton += model.StartGame;
         view.OnClickToMaxBetButton += model.MaxBet;
         view.OnClickToDoubleBetButton += model.DoubleBet;
 
         model.OnChangeBet += view.DisplayChangeBet;
+        model.OnActivateGameButton += view.ActivateStartButton;
+        model.OnDeactivateGameButton += view.DeactivateStartButton;
     }
 
     public void DeactivateEvents()
     {
+        view.OnClickToPlayButton -= model.StartGame;
         view.OnClickToMaxBetButton -= model.MaxBet;
         view.OnClickToDoubleBetButton -= model.DoubleBet;
 
         model.OnChangeBet -= view.DisplayChangeBet;
+        model.OnActivateGameButton -= view.ActivateStartButton;
+        model.OnDeactivateGameButton -= view.DeactivateStartButton;
     }
 
     #region Input
+
+    public event Action OnStartGame
+    {
+        add { model.OnStartGame += value; }
+        remove { model.OnStartGame -= value; }
+    }
 
     public event Action<int> OnCountForMaxBet
     {
@@ -70,6 +82,16 @@ public class BetPresenter : IBetProvider
     public bool IsAvailable(int bet)
     {
         return model.IsAvailable(bet);
+    }
+
+    public void Activate()
+    {
+        model.Activate();
+    }
+
+    public void Deactivate()
+    {
+        model.Deactivate();
     }
 
     #endregion

@@ -37,17 +37,12 @@ public class BankPresenter : IMoneyProvider
         bankModel.SendMoney(money);
     }
 
-    public void SendMoney(float money)
-    {
-        bankModel.SendMoney(money);
-    }
-
     public bool CanAfford(int bet)
     {
         return bankModel.CanAfford(bet);
     }
 
-    public float GetMoney() => bankModel.Money;
+    public int GetMoney() => bankModel.Money;
 
     public event Action<float> OnChangeMoney
     {
@@ -58,10 +53,10 @@ public class BankPresenter : IMoneyProvider
 
 public interface IMoneyProvider
 {
-    float GetMoney();
+    int GetMoney();
 
     event Action<float> OnChangeMoney;
-    void SendMoney(float money);
+    void SendMoney(int money);
     bool CanAfford(int money);
 }
 
