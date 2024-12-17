@@ -16,12 +16,16 @@ public class GlobalStateMachine : IGlobalMachineControl
         BetPresenter betPresenter,
         CardPresenter cardPresenter_Player,
         CardPresenter cardPresenter_Dealer,
-        CardScorePresenter cardScorePresenter)
+        CardScorePresenter cardScorePresenter,
+        BankPresenter bankPresenter)
     {
         states[typeof(BettingState)] = new BettingState(this, sceneRoot, pseudoChipPresenter, chipPresenter, betPresenter);
         states[typeof(AutoCardState)] = new AutoCardState(this, cardPresenter_Player, cardPresenter_Dealer, cardScorePresenter);
         states[typeof(PlayerTurnState)] = new PlayerTurnState(this, sceneRoot, cardPresenter_Player, cardPresenter_Dealer, cardScorePresenter, betPresenter, chipPresenter);
         states[typeof(DealerTurnState)] = new DealerTurnState(this, cardScorePresenter, cardPresenter_Dealer);
+        states[typeof(ComparisionState)] = new ComparisionState(this, cardScorePresenter);
+
+        states[typeof(WinState)] = new WinState(this, sceneRoot, chipPresenter, betPresenter, bankPresenter, cardPresenter_Player, cardPresenter_Dealer, cardScorePresenter);
     }
 
     public void Initialize()

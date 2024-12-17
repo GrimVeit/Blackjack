@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class UIGameRoot : MonoBehaviour
 {
+    [SerializeField] private WinPanel winPanel;
     [SerializeField] private BetFooterPanel betFooterPanel;
     [SerializeField] private GameFooterPanel gameFooterPanel;
     
@@ -19,6 +20,7 @@ public class UIGameRoot : MonoBehaviour
 
     public void Initialize()
     {
+        winPanel.Initialize();
         betFooterPanel.Initialize();
         gameFooterPanel.Initialize();
     }
@@ -35,6 +37,7 @@ public class UIGameRoot : MonoBehaviour
 
     public void Dispose()
     {
+        winPanel.Dispose();
         betFooterPanel.Dispose();
         gameFooterPanel.Dispose();
     }
@@ -42,6 +45,16 @@ public class UIGameRoot : MonoBehaviour
     public void OpenMainPanel()
     {
 
+    }
+
+    public void OpenWinPanel()
+    {
+        OpenOtherPanel(winPanel);
+    }
+
+    public void CloseWinPanel()
+    {
+        CloseOtherPanel(winPanel);
     }
 
     public void OpenBetFooterPanel()

@@ -3,15 +3,17 @@ using UnityEngine;
 
 public class BetModel
 {
+    public int CurrentBet { get; private set; }
+
     public event Action OnActivateGameButton;
     public event Action OnDeactivateGameButton;
 
     public event Action<int> OnCountForMaxBet;
     public event Action<int> OnChangeBet;
+    public event Action<int> OnChangeWin;
 
     private int minBet, maxBet;
 
-    private int currentBet = 0;
     private IMoneyProvider moneyProvider;
 
     private bool isActive = false;
@@ -28,10 +30,10 @@ public class BetModel
         if (!isActive) return;
 
         moneyProvider.SendMoney(-bet);
-        currentBet += bet;
-        OnChangeBet?.Invoke(currentBet);
+        CurrentBet += bet;
+        OnChangeBet?.Invoke(CurrentBet);
 
-        if(currentBet >= minBet && currentBet <= maxBet)
+        if(CurrentBet >= minBet && CurrentBet <= maxBet)
         {
             OnActivateGameButton?.Invoke();
         }
@@ -46,10 +48,10 @@ public class BetModel
         if (!isActive) return;
 
         moneyProvider.SendMoney(bet);
-        currentBet -= bet;
-        OnChangeBet?.Invoke(currentBet);
+        CurrentBet -= bet;
+        OnChangeBet?.Invoke(CurrentBet);
 
-        if (currentBet >= minBet && currentBet <= maxBet)
+        if (CurrentBet >= minBet && CurrentBet <= maxBet)
         {
             OnActivateGameButton?.Invoke();
         }
@@ -63,11 +65,11 @@ public class BetModel
     {
         if (!isActive) return;
 
-        moneyProvider.SendMoney(currentBet);
-        currentBet = 0;
-        OnChangeBet?.Invoke(currentBet);
+        moneyProvider.SendMoney(CurrentBet);
+        CurrentBet = 0;
+        OnChangeBet?.Invoke(CurrentBet);
 
-        if (currentBet >= minBet && currentBet <= maxBet)
+        if (CurrentBet >= minBet && CurrentBet <= maxBet)
         {
             OnActivateGameButton?.Invoke();
         }
@@ -81,11 +83,11 @@ public class BetModel
     {
         if (!isActive) return;
 
-        var bet = moneyProvider.GetMoney() - currentBet;
+        var bet = moneyProvider.GetMoney() - CurrentBet;
 
-        if(bet >= maxBet - currentBet)
+        if(bet >= maxBet - CurrentBet)
         {
-            OnCountForMaxBet?.Invoke(maxBet - currentBet);
+            OnCountForMaxBet?.Invoke(maxBet - CurrentBet);
         }
 
         if(bet >= minBet && bet < maxBet)
@@ -100,11 +102,11 @@ public class BetModel
 
         Debug.Log("hjnkfmsd");
 
-        var bet = moneyProvider.GetMoney() - currentBet;
+        var bet = moneyProvider.GetMoney() - CurrentBet;
 
-        if(bet >= currentBet * 2)
+        if(bet >= CurrentBet * 2)
         {
-            OnCountForMaxBet?.Invoke(currentBet);
+            OnCountForMaxBet?.Invoke(CurrentBet);
         }
     }
 
@@ -115,7 +117,7 @@ public class BetModel
 
     public bool IsAvailable(int bet)
     {
-        return bet <= maxBet - currentBet;
+        return bet <= maxBet - CurrentBet;
     }
 
     public void Activate()

@@ -1,7 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 public class BetPresenter : IBetProvider
 {
@@ -49,6 +46,8 @@ public class BetPresenter : IBetProvider
     }
 
     #region Input
+
+    public int CurrentBet => model.CurrentBet;
 
     public event Action<int> OnCountForMaxBet
     {

@@ -71,7 +71,8 @@ public class GameSceneEntryPoint : MonoBehaviour
             betPresenter, 
             cardPresenter_Player, 
             cardPresenter_Dealer, 
-            cardScorePresenter);
+            cardScorePresenter,
+            bankPresenter);
         globalStateMachine.Initialize();
 
         ActivateTransferEvents();

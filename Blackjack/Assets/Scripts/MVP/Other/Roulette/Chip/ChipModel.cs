@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class ChipModel
 {
+    public event Action OnRetractAllChips;
+    public event Action OnFallenAllChips;
+
     public event Action<int> OnSpawnNumbers;
 
     public event Action OnRemoveAllChips;
@@ -53,6 +56,16 @@ public class ChipModel
         //soundProvider.PlayOneShot("ChipWhoosh");
         OnRemoveChip?.Invoke(chip.ChipData.Nominal);
         OnRetractLastChip?.Invoke(chip);
+    }
+
+    public void RetractAllChips()
+    {
+        OnRetractAllChips?.Invoke();
+    }
+
+    public void FallenAllChips()
+    {
+        OnFallenAllChips?.Invoke();
     }
 
     public void NoneRetractChip(Chip chip)

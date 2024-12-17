@@ -81,6 +81,14 @@ public class ChipView : View
         chip.Fall(transformDeleteChip.position);
     }
 
+    public void FallenAllChips()
+    {
+        for (int i = 0; i < chips.Count; i++)
+        {
+            chips[i].Fall(transformDeleteChip.position);
+        }
+    }
+
     public void SpawnNumbers(int number)
     {
         chipPrefabs.Sort((a, b) => b.ChipData.Nominal.CompareTo(a.ChipData.Nominal));
@@ -110,6 +118,11 @@ public class ChipView : View
         }
     }
 
+    public void RecallAllChips()
+    {
+        OnRecallAllChips?.Invoke(chips);
+    }
+
     #region Input
 
     private void OnFall(Chip chip)
@@ -134,11 +147,6 @@ public class ChipView : View
         chip.OnNoneRetracted -= OnNoneRetracted;
         chips.Remove(chip);
         Destroy(chip.gameObject);
-    }
-
-    private void HandlerClickToRecallAllChips()
-    {
-        OnRecallAllChips?.Invoke(chips);
     }
 
     private void HandlerClickToRetractLastChip()

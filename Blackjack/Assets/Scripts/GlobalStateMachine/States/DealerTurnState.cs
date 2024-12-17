@@ -37,7 +37,26 @@ public class DealerTurnState : IGlobalState
         }
         else
         {
-            Debug.Log("Game Over");
+            if(cardScorePresenter.ScoreDealer > 21)
+            {
+                ActivateState_Win();
+            }
+            else
+            {
+                ActivateState_Comparison();
+            }
         }
+    }
+
+    private void ActivateState_Comparison()
+    {
+        Debug.Log("Start ComparisionState");
+        machineControl.SetState(machineControl.GetState<ComparisionState>());
+    }
+
+    private void ActivateState_Win()
+    {
+        Debug.Log("Start ComparisionState");
+        machineControl.SetState(machineControl.GetState<WinState>());
     }
 }

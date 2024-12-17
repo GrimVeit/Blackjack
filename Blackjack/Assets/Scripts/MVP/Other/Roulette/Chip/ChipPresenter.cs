@@ -32,6 +32,8 @@ public class ChipPresenter
         chipView.OnRetractLastChip += chipModel.RetractLastChip;
         chipView.OnSpawn += chipModel.SpawnChip;
 
+        chipModel.OnRetractAllChips += chipView.RecallAllChips;
+        chipModel.OnFallenAllChips += chipView.FallenAllChips;
         chipModel.OnSpawnNumbers += chipView.SpawnNumbers;
         chipModel.OnSpawn += chipView.SpawnChip;
         chipModel.OnSpawnChip += chipView.SpawnChip;
@@ -77,6 +79,16 @@ public class ChipPresenter
     public void SpawnChip(ChipData chipData, ICell cell, Vector2 vector) 
     {
         chipModel.SpawnChip(chipData, cell, vector);
+    }
+
+    public void RetractAllChips()
+    {
+        chipModel.RetractAllChips();
+    }
+
+    public void FallenAllChips()
+    {
+        chipModel.FallenAllChips();
     }
 
     public void NoneRetractChip(Chip chip)
