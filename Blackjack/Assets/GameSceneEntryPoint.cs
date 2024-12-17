@@ -46,7 +46,7 @@ public class GameSceneEntryPoint : MonoBehaviour
         bankPresenter = new BankPresenter(new BankModel(), viewContainer.GetView<BankView>());
         bankPresenter.Initialize();
 
-        betPresenter = new BetPresenter(new BetModel(3, 119, bankPresenter), viewContainer.GetView<BetView>());
+        betPresenter = new BetPresenter(new BetModel(10, 119, bankPresenter), viewContainer.GetView<BetView>());
         betPresenter.Initialize();
 
         pseudoChipPresenter = new PseudoChipPresenter(new PseudoChipModel(bankPresenter, betPresenter, soundPresenter), viewContainer.GetView<PseudoChipView>());

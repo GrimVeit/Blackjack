@@ -10,6 +10,7 @@ public class CardModel
     public event Action OnDestroysCards;
     public event Action<CardData> OnSpawnOpenCard;
     public event Action<CardData> OnSpawnCloseCard;
+    public event Action OnOpenCard;
 
     private CardDatas cardDatas;
 
@@ -37,6 +38,11 @@ public class CardModel
     {
         OnClearNominal?.Invoke();
         OnDestroysCards?.Invoke();
+    }
+
+    public void OpenCard()
+    {
+        OnOpenCard?.Invoke();
     }
 
     public void SpawnCard(bool[] isOpens, Action OnDone = null)

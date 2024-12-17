@@ -98,5 +98,11 @@ public class UIGameRoot : MonoBehaviour
         remove { gameFooterPanel.OnClickToAddCardButton -= value; }
     }
 
+    public event Action OnClickToDealerTurn
+    {
+        add { gameFooterPanel.OnClickToDealerTurnButton += value; }
+        remove { gameFooterPanel.OnClickToDealerTurnButton -= value; }
+    }
+
     #endregion
 }

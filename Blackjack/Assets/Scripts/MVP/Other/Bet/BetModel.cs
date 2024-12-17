@@ -81,11 +81,11 @@ public class BetModel
     {
         if (!isActive) return;
 
-        var bet = moneyProvider.GetMoney();
+        var bet = moneyProvider.GetMoney() - currentBet;
 
-        if(bet >= maxBet)
+        if(bet >= maxBet - currentBet)
         {
-            OnCountForMaxBet?.Invoke(maxBet);
+            OnCountForMaxBet?.Invoke(maxBet - currentBet);
         }
 
         if(bet >= minBet && bet < maxBet)
@@ -98,9 +98,11 @@ public class BetModel
     {
         if (!isActive) return;
 
+        Debug.Log("hjnkfmsd");
+
         var bet = moneyProvider.GetMoney() - currentBet;
 
-        if(bet > currentBet * 2)
+        if(bet >= currentBet * 2)
         {
             OnCountForMaxBet?.Invoke(currentBet);
         }

@@ -55,7 +55,7 @@ public class BettingState : IGlobalState
 
     private void ActivateState_AutoCardState()
     {
-        Debug.Log("Start auto card state");
+        Debug.Log("Start AutoCardState");
         machineControl.SetState(machineControl.GetState<AutoCardState>());
     }
 }

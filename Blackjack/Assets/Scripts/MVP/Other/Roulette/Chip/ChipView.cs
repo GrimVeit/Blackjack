@@ -98,7 +98,7 @@ public class ChipView : View
                 {
                     num -= prefab.ChipData.Nominal;
                     spawnedSomething = true;
-                    Debug.Log("Spawn nominal - " + prefab.ChipData.Nominal);
+                    //Debug.Log("Spawn nominal - " + prefab.ChipData.Nominal);
                     OnSpawn?.Invoke(prefab);
                 }
             }

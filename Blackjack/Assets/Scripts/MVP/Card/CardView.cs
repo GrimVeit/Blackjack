@@ -20,7 +20,7 @@ public class CardView : View, IIdentify
 
     public void SpawnOpenCard(CardData cardData)
     {
-        Debug.Log("Spawn open, nominal - " + cardData.Nominal);
+        //Debug.Log("Spawn open, nominal - " + cardData.Nominal);
 
         var transform = zones[cards.Count].transformZone;
         var card = Instantiate(cardPrefab, transform);
@@ -34,7 +34,7 @@ public class CardView : View, IIdentify
 
     public void SpawnCloseCard(CardData cardData)
     {
-        Debug.Log("Spawn close, nominal - " + cardData.Nominal);
+        //Debug.Log("Spawn close, nominal - " + cardData.Nominal);
 
         var transform = zones[cards.Count].transformZone;
         var card = Instantiate(cardPrefab, transform);
@@ -48,7 +48,7 @@ public class CardView : View, IIdentify
 
     public void OpenCard()
     {
-        cards.FirstOrDefault(data => data.IsOpen).OpenCard();
+        cards.FirstOrDefault(data => !data.IsOpen).OpenCard();
     }
 
     public void DestroyCards()

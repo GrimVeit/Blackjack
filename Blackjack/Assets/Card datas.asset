@@ -14,28 +14,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Datas:
   - sprite: {fileID: 21300000, guid: 73900a40764e122458d5817dcd5bbe34, type: 3}
-    nominal: 11
+    nominal: 2
   - sprite: {fileID: 21300000, guid: 9227e72973abeb1489b95d0f758bf7d0, type: 3}
-    nominal: 11
+    nominal: 3
   - sprite: {fileID: 21300000, guid: 8b64eff4dc2c4fe42affd1452fa470bf, type: 3}
-    nominal: 11
+    nominal: 4
   - sprite: {fileID: 21300000, guid: f261ceb2342a18147ae94cc696c3b8f6, type: 3}
-    nominal: 11
+    nominal: 5
   - sprite: {fileID: 21300000, guid: c3f989b1b40e697418a1b6203f17ce0d, type: 3}
-    nominal: 11
+    nominal: 6
   - sprite: {fileID: 21300000, guid: 2fbe2c8c7e90a19438c0b59ca1e90804, type: 3}
-    nominal: 11
+    nominal: 7
   - sprite: {fileID: 21300000, guid: 8cb623614f5c20d4bb7a5142d46e9f95, type: 3}
-    nominal: 11
+    nominal: 8
   - sprite: {fileID: 21300000, guid: decaf7d4571d72540aeec5d68b437b8f, type: 3}
-    nominal: 11
+    nominal: 9
   - sprite: {fileID: 21300000, guid: aef7f603674c87846b5d0235742887b9, type: 3}
-    nominal: 11
+    nominal: 10
   - sprite: {fileID: 21300000, guid: 9ae45a744225bee44801a53c4078c69d, type: 3}
-    nominal: 11
+    nominal: 10
   - sprite: {fileID: 21300000, guid: 41cfa5542705cc640867327044033a84, type: 3}
-    nominal: 11
+    nominal: 10
   - sprite: {fileID: 21300000, guid: 2fe6f126012c57b4c98d5febd3c732ed, type: 3}
-    nominal: 11
+    nominal: 10
   - sprite: {fileID: 21300000, guid: 185fe06e3c81d864e96837bf538816a0, type: 3}
     nominal: 11

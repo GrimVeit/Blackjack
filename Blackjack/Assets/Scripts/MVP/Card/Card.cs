@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Card : MonoBehaviour
 {
-    public bool IsOpen { get; private set; }
+    public bool IsOpen => isOpen;
     public event Action<int> OnOpenCard;
 
     [SerializeField] private Transform transformCard;

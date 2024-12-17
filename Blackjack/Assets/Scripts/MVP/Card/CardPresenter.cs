@@ -31,6 +31,7 @@ public class CardPresenter
         model.OnSpawnOpenCard += view.SpawnOpenCard;
         model.OnSpawnCloseCard += view.SpawnCloseCard;
         model.OnDestroysCards += view.DestroyCards;
+        model.OnOpenCard += view.OpenCard;
     }
 
     private void DeactivateEvents()
@@ -40,6 +41,7 @@ public class CardPresenter
         model.OnSpawnOpenCard -= view.SpawnOpenCard;
         model.OnSpawnCloseCard -= view.SpawnCloseCard;
         model.OnDestroysCards -= view.DestroyCards;
+        model.OnOpenCard -= view.OpenCard;
     }
 
     #region Input
@@ -64,6 +66,11 @@ public class CardPresenter
     public void ClearCards()
     {
         model.ClearCards();
+    }
+
+    public void OpenCard()
+    {
+        model.OpenCard();
     }
 
     #endregion

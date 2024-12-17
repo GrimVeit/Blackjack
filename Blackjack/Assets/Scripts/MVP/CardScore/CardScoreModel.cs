@@ -11,16 +11,16 @@ public class CardScoreModel
     public event Action<int> OnChangeScore_Player;
     public event Action<int> OnChangeScore_Dealer;
 
-    private int scorePlayer;
-    private int scoreDealer;
+    public int ScorePlayer { get; private set; }
+    public int ScoreDealer { get; private set; }
 
     public void AddScore_Player(int score)
     {
-        scorePlayer += score;
+        ScorePlayer += score;
 
-        OnChangeScore_Player?.Invoke(scorePlayer);
+        OnChangeScore_Player?.Invoke(ScorePlayer);
 
-        if(scorePlayer > 21)
+        if(ScorePlayer > 21)
         {
             OnLose?.Invoke();
         }
@@ -28,11 +28,11 @@ public class CardScoreModel
 
     public void AddScore_Dealer(int score)
     {
-        scoreDealer += score;
+        ScoreDealer += score;
 
-        OnChangeScore_Dealer?.Invoke(scoreDealer);
+        OnChangeScore_Dealer?.Invoke(ScoreDealer);
 
-        if (scoreDealer > 21)
+        if (ScoreDealer > 21)
         {
             OnWin?.Invoke();
         }
@@ -40,7 +40,7 @@ public class CardScoreModel
 
     public void CalculateResult()
     {
-        if(scorePlayer > scoreDealer)
+        if(ScorePlayer > ScoreDealer)
         {
             OnWin?.Invoke();
         }
@@ -52,14 +52,14 @@ public class CardScoreModel
 
     public void ClearScore_Player()
     {
-        scorePlayer = 0;
-        OnChangeScore_Player.Invoke(scorePlayer);
+        ScorePlayer = 0;
+        OnChangeScore_Player.Invoke(ScorePlayer);
 
     }
 
     public void ClearScore_Dealer()
     {
-        scoreDealer = 0;
-        OnChangeScore_Dealer.Invoke(scoreDealer);
+        ScoreDealer = 0;
+        OnChangeScore_Dealer.Invoke(ScoreDealer);
     }
 }

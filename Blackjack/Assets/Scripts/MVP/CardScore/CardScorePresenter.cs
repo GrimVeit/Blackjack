@@ -35,6 +35,9 @@ public class CardScorePresenter
 
     #region Input
 
+    public int ScorePlayer => model.ScorePlayer;
+    public int ScoreDealer => model.ScoreDealer;
+
     public event Action OnWin
     {
         add { model.OnWin += value; }

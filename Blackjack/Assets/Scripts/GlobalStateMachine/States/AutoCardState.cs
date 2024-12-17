@@ -45,7 +45,7 @@ public class AutoCardState : IGlobalState
 
     private void SpawnPlayerCards()
     {
-        cardPresenter_Player.SpawnCards(new bool[] { true, true });
+        cardPresenter_Player.SpawnCards(new bool[] { true, true }, ActivateState_PlayerTurn);
     }
 
     private void ActivateLose()
@@ -60,11 +60,13 @@ public class AutoCardState : IGlobalState
 
     private void ActivateState_PlayerTurn()
     {
+        Debug.Log("Start PlayerTurnState");
         machineControl.SetState(machineControl.GetState<PlayerTurnState>());
     }
 
     private void ActivateState_BettingState()
     {
+        Debug.Log("Start BettingState");
         machineControl.SetState(machineControl.GetState<BettingState>());
     }
 }

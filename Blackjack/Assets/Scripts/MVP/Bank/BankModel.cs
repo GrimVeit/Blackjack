@@ -12,7 +12,7 @@ public class BankModel
 
     public void Initialize()
     {
-        Money = PlayerPrefs.GetInt(BANK_MONEY, 120);
+        Money = PlayerPrefs.GetInt(BANK_MONEY, 16);
     }
 
     public void Destroy()

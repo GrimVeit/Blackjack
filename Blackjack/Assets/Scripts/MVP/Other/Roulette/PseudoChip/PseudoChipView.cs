@@ -14,7 +14,6 @@ public class PseudoChipView : View
         for (int i = 0; i < pseudoChips.Count; i++)
         {
             pseudoChips[i].OnGrabbing += OnGrabPseudoChip;
-            Debug.Log("Initialize pseudo chip view");
             pseudoChips[i].Initialize();
         }
     }

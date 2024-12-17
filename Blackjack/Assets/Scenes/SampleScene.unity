@@ -6653,6 +6653,7 @@ MonoBehaviour:
   time: 0.1
   canvasGroup: {fileID: 2062551953}
   buttonAddCard: {fileID: 1835464580}
+  buttonDealerTurn: {fileID: 1949137739}
 --- !u!225 &2062551953
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -6663,7 +6664,7 @@ CanvasGroup:
   m_Enabled: 1
   m_Alpha: 0
   m_Interactable: 1
-  m_BlocksRaycasts: 0
+  m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
 --- !u!1 &2076190546
 GameObject:

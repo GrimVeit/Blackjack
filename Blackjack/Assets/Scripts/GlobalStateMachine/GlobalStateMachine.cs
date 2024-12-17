@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GlobalStateMachine : MonoBehaviour, IGlobalMachineControl
+public class GlobalStateMachine : IGlobalMachineControl
 {
     private Dictionary<Type, IGlobalState> states = new Dictionary<Type, IGlobalState>();
 
@@ -20,7 +20,8 @@ public class GlobalStateMachine : MonoBehaviour, IGlobalMachineControl
     {
         states[typeof(BettingState)] = new BettingState(this, sceneRoot, pseudoChipPresenter, chipPresenter, betPresenter);
         states[typeof(AutoCardState)] = new AutoCardState(this, cardPresenter_Player, cardPresenter_Dealer, cardScorePresenter);
-        states[typeof(PlayerTurnState)] = new PlayerTurnState(this, sceneRoot);
+        states[typeof(PlayerTurnState)] = new PlayerTurnState(this, sceneRoot, cardPresenter_Player, cardPresenter_Dealer, cardScorePresenter, betPresenter, chipPresenter);
+        states[typeof(DealerTurnState)] = new DealerTurnState(this, cardScorePresenter, cardPresenter_Dealer);
     }
 
     public void Initialize()
