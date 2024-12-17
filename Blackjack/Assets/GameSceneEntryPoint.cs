@@ -20,6 +20,8 @@ public class GameSceneEntryPoint : MonoBehaviour
     private CardPresenter cardPresenter_Player;
     private CardPresenter cardPresenter_Dealer;
 
+    private CardScorePresenter cardScorePresenter;
+
     private GlobalStateMachine globalStateMachine;
 
     public void Awake()
@@ -59,7 +61,17 @@ public class GameSceneEntryPoint : MonoBehaviour
         cardPresenter_Dealer = new CardPresenter(new CardModel(cardDatas), viewContainer.GetView<CardView>("Dealer"));
         cardPresenter_Dealer.Initialize();
 
-        globalStateMachine = new GlobalStateMachine(pseudoChipPresenter, chipPresenter, betPresenter, cardPresenter_Player, cardPresenter_Dealer);
+        cardScorePresenter = new CardScorePresenter(new CardScoreModel(), viewContainer.GetView<CardScoreView>());
+        cardScorePresenter.Initialize();
+
+        globalStateMachine = new GlobalStateMachine(
+            sceneRoot,
+            pseudoChipPresenter, 
+            chipPresenter, 
+            betPresenter, 
+            cardPresenter_Player, 
+            cardPresenter_Dealer, 
+            cardScorePresenter);
         globalStateMachine.Initialize();
 
         ActivateTransferEvents();

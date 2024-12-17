@@ -3,8 +3,6 @@ using UnityEngine;
 
 public class BetModel
 {
-    public event Action OnStartGame;
-
     public event Action OnActivateGameButton;
     public event Action OnDeactivateGameButton;
 
@@ -23,11 +21,6 @@ public class BetModel
         this.minBet = minBet;
         this.maxBet = maxBet;
         this.moneyProvider = moneyProvider;
-    }
-
-    public void StartGame()
-    {
-        OnStartGame?.Invoke();
     }
 
     public void AddBet(int bet)

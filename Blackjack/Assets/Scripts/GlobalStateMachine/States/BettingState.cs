@@ -4,15 +4,18 @@ using UnityEngine;
 
 public class BettingState : IGlobalState
 {
+    private UIGameRoot sceneRoot;
+
     private PseudoChipPresenter pseudoChipPresenter;
     private ChipPresenter chipPresenter;
     private BetPresenter betPresenter;
 
     private IGlobalMachineControl machineControl;
 
-    public BettingState(IGlobalMachineControl machineControl, PseudoChipPresenter pseudoChipPresenter, ChipPresenter chipPresenter, BetPresenter betPresenter)
+    public BettingState(IGlobalMachineControl machineControl, UIGameRoot sceneRoot, PseudoChipPresenter pseudoChipPresenter, ChipPresenter chipPresenter, BetPresenter betPresenter)
     {
         this.machineControl = machineControl;
+        this.sceneRoot = sceneRoot;
         this.pseudoChipPresenter = pseudoChipPresenter;
         this.chipPresenter = chipPresenter;
         this.betPresenter = betPresenter;
@@ -20,7 +23,7 @@ public class BettingState : IGlobalState
 
     public void EnterState()
     {
-        betPresenter.OnStartGame += ActivateState_AutoCardState;
+        sceneRoot.OnClickToStartPlay += ActivateState_AutoCardState;
 
         betPresenter.OnCountForMaxBet += chipPresenter.SpawnNumbers;
 
@@ -31,11 +34,12 @@ public class BettingState : IGlobalState
 
         pseudoChipPresenter.Activate();
         betPresenter.Activate();
+        sceneRoot.OpenBetFooterPanel();
     }
 
     public void ExitState()
     {
-        betPresenter.OnStartGame -= ActivateState_AutoCardState;
+        sceneRoot.OnClickToStartPlay -= ActivateState_AutoCardState;
 
         betPresenter.OnCountForMaxBet -= chipPresenter.SpawnNumbers;
 
@@ -44,8 +48,9 @@ public class BettingState : IGlobalState
         chipPresenter.OnRemoveChip -= betPresenter.RemoveBet;
         chipPresenter.OnRemoveAllChips -= betPresenter.ClearBet;
 
-        pseudoChipPresenter.Activate();
-        betPresenter.Activate();
+        pseudoChipPresenter.Deactivate();
+        betPresenter.Deactivate();
+        sceneRoot.CloseBetFooterPanel();
     }
 
     private void ActivateState_AutoCardState()

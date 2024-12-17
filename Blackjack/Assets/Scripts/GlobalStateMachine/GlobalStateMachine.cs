@@ -10,14 +10,17 @@ public class GlobalStateMachine : MonoBehaviour, IGlobalMachineControl
     private IGlobalState currentState;
 
     public GlobalStateMachine(
+        UIGameRoot sceneRoot,
         PseudoChipPresenter pseudoChipPresenter, 
         ChipPresenter chipPresenter, 
         BetPresenter betPresenter,
         CardPresenter cardPresenter_Player,
-        CardPresenter cardPresenter_Dealer)
+        CardPresenter cardPresenter_Dealer,
+        CardScorePresenter cardScorePresenter)
     {
-        states[typeof(BettingState)] = new BettingState(this, pseudoChipPresenter, chipPresenter, betPresenter);
-        states[typeof(AutoCardState)] = new AutoCardState(this, cardPresenter_Player, cardPresenter_Dealer);
+        states[typeof(BettingState)] = new BettingState(this, sceneRoot, pseudoChipPresenter, chipPresenter, betPresenter);
+        states[typeof(AutoCardState)] = new AutoCardState(this, cardPresenter_Player, cardPresenter_Dealer, cardScorePresenter);
+        states[typeof(PlayerTurnState)] = new PlayerTurnState(this, sceneRoot);
     }
 
     public void Initialize()

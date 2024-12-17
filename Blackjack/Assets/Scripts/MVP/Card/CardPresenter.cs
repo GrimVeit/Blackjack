@@ -44,9 +44,26 @@ public class CardPresenter
 
     #region Input
 
+    public event Action<int> OnAddNominal
+    {
+        add { model.OnAddNominal += value; }
+        remove { model.OnAddNominal -= value; }
+    }
+
+    public event Action OnClearNominal
+    {
+        add { model.OnClearNominal += value; }
+        remove { model.OnClearNominal -= value; }
+    }
+
     public void SpawnCards(bool[] isOpens, Action OnComplete = null)
     {
         model.SpawnCard(isOpens, OnComplete);
+    }
+
+    public void ClearCards()
+    {
+        model.ClearCards();
     }
 
     #endregion
