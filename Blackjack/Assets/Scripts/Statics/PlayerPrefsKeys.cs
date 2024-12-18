@@ -15,4 +15,6 @@ public static class PlayerPrefsKeys
     public const string GAME_RECORD = "GAME_RECORD";
     public const string NICKNAME = "NICKNAME";
     public const string IMAGE_INDEX = "IMAGE_INDEX";
+
+    public const string LEVEL = "LEVEL";
 }

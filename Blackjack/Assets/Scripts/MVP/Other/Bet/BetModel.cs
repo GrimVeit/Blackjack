@@ -65,6 +65,23 @@ public class BetModel
     {
         if (!isActive) return;
 
+        CurrentBet = 0;
+        OnChangeBet?.Invoke(CurrentBet);
+
+        if (CurrentBet >= minBet && CurrentBet <= maxBet)
+        {
+            OnActivateGameButton?.Invoke();
+        }
+        else
+        {
+            OnDeactivateGameButton?.Invoke();
+        }
+    }
+
+    public void ReturnBet()
+    {
+        if (!isActive) return;
+
         moneyProvider.SendMoney(CurrentBet);
         CurrentBet = 0;
         OnChangeBet?.Invoke(CurrentBet);

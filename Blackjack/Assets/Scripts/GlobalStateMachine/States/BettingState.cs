@@ -30,7 +30,7 @@ public class BettingState : IGlobalState
         pseudoChipPresenter.OnSpawnChip += chipPresenter.SpawnChip;
         chipPresenter.OnAddChip += betPresenter.AddBet;
         chipPresenter.OnRemoveChip += betPresenter.RemoveBet;
-        chipPresenter.OnRemoveAllChips += betPresenter.ClearBet;
+        chipPresenter.OnRemoveAllChips += betPresenter.ReturnBet;
 
         pseudoChipPresenter.Activate();
         betPresenter.Activate();
@@ -46,7 +46,7 @@ public class BettingState : IGlobalState
         pseudoChipPresenter.OnSpawnChip -= chipPresenter.SpawnChip;
         chipPresenter.OnAddChip -= betPresenter.AddBet;
         chipPresenter.OnRemoveChip -= betPresenter.RemoveBet;
-        chipPresenter.OnRemoveAllChips -= betPresenter.ClearBet;
+        chipPresenter.OnRemoveAllChips -= betPresenter.ReturnBet;
 
         pseudoChipPresenter.Deactivate();
         betPresenter.Deactivate();

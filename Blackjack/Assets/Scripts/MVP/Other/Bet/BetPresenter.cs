@@ -65,6 +65,11 @@ public class BetPresenter : IBetProvider
         model.RemoveBet(bet);
     }
 
+    public void ReturnBet()
+    {
+        model.ReturnBet();
+    }
+
     public void ClearBet()
     {
         model.ClearBet();

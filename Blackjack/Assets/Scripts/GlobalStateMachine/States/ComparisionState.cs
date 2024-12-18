@@ -37,16 +37,19 @@ public class ComparisionState : IGlobalState
 
     private void ActivateState_Win()
     {
+        Debug.Log("Activate WinState");
         machineControl.SetState(machineControl.GetState<WinState>());
     }
 
     private void ActivateState_Lose()
     {
-
+        Debug.Log("Activate LoseState");
+        machineControl.SetState(machineControl.GetState<LoseState>());
     }
 
     private void ActivateState_None()
     {
-
+        Debug.Log("Activate NoneState");
+        machineControl.SetState(machineControl.GetState<NoneState>());
     }
 }

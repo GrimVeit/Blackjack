@@ -58,6 +58,12 @@ public class ChipPresenter
 
     #region Input
 
+    public event Action OnFallenAllChips
+    {
+        add { chipModel.OnFallenAllChips += value; }
+        remove { chipModel.OnFallenAllChips -= value; }
+    }
+
     public event Action OnRemoveAllChips
     {
         add { chipModel.OnRemoveAllChips += value; }

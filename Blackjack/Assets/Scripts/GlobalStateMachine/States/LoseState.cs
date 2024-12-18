@@ -2,12 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WinState : IGlobalState
+public class LoseState : IGlobalState
 {
-    private UIGameRoot sceneRoot;
     private ChipPresenter chipPresenter;
     private BetPresenter betPresenter;
-    private BankPresenter bankPresenter;
 
     private CardPresenter cardPresenter_Player;
     private CardPresenter cardPresenter_Dealer;
@@ -16,13 +14,11 @@ public class WinState : IGlobalState
 
     private IGlobalMachineControl machineControl;
 
-    public WinState(IGlobalMachineControl machineControl, UIGameRoot sceneRoot, ChipPresenter chipPresenter, BetPresenter betPresenter, BankPresenter bankPresenter, CardPresenter cardPresenter_Player, CardPresenter cardPresenter_Dealer, CardScorePresenter cardScorePresenter)
+    public LoseState(IGlobalMachineControl machineControl, ChipPresenter chipPresenter, BetPresenter betPresenter, CardPresenter cardPresenter_Player, CardPresenter cardPresenter_Dealer, CardScorePresenter cardScorePresenter)
     {
         this.machineControl = machineControl;
-        this.sceneRoot = sceneRoot;
         this.chipPresenter = chipPresenter;
         this.betPresenter = betPresenter;
-        this.bankPresenter = bankPresenter;
         this.cardPresenter_Player = cardPresenter_Player;
         this.cardPresenter_Dealer = cardPresenter_Dealer;
         this.cardScorePresenter = cardScorePresenter;
@@ -33,22 +29,17 @@ public class WinState : IGlobalState
         cardPresenter_Dealer.OnClearNominal += cardScorePresenter.ClearScore_Dealer;
         cardPresenter_Player.OnClearNominal += cardScorePresenter.ClearScore_Player;
 
-        chipPresenter.OnRemoveChip += betPresenter.RemoveBet;
-        chipPresenter.OnRemoveAllChips += betPresenter.ReturnBet;
+        chipPresenter.OnFallenAllChips += betPresenter.ClearBet;
 
         betPresenter.Activate();
-        bankPresenter.SendMoney(betPresenter.CurrentBet / 2);
-        chipPresenter.RetractAllChips();
-
-        sceneRoot.OpenWinPanel();
+        chipPresenter.FallenAllChips();
 
         Coroutines.Start(Timer());
     }
 
     public void ExitState()
     {
-        chipPresenter.OnRemoveChip -= betPresenter.RemoveBet;
-        chipPresenter.OnRemoveAllChips -= betPresenter.ReturnBet;
+        chipPresenter.OnFallenAllChips -= betPresenter.ClearBet;
 
         cardPresenter_Dealer.ClearCards();
         cardPresenter_Player.ClearCards();
@@ -57,7 +48,6 @@ public class WinState : IGlobalState
         cardPresenter_Player.OnClearNominal -= cardScorePresenter.ClearScore_Player;
 
         betPresenter.Deactivate();
-        sceneRoot.CloseWinPanel();
     }
 
     private IEnumerator Timer()

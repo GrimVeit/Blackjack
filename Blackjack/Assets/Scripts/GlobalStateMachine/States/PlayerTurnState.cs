@@ -32,7 +32,7 @@ public class PlayerTurnState : IGlobalState
         betPresenter.OnCountForMaxBet += chipPresenter.SpawnNumbers;
         chipPresenter.OnAddChip += betPresenter.AddBet;
         chipPresenter.OnRemoveChip += betPresenter.RemoveBet;
-        chipPresenter.OnRemoveAllChips += betPresenter.ClearBet;
+        chipPresenter.OnRemoveAllChips += betPresenter.ReturnBet;
 
         cardScorePresenter.OnLose += ActivateState_BeitingState;
 
@@ -53,7 +53,7 @@ public class PlayerTurnState : IGlobalState
         betPresenter.OnCountForMaxBet -= chipPresenter.SpawnNumbers;
         chipPresenter.OnAddChip -= betPresenter.AddBet;
         chipPresenter.OnRemoveChip -= betPresenter.RemoveBet;
-        chipPresenter.OnRemoveAllChips -= betPresenter.ClearBet;
+        chipPresenter.OnRemoveAllChips -= betPresenter.ReturnBet;
 
         cardScorePresenter.OnLose -= ActivateState_BeitingState;
 
@@ -78,10 +78,7 @@ public class PlayerTurnState : IGlobalState
 
     private void ActivateState_BeitingState()
     {
-        cardPresenter_Player.ClearCards();
-        cardPresenter_Dealer.ClearCards();
-
-        Debug.Log("Start BettingState");
-        machineControl.SetState(machineControl.GetState<BettingState>());
+        Debug.Log("Start LoseState");
+        machineControl.SetState(machineControl.GetState<LoseState>());
     }
 }

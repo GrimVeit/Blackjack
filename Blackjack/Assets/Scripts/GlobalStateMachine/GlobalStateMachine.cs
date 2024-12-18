@@ -26,6 +26,8 @@ public class GlobalStateMachine : IGlobalMachineControl
         states[typeof(ComparisionState)] = new ComparisionState(this, cardScorePresenter);
 
         states[typeof(WinState)] = new WinState(this, sceneRoot, chipPresenter, betPresenter, bankPresenter, cardPresenter_Player, cardPresenter_Dealer, cardScorePresenter);
+        states[typeof(LoseState)] = new LoseState(this, chipPresenter, betPresenter, cardPresenter_Player, cardPresenter_Dealer, cardScorePresenter);
+        states[typeof(NoneState)] = new NoneState(this, chipPresenter, betPresenter, cardPresenter_Player, cardPresenter_Dealer, cardScorePresenter);
     }
 
     public void Initialize()

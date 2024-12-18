@@ -50,12 +50,7 @@ public class AutoCardState : IGlobalState
 
     private void ActivateLose()
     {
-        cardPresenter_Player.ClearCards();
-        cardPresenter_Dealer.ClearCards();
-
-        Debug.Log("Activate lose");
-
-        ActivateState_BettingState();
+        ActivateState_LoseState();
     }
 
     private void ActivateState_PlayerTurn()
@@ -64,9 +59,9 @@ public class AutoCardState : IGlobalState
         machineControl.SetState(machineControl.GetState<PlayerTurnState>());
     }
 
-    private void ActivateState_BettingState()
+    private void ActivateState_LoseState()
     {
-        Debug.Log("Start BettingState");
-        machineControl.SetState(machineControl.GetState<BettingState>());
+        Debug.Log("Start LoseState");
+        machineControl.SetState(machineControl.GetState<LoseState>());
     }
 }
