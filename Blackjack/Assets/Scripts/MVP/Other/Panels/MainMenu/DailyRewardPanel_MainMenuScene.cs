@@ -4,34 +4,30 @@ using UnityEngine.UI;
 
 public class DailyRewardPanel_MainMenuScene : MovePanel
 {
-    public event Action OnClickBackButton;
+    [SerializeField] private Button homeButton;
 
-    [SerializeField] private Button backButton;
-
-    private ISoundProvider soundProvider;
-
-    public void SetSoundProvider(ISoundProvider soundProvider)
+    public override void Initialize()
     {
-        this.soundProvider = soundProvider;
+        base.Initialize();
+
+        homeButton.onClick.AddListener(HandlerClickToHomeButton);
     }
 
-    public override void ActivatePanel()
+    public override void Dispose()
     {
-        base.ActivatePanel();
+        base.Dispose();
 
-        backButton.onClick.AddListener(HandlerClickToBackButton);
+        homeButton.onClick.AddListener(HandlerClickToHomeButton);
     }
 
-    public override void DeactivatePanel()
-    {
-        base.DeactivatePanel();
+    #region Input
 
-        backButton.onClick.RemoveListener(HandlerClickToBackButton);
+    public event Action OnClickToHomeButton;
+
+    private void HandlerClickToHomeButton()
+    {
+        OnClickToHomeButton?.Invoke();
     }
 
-    private void HandlerClickToBackButton()
-    {
-        soundProvider.PlayOneShot("ClickClose");
-        OnClickBackButton?.Invoke();
-    }
+    #endregion
 }

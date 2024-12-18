@@ -89,11 +89,11 @@ public class ChipView : View
         }
     }
 
-    public void SpawnNumbers(int number)
+    public void SpawnNumbers(float number)
     {
         chipPrefabs.Sort((a, b) => b.ChipData.Nominal.CompareTo(a.ChipData.Nominal));
 
-        int num = number;
+        float num = number;
         Debug.Log(num);
 
         while(num > 0)

@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-public class Levels : MonoBehaviour
+[CreateAssetMenu(fileName = "Levels")]
+public class Levels : ScriptableObject
 {
     public List<Level> levels = new List<Level>();
 

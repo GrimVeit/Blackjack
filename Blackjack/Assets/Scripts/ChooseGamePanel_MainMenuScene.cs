@@ -4,57 +4,38 @@ using UnityEngine.UI;
 
 public class ChooseGamePanel_MainMenuScene : MovePanel
 {
-    [SerializeField] private Button backButton;
-    [SerializeField] private Button gameSoloButton;
-    [SerializeField] private Button gameBotButton;
-    [SerializeField] private Button gameFriendButton;
+    [SerializeField] private Button homeButton;
+    [SerializeField] private Button playButton;
 
-    public override void ActivatePanel()
+    public override void Initialize()
     {
-        base.ActivatePanel();
+        base.Initialize();
 
-        backButton.onClick.AddListener(HandlerClickToBackButton);
-        gameSoloButton.onClick.AddListener(HandlerClickToGameSoloButton);
-        gameBotButton.onClick.AddListener(HandlerClickToGameBotButton);
-        gameFriendButton.onClick.AddListener(HandlerClickToGameFriendButton);
+        homeButton.onClick.AddListener(HandleClickToHomeButton);
+        playButton.onClick.AddListener(HandleClickToPlayButton);
     }
 
-    public override void DeactivatePanel()
+    public override void Dispose()
     {
-        base.DeactivatePanel();
-
-        backButton.onClick.RemoveListener(HandlerClickToBackButton);
-        gameSoloButton.onClick.RemoveListener(HandlerClickToGameSoloButton);
-        gameBotButton.onClick.RemoveListener(HandlerClickToGameBotButton);
-        gameFriendButton.onClick.RemoveListener(HandlerClickToGameFriendButton);
+        base.Dispose();
+        
+        homeButton.onClick.RemoveListener(HandleClickToHomeButton);
+        playButton.onClick.RemoveListener(HandleClickToPlayButton);
     }
 
     #region Input
 
-    public event Action OnClickBackButton;
+    public event Action OnClickToHomeButton;
+    public event Action OnClickToPlayButton;
 
-    public event Action OnClickToGameSoloButton;
-    public event Action OnClickToGameBotButton;
-    public event Action OnClickToGameFriendButton;
-
-    private void HandlerClickToBackButton()
+    private void HandleClickToHomeButton()
     {
-        OnClickBackButton?.Invoke();
+        OnClickToHomeButton?.Invoke();
     }
 
-    private void HandlerClickToGameSoloButton()
+    private void HandleClickToPlayButton()
     {
-        OnClickToGameSoloButton?.Invoke();
-    }
-
-    private void HandlerClickToGameBotButton()
-    {
-        OnClickToGameBotButton?.Invoke();
-    }
-
-    private void HandlerClickToGameFriendButton()
-    {
-        OnClickToGameFriendButton?.Invoke();
+        OnClickToPlayButton?.Invoke();
     }
 
     #endregion

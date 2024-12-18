@@ -7,7 +7,7 @@ public class ChipModel
     public event Action OnRetractAllChips;
     public event Action OnFallenAllChips;
 
-    public event Action<int> OnSpawnNumbers;
+    public event Action<float> OnSpawnNumbers;
 
     public event Action OnRemoveAllChips;
     public event Action<int> OnRemoveChip;
@@ -79,7 +79,7 @@ public class ChipModel
         OnFallChip?.Invoke(chip);
     }
 
-    public void SpawnNumbers(int numbers)
+    public void SpawnNumbers(float numbers)
     {
         OnSpawnNumbers?.Invoke(numbers);
     }

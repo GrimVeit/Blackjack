@@ -49,7 +49,7 @@ public class BetPresenter : IBetProvider
 
     public int CurrentBet => model.CurrentBet;
 
-    public event Action<int> OnCountForMaxBet
+    public event Action<float> OnCountForMaxBet
     {
         add { model.OnCountForMaxBet += value; }
         remove { model.OnCountForMaxBet -= value; }

@@ -107,7 +107,7 @@ public class ChipPresenter
         chipModel.FallChip(chip);
     }
 
-    public void SpawnNumbers(int number)
+    public void SpawnNumbers(float number)
     {
         chipModel.SpawnNumbers(number);
     }

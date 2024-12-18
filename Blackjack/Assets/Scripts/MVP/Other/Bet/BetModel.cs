@@ -8,11 +8,11 @@ public class BetModel
     public event Action OnActivateGameButton;
     public event Action OnDeactivateGameButton;
 
-    public event Action<int> OnCountForMaxBet;
-    public event Action<int> OnChangeBet;
-    public event Action<int> OnChangeWin;
+    public event Action<float> OnCountForMaxBet;
+    public event Action<float> OnChangeBet;
+    public event Action<float> OnChangeWin;
 
-    private int minBet, maxBet;
+    private float minBet, maxBet;
 
     private IMoneyProvider moneyProvider;
 

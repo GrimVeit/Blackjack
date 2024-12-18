@@ -19,6 +19,8 @@ public class LevelModel
     public void Initialize()
     {
         currentLevel = levels.GetLevelByID(PlayerPrefs.GetInt(PlayerPrefsKeys.LEVEL, 0));
+        OnChooseLevel?.Invoke(currentLevel);
+        OnSelectLevel?.Invoke(currentLevel.IDLevel);
     }
 
     public void Dispose()
@@ -32,6 +34,7 @@ public class LevelModel
 
         currentLevel = levels.GetLevelByID(id);
         OnSelectLevel?.Invoke(currentLevel.IDLevel);
+        OnChooseLevel?.Invoke(currentLevel);
 
     }
 }

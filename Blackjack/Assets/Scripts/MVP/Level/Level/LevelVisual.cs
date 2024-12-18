@@ -2,7 +2,8 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class LevelVisual : MonoBehaviour
+[System.Serializable]
+public class LevelVisual
 {
     public int ID => id;
 
@@ -38,6 +39,8 @@ public class LevelVisual : MonoBehaviour
 
     private void HandleClickToChooseLevelButton()
     {
+        Debug.Log("Click to " +  id);
+
         OnClickToChooseLevel?.Invoke(id);
     }
 

@@ -53,11 +53,11 @@ public class GameEntryPoint
         yield return new WaitForSeconds(0.1f);
 
         var sceneEntryPoint = Object.FindObjectOfType<MainMenuEntryPoint>();
-        sceneEntryPoint.Run(rootView);
+        //sceneEntryPoint.Run(rootView);
 
-        sceneEntryPoint.GoToSoloGame_Action += () => coroutines.StartCoroutine(LoadAndStartGameSoloScene());
-        sceneEntryPoint.GoToBotGame_Action += () => coroutines.StartCoroutine(LoadAndStartGameBotScene());
-        sceneEntryPoint.GoToFriendGame_Action += () => coroutines.StartCoroutine(LoadAndStartGameFriendScene());
+        //sceneEntryPoint.GoToSoloGame_Action += () => coroutines.StartCoroutine(LoadAndStartGameSoloScene());
+        //sceneEntryPoint.GoToBotGame_Action += () => coroutines.StartCoroutine(LoadAndStartGameBotScene());
+        //sceneEntryPoint.GoToFriendGame_Action += () => coroutines.StartCoroutine(LoadAndStartGameFriendScene());
 
         yield return rootView.HideLoadingScreen();
     }

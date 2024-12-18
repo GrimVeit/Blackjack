@@ -4,22 +4,24 @@ using UnityEngine;
 public class MainMenuEntryPoint : MonoBehaviour
 {
     [SerializeField] private Sounds sounds;
-    [SerializeField] private UIMainMenuRoot menuRootPrefab;
+    [SerializeField] private Levels levels;
+    //[SerializeField] private UIMainMenuRoot menuRootPrefab;
 
-    private UIMainMenuRoot sceneRoot;
+    [SerializeField] private UIMainMenuRoot sceneRoot;
     private ViewContainer viewContainer;
 
+    private BankPresenter bankPresenter;
     private ParticleEffectPresenter particleEffectPresenter;
     private SoundPresenter soundPresenter;
-    private AvatarPresenter avatarPresenter;
-    private AvatarPresenter avatarPresenterChanges;
-    private NicknamePresenter nicknamePresenter;
 
-    public void Run(UIRootView uIRootView)
+    private LevelPresenter levelPresenter;
+    private LevelVisualizePresenter levelVisualizePresenter;
+
+    public void Start()
     {
-        sceneRoot = Instantiate(menuRootPrefab);
+        //sceneRoot = Instantiate(menuRootPrefab);
  
-        uIRootView.AttachSceneUI(sceneRoot.gameObject, Camera.main);
+        //uIRootView.AttachSceneUI(sceneRoot.gameObject, Camera.main);
 
         viewContainer = sceneRoot.GetComponent<ViewContainer>();
         viewContainer.Initialize();
@@ -32,55 +34,56 @@ public class MainMenuEntryPoint : MonoBehaviour
             (new ParticleEffectModel(),
             viewContainer.GetView<ParticleEffectView>());
 
-        nicknamePresenter = new NicknamePresenter
-            (new NicknameModel(PlayerPrefsKeys.NICKNAME, soundPresenter),
-            viewContainer.GetView<NicknameView>());
+        bankPresenter = new BankPresenter(new BankModel(), viewContainer.GetView<BankView>());
 
-        avatarPresenter = new AvatarPresenter
-            (new AvatarModel(PlayerPrefsKeys.IMAGE_INDEX, soundPresenter),
-            viewContainer.GetView<AvatarView>("Main"));
+        levelVisualizePresenter = new LevelVisualizePresenter(new LevelVisualizeModel(bankPresenter), viewContainer.GetView<LevelVisualizeView>());
 
-        avatarPresenterChanges = new AvatarPresenter
-            (new AvatarModel(PlayerPrefsKeys.IMAGE_INDEX, soundPresenter),
-            viewContainer.GetView<AvatarView>("Changes"));
+        levelPresenter = new LevelPresenter(new LevelModel(levels), viewContainer.GetView<LevelView>());
 
         sceneRoot.SetSoundProvider(soundPresenter);
+        sceneRoot.Initialize();
         sceneRoot.Activate();
 
         ActivateEvents();
 
-
         soundPresenter.Initialize();
+        bankPresenter.Initialize();
         particleEffectPresenter.Initialize();
-        nicknamePresenter.Initialize();
-        avatarPresenter.Initialize();
-        avatarPresenterChanges.Initialize();
+        levelVisualizePresenter.Initialize();
+        levelPresenter.Initialize();
     }
 
     private void ActivateEvents()
     {
-        ActivateTransitionsSceneEvents();
+        levelPresenter.OnChooseLevel += levelVisualizePresenter.SetData;
+
+        ActivateTransitionEvents();
     }
 
     private void DeactivateEvents()
     {
-        DeactivateTransitionsSceneEvents();
+        levelPresenter.OnChooseLevel -= levelVisualizePresenter.SetData;
+
+        DeactivateTransitionEvents();
     }
 
-    private void ActivateTransitionsSceneEvents()
+    private void ActivateTransitionEvents()
     {
+        sceneRoot.OnClickToDailyReward_MainPanel += sceneRoot.OpenDailyRewardPanel;
+        sceneRoot.OnClickToPlayGame_MainPanel += sceneRoot.OpenChooseGamePanel;
 
+        sceneRoot.OnClickToHome_DailyRewardPanel += sceneRoot.OpenMainPanel;
+
+        sceneRoot.OnClickToHome_ChooseGamePanel += sceneRoot.OpenMainPanel;
+        sceneRoot.OnClickToPlay_ChooseGamePanel += sceneRoot.OpenGameDescriptionPanel;
+
+        sceneRoot.OnClickToCancel_GameDescriptionPanel += sceneRoot.OpenChooseGamePanel;
+        sceneRoot.OnClickToHome_GameDescriptionPanel += sceneRoot.OpenMainPanel;
     }
 
-    private void DeactivateTransitionsSceneEvents()
+    private void DeactivateTransitionEvents()
     {
 
-    }
-
-    private void Deactivate()
-    {
-        sceneRoot.Deactivate();
-        soundPresenter?.Dispose();
     }
 
     private void Dispose()
@@ -89,9 +92,6 @@ public class MainMenuEntryPoint : MonoBehaviour
 
         sceneRoot?.Dispose();
         particleEffectPresenter?.Dispose();
-        nicknamePresenter?.Dispose();
-        avatarPresenter?.Dispose();
-        avatarPresenterChanges?.Dispose();
     }
 
     private void OnDestroy()
@@ -101,31 +101,7 @@ public class MainMenuEntryPoint : MonoBehaviour
 
     #region Input actions
 
-    public event Action GoToSoloGame_Action;
-    public event Action GoToBotGame_Action;
-    public event Action GoToFriendGame_Action;
 
-
-    private void HandleGoToSoloGame()
-    {
-        Deactivate();
-        soundPresenter.PlayOneShot("ClickEnter");
-        GoToSoloGame_Action?.Invoke();
-    }
-
-    private void HandleGoToBotGame()
-    {
-        Deactivate();
-        soundPresenter.PlayOneShot("ClickEnter");
-        GoToBotGame_Action?.Invoke();
-    }
-
-    private void HandlerGoToFriendGame()
-    {
-        Deactivate();
-        soundPresenter.PlayOneShot("ClickEnter");
-        GoToFriendGame_Action?.Invoke();
-    }
 
     #endregion
 }

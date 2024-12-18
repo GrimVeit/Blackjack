@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,11 +17,17 @@ public class LevelPresenter
     public void Initialize()
     {
         ActivateEvents();
+
+        model.Initialize();
+        view.Initialize();
     }
 
     public void Dispose()
     {
         DeactivateEvents();
+
+        model.Dispose();
+        view.Dispose();
     }
 
     private void ActivateEvents()
@@ -35,4 +42,14 @@ public class LevelPresenter
     {
 
     }
+
+    #region Input
+
+    public event Action<Level> OnChooseLevel
+    {
+        add { model.OnChooseLevel += value; }
+        remove { model.OnChooseLevel -= value; }
+    }
+
+    #endregion
 }

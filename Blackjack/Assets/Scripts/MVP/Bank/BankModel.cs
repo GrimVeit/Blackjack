@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class BankModel
 {
-    public int Money { get; private set; }
+    public float Money { get; private set; }
     public event Action OnAddMoney;
     public event Action OnRemoveMoney;
     public event Action<float> OnChangeMoney;
@@ -20,7 +20,7 @@ public class BankModel
         PlayerPrefs.SetFloat(BANK_MONEY, Money);
     }
 
-    public void SendMoney(int money)
+    public void SendMoney(float money)
     {
         if(money >= 0)
         {
@@ -34,7 +34,7 @@ public class BankModel
         OnChangeMoney?.Invoke(Money);
     }
 
-    public bool CanAfford(int bet)
+    public bool CanAfford(float bet)
     {
         return Money >= bet;
     }

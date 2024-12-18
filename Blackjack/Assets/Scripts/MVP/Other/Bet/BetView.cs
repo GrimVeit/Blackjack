@@ -27,7 +27,7 @@ public class BetView : View
         buttonDoubleBet.onClick.RemoveListener(HandleClickToDoubleBetButton);
     }
 
-    public void DisplayChangeBet(int bet)
+    public void DisplayChangeBet(float bet)
     {
         textBet.text = bet.ToString();
     }
