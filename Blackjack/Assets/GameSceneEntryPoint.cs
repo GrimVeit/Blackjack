@@ -1,12 +1,13 @@
+using System;
 using UnityEngine;
 
 public class GameSceneEntryPoint : MonoBehaviour
 {
     [SerializeField] private Sounds sounds;
     [SerializeField] private CardDatas cardDatas;
-    //[SerializeField] private UIGameRoot sceneRootPrefab;
+    [SerializeField] private UIGameRoot sceneRootPrefab;
 
-    [SerializeField] private UIGameRoot sceneRoot;
+    private UIGameRoot sceneRoot;
     private ViewContainer viewContainer;
 
     private ParticleEffectPresenter particleEffectPresenter;
@@ -24,11 +25,11 @@ public class GameSceneEntryPoint : MonoBehaviour
 
     private GlobalStateMachine globalStateMachine;
 
-    public void Awake()
+    public void Run(UIRootView uIRootView)
     {
-        //sceneRoot = Instantiate(sceneRootPrefab);
+        sceneRoot = Instantiate(sceneRootPrefab);
 
-        //uIRootView.AttachSceneUI(sceneRoot.gameObject, Camera.main);
+        uIRootView.AttachSceneUI(sceneRoot.gameObject, Camera.main);
 
         viewContainer = sceneRoot.GetComponent<ViewContainer>();
         viewContainer.Initialize();
@@ -84,18 +85,19 @@ public class GameSceneEntryPoint : MonoBehaviour
 
     private void ActivateTransferEvents()
     {
-
+        sceneRoot.OnTransferToMenu += HandleTransitionToMenuScene;
+        sceneRoot.OnTransferToReload += HandleTransitionToGameScene;
     }
 
     private void DeactivateTransferEvents()
     {
-
+        sceneRoot.OnTransferToMenu -= HandleTransitionToMenuScene;
+        sceneRoot.OnTransferToReload -= HandleTransitionToGameScene;
     }
 
     private void Dispose()
     {
         DeactivateTransferEvents();
-        sceneRoot?.Deactivate();
 
         sceneRoot?.Dispose();
         particleEffectPresenter?.Dispose();
@@ -104,5 +106,34 @@ public class GameSceneEntryPoint : MonoBehaviour
 
         pseudoChipPresenter?.Dispose();
         chipPresenter?.Dispose();
+        betPresenter?.Dispose();
+        cardPresenter_Player?.Dispose();
+        cardPresenter_Dealer?.Dispose();
+        cardScorePresenter?.Dispose();
+        globalStateMachine?.Dispose();
     }
+
+    private void OnDestroy()
+    {
+        Dispose();
+    }
+
+    #region Input
+
+    public event Action OnTransitionToGameScene;
+    public event Action OnTransitionToMenuScene;
+
+    private void HandleTransitionToGameScene()
+    {
+        sceneRoot.Deactivate();
+        OnTransitionToGameScene?.Invoke();
+    }
+
+    private void HandleTransitionToMenuScene()
+    {
+        sceneRoot.Deactivate();
+        OnTransitionToMenuScene?.Invoke();
+    }
+
+    #endregion
 }

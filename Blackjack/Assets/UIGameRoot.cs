@@ -1,10 +1,9 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class UIGameRoot : MonoBehaviour
 {
+    [SerializeField] private MainPanel_GameScene mainPanel;
     [SerializeField] private WinPanel winPanel;
     [SerializeField] private BetFooterPanel betFooterPanel;
     [SerializeField] private GameFooterPanel gameFooterPanel;
@@ -20,6 +19,7 @@ public class UIGameRoot : MonoBehaviour
 
     public void Initialize()
     {
+        mainPanel.Initialize();
         winPanel.Initialize();
         betFooterPanel.Initialize();
         gameFooterPanel.Initialize();
@@ -27,7 +27,7 @@ public class UIGameRoot : MonoBehaviour
 
     public void Activate()
     {
-
+        OpenMainPanel();
     }
 
     public void Deactivate()
@@ -37,6 +37,7 @@ public class UIGameRoot : MonoBehaviour
 
     public void Dispose()
     {
+        mainPanel.Dispose();
         winPanel.Dispose();
         betFooterPanel.Dispose();
         gameFooterPanel.Dispose();
@@ -44,7 +45,7 @@ public class UIGameRoot : MonoBehaviour
 
     public void OpenMainPanel()
     {
-
+        OpenPanel(mainPanel);
     }
 
     public void OpenWinPanel()
@@ -98,6 +99,18 @@ public class UIGameRoot : MonoBehaviour
     }
 
     #region Input
+
+    public event Action OnTransferToMenu
+    {
+        add { mainPanel.OnTransferToMenu += value; }
+        remove { mainPanel.OnTransferToMenu -= value; }
+    }
+
+    public event Action OnTransferToReload
+    {
+        add { mainPanel.OnTransferToReload += value; }
+        remove { mainPanel.OnTransferToReload -= value; }
+    }
 
     public event Action OnClickToStartPlay
     {

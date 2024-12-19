@@ -30,6 +30,9 @@ public class LevelModel
 
     public void SelectLevel(int id)
     {
+        if (currentLevel?.IDLevel == id)
+            return;
+
         OnUnselectLevel?.Invoke(currentLevel.IDLevel);
 
         currentLevel = levels.GetLevelByID(id);

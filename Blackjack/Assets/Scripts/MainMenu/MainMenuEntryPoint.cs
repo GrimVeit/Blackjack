@@ -5,9 +5,9 @@ public class MainMenuEntryPoint : MonoBehaviour
 {
     [SerializeField] private Sounds sounds;
     [SerializeField] private Levels levels;
-    //[SerializeField] private UIMainMenuRoot menuRootPrefab;
+    [SerializeField] private UIMainMenuRoot menuRootPrefab;
 
-    [SerializeField] private UIMainMenuRoot sceneRoot;
+    private UIMainMenuRoot sceneRoot;
     private ViewContainer viewContainer;
 
     private BankPresenter bankPresenter;
@@ -17,11 +17,11 @@ public class MainMenuEntryPoint : MonoBehaviour
     private LevelPresenter levelPresenter;
     private LevelVisualizePresenter levelVisualizePresenter;
 
-    public void Start()
+    public void Run(UIRootView uIRootView)
     {
-        //sceneRoot = Instantiate(menuRootPrefab);
- 
-        //uIRootView.AttachSceneUI(sceneRoot.gameObject, Camera.main);
+        sceneRoot = Instantiate(menuRootPrefab);
+
+        uIRootView.AttachSceneUI(sceneRoot.gameObject, Camera.main);
 
         viewContainer = sceneRoot.GetComponent<ViewContainer>();
         viewContainer.Initialize();
@@ -69,6 +69,8 @@ public class MainMenuEntryPoint : MonoBehaviour
 
     private void ActivateTransitionEvents()
     {
+        sceneRoot.OnClickToStartPlayGame += HandleTransitionToGameScene;
+
         sceneRoot.OnClickToDailyReward_MainPanel += sceneRoot.OpenDailyRewardPanel;
         sceneRoot.OnClickToPlayGame_MainPanel += sceneRoot.OpenChooseGamePanel;
 
@@ -83,7 +85,18 @@ public class MainMenuEntryPoint : MonoBehaviour
 
     private void DeactivateTransitionEvents()
     {
+        sceneRoot.OnClickToStartPlayGame -= HandleTransitionToGameScene;
 
+        sceneRoot.OnClickToDailyReward_MainPanel -= sceneRoot.OpenDailyRewardPanel;
+        sceneRoot.OnClickToPlayGame_MainPanel -= sceneRoot.OpenChooseGamePanel;
+
+        sceneRoot.OnClickToHome_DailyRewardPanel -= sceneRoot.OpenMainPanel;
+
+        sceneRoot.OnClickToHome_ChooseGamePanel -= sceneRoot.OpenMainPanel;
+        sceneRoot.OnClickToPlay_ChooseGamePanel -= sceneRoot.OpenGameDescriptionPanel;
+
+        sceneRoot.OnClickToCancel_GameDescriptionPanel -= sceneRoot.OpenChooseGamePanel;
+        sceneRoot.OnClickToHome_GameDescriptionPanel -= sceneRoot.OpenMainPanel;
     }
 
     private void Dispose()
@@ -101,7 +114,13 @@ public class MainMenuEntryPoint : MonoBehaviour
 
     #region Input actions
 
+    public event Action OnTransitionToGameScene;
 
+    private void HandleTransitionToGameScene()
+    {
+        sceneRoot.Deactivate();
+        OnTransitionToGameScene?.Invoke();
+    }
 
     #endregion
 }

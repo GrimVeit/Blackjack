@@ -12,7 +12,7 @@ public class ChipView : View
 
     //[SerializeField] private Canvas canvas;
     //[SerializeField] private Transform parentSpawn;
-    [SerializeField] private RectTransform transformBetCell;
+    [SerializeField] private Transform transformBetCell;
     [SerializeField] private Chip chipPrefab;
     [SerializeField] private List<Chip> chipPrefabs = new List<Chip>();
     [SerializeField] private List<Chip> chips = new List<Chip>();
@@ -48,12 +48,13 @@ public class ChipView : View
     public void SpawnChip(Chip chipPrefab)
     {
         Chip chip = Instantiate(chipPrefab, chipPrefab.transform.parent);
-        chip.transform.SetLocalPositionAndRotation(chipPrefab.transform.localPosition, chipPrefab.transform.rotation);
+        //chip.transform.SetLocalPositionAndRotation(chipPrefab.transform.localPosition, chipPrefab.transform.rotation);
+        chip.transform.SetLocalPositionAndRotation(transformBetCell.localPosition, chipPrefab.transform.rotation);
         chip.OnRetracted += OnRetractChip;
         chip.OnNoneRetracted += OnNoneRetracted;
         chip.OnFalled += OnFall;
         chip.Initialize(chipPrefab.ChipData);
-        chip.Move(new Vector2(transformBetCell.position.x + UnityEngine.Random.Range(-40, 40), transformBetCell.position.y + UnityEngine.Random.Range(-40, 40)));
+        //chip.Move(transformBetCell.localPosition);
 
         chips.Add(chip);
     }
