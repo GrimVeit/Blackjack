@@ -18,11 +18,17 @@ public class BetModel
 
     private bool isActive = false;
 
-    public BetModel(int minBet, int maxBet, IMoneyProvider moneyProvider)
+    public BetModel(IMoneyProvider moneyProvider)
     {
+        this.moneyProvider = moneyProvider;
+    }
+
+    public void SetMinMaxBet(int minBet, int maxBet)
+    {
+        Debug.Log($"Min bet: {minBet}, Max bet: {maxBet}");
+
         this.minBet = minBet;
         this.maxBet = maxBet;
-        this.moneyProvider = moneyProvider;
     }
 
     public void AddBet(int bet)

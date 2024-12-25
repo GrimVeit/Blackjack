@@ -9,7 +9,7 @@ public class LevelVisualizeView : View
     [SerializeField] private Image imageLevelDescription;
     [SerializeField] private GameObject buttonPlay;
 
-    public void SetData(Level level, bool isActive)
+    public void SetLevel(Level level, bool isActive)
     {
         imageLevelBackground.sprite = level.SpriteBackgroundLevel;
         imageLevelDescription.sprite = level.SpriteDescriptionLevel;

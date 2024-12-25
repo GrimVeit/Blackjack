@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class LevelVisualizeModel
 {
-    public event Action<Level, bool> OnSetData;
+    public event Action<Level, bool> OnSetLevel;
 
     private IMoneyProvider moneyProvider;
 
@@ -14,15 +14,15 @@ public class LevelVisualizeModel
         this.moneyProvider = moneyProvider;
     }
 
-    public void SetData(Level level)
+    public void SetLevel(Level level)
     {
         if (moneyProvider.CanAfford(level.MinMoney))
         {
-            OnSetData?.Invoke(level, true);
+            OnSetLevel?.Invoke(level, true);
         }
         else
         {
-            OnSetData?.Invoke(level, false);
+            OnSetLevel?.Invoke(level, false);
         }
     }
 }

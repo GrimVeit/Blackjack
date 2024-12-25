@@ -5,6 +5,7 @@ public class GameSceneEntryPoint : MonoBehaviour
 {
     [SerializeField] private Sounds sounds;
     [SerializeField] private CardDatas cardDatas;
+    [SerializeField] private Levels levels;
     [SerializeField] private UIGameRoot sceneRootPrefab;
 
     private UIGameRoot sceneRoot;
@@ -22,6 +23,9 @@ public class GameSceneEntryPoint : MonoBehaviour
     private CardPresenter cardPresenter_Dealer;
 
     private CardScorePresenter cardScorePresenter;
+
+    private GameProgressPresenter gameProgressPresenter;
+    private LevelInfoPresenter levelInfoPresenter;
 
     private GlobalStateMachine globalStateMachine;
 
@@ -47,7 +51,7 @@ public class GameSceneEntryPoint : MonoBehaviour
         bankPresenter = new BankPresenter(new BankModel(), viewContainer.GetView<BankView>());
         bankPresenter.Initialize();
 
-        betPresenter = new BetPresenter(new BetModel(10, 119, bankPresenter), viewContainer.GetView<BetView>());
+        betPresenter = new BetPresenter(new BetModel(bankPresenter), viewContainer.GetView<BetView>());
         betPresenter.Initialize();
 
         pseudoChipPresenter = new PseudoChipPresenter(new PseudoChipModel(bankPresenter, betPresenter, soundPresenter), viewContainer.GetView<PseudoChipView>());
@@ -65,6 +69,11 @@ public class GameSceneEntryPoint : MonoBehaviour
         cardScorePresenter = new CardScorePresenter(new CardScoreModel(), viewContainer.GetView<CardScoreView>());
         cardScorePresenter.Initialize();
 
+        levelInfoPresenter = new LevelInfoPresenter(new LevelInfoModel(), viewContainer.GetView<LevelInfoView>());
+        levelInfoPresenter.Initialize();
+
+        gameProgressPresenter = new GameProgressPresenter(new GameProgressModel(levels));
+
         globalStateMachine = new GlobalStateMachine(
             sceneRoot,
             pseudoChipPresenter, 
@@ -76,11 +85,26 @@ public class GameSceneEntryPoint : MonoBehaviour
             bankPresenter);
         globalStateMachine.Initialize();
 
+        ActivateEvents();
         ActivateTransferEvents();
 
         sceneRoot.SetSoundProvider(soundPresenter);
         sceneRoot.Initialize();
         sceneRoot.Activate();
+
+        gameProgressPresenter.Initialize();
+    }
+
+    private void ActivateEvents()
+    {
+        gameProgressPresenter.OnSelectLevel += betPresenter.SetLevel;
+        gameProgressPresenter.OnSelectLevel += levelInfoPresenter.SetLevel;
+    }
+
+    private void DeactivateEvents()
+    {
+        gameProgressPresenter.OnSelectLevel -= betPresenter.SetLevel;
+        gameProgressPresenter.OnSelectLevel -= levelInfoPresenter.SetLevel;
     }
 
     private void ActivateTransferEvents()
@@ -97,6 +121,7 @@ public class GameSceneEntryPoint : MonoBehaviour
 
     private void Dispose()
     {
+        DeactivateEvents();
         DeactivateTransferEvents();
 
         sceneRoot?.Dispose();
@@ -110,6 +135,7 @@ public class GameSceneEntryPoint : MonoBehaviour
         cardPresenter_Player?.Dispose();
         cardPresenter_Dealer?.Dispose();
         cardScorePresenter?.Dispose();
+        gameProgressPresenter?.Dispose();
         globalStateMachine?.Dispose();
     }
 

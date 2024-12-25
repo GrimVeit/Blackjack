@@ -363,6 +363,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sounds: {fileID: 817927321}
   cardDatas: {fileID: 11400000, guid: 984878b8f0e2afa49b0901be13cd6f2a, type: 2}
+  levels: {fileID: 11400000, guid: 1abf2c64c4fe2f847b245b3500d543f3, type: 2}
   sceneRootPrefab: {fileID: 2006096425730476833, guid: ad63a12403786d347a9463617d296f8b, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

@@ -10,14 +10,16 @@ public class Level
     [SerializeField] private Sprite spriteLevelDescription;
     [SerializeField] private Sprite spriteLevelBackground;
     [SerializeField] private float minMoney;
-    [SerializeField] private float minBet;
-    [SerializeField] private float maxBet;
+    [SerializeField] private int minBet;
+    [SerializeField] private int maxBet;
+    [SerializeField] private List<int> betNominals;
 
     public int IDLevel => idLevel;
     public string NameLevel => nameLevel;
     public Sprite SpriteDescriptionLevel => spriteLevelDescription;
     public Sprite SpriteBackgroundLevel => spriteLevelBackground;
     public float MinMoney => minMoney;
-    public float MinBet => minBet;
-    public float MaxBet => maxBet;
+    public int MinBet => minBet;
+    public int MaxBet => maxBet;
+    public List<int> BetNominals => betNominals;
 }

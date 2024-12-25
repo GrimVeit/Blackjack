@@ -16,6 +16,7 @@ public class ChipView : View
     [SerializeField] private Chip chipPrefab;
     [SerializeField] private List<Chip> chipPrefabs = new List<Chip>();
     [SerializeField] private List<Chip> chips = new List<Chip>();
+    [SerializeField] private List<Chip> usingChips = new List<Chip>();
     [SerializeField] private Transform transformDeleteChip;
 
     //[SerializeField] private Button recallAllChips;
@@ -49,12 +50,16 @@ public class ChipView : View
     {
         Chip chip = Instantiate(chipPrefab, chipPrefab.transform.parent);
         //chip.transform.SetLocalPositionAndRotation(chipPrefab.transform.localPosition, chipPrefab.transform.rotation);
-        chip.transform.SetLocalPositionAndRotation(transformBetCell.localPosition, chipPrefab.transform.rotation);
+        chip.transform.SetLocalPositionAndRotation(Vector3.zero, chipPrefab.transform.rotation);
         chip.OnRetracted += OnRetractChip;
         chip.OnNoneRetracted += OnNoneRetracted;
         chip.OnFalled += OnFall;
         chip.Initialize(chipPrefab.ChipData);
-        //chip.Move(transformBetCell.localPosition);
+        //chip.Move(transformBetCell.position);
+        chip.Move(new Vector3(
+            transformBetCell.position.x + UnityEngine.Random.Range(-0.3f, 0.3f),
+            transformBetCell.position.y + UnityEngine.Random.Range(-0.3f, 0.3f),
+            transformBetCell.position.z + UnityEngine.Random.Range(-0.3f, 0.3f)));
 
         chips.Add(chip);
     }

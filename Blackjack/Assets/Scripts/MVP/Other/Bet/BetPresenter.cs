@@ -55,6 +55,11 @@ public class BetPresenter : IBetProvider
         remove { model.OnCountForMaxBet -= value; }
     }
 
+    public void SetLevel(Level level)
+    {
+        model.SetMinMaxBet(level.MinBet, level.MaxBet);
+    }
+
     public void AddBet(int bet)
     {
         model.AddBet(bet);

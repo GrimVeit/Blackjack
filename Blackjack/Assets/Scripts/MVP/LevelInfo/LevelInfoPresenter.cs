@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LevelVisualizePresenter
+public class LevelInfoPresenter
 {
-    private LevelVisualizeModel model;
-    private LevelVisualizeView view;
+    private LevelInfoModel model;
+    private LevelInfoView view;
 
-    public LevelVisualizePresenter(LevelVisualizeModel model, LevelVisualizeView view)
+    public LevelInfoPresenter(LevelInfoModel model, LevelInfoView view)
     {
         this.model = model;
         this.view = view;
@@ -25,19 +25,19 @@ public class LevelVisualizePresenter
 
     private void ActivateEvents()
     {
-        model.OnSetLevel += view.SetLevel;
+        model.OnGetLevelDescription += view.SetLevelDescription;
     }
 
     private void DeactivateEvents()
     {
-        model.OnSetLevel -= view.SetLevel;
+        model.OnGetLevelDescription -= view.SetLevelDescription;
     }
 
     #region Input
 
     public void SetLevel(Level level)
     {
-        model.SetLevel(level);
+        model.SetLevel(level.NameLevel, level.MinMoney, level.MinBet, level.MaxBet);
     }
 
     #endregion

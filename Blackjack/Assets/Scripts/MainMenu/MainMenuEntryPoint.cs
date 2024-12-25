@@ -15,6 +15,7 @@ public class MainMenuEntryPoint : MonoBehaviour
     private SoundPresenter soundPresenter;
 
     private LevelPresenter levelPresenter;
+    private GameProgressPresenter gameProgressPresenter;
     private LevelVisualizePresenter levelVisualizePresenter;
 
     public void Run(UIRootView uIRootView)
@@ -38,7 +39,9 @@ public class MainMenuEntryPoint : MonoBehaviour
 
         levelVisualizePresenter = new LevelVisualizePresenter(new LevelVisualizeModel(bankPresenter), viewContainer.GetView<LevelVisualizeView>());
 
-        levelPresenter = new LevelPresenter(new LevelModel(levels), viewContainer.GetView<LevelView>());
+        gameProgressPresenter = new GameProgressPresenter(new GameProgressModel(levels));
+
+        levelPresenter = new LevelPresenter(new LevelModel(), viewContainer.GetView<LevelView>());
 
         sceneRoot.SetSoundProvider(soundPresenter);
         sceneRoot.Initialize();
@@ -51,18 +54,26 @@ public class MainMenuEntryPoint : MonoBehaviour
         particleEffectPresenter.Initialize();
         levelVisualizePresenter.Initialize();
         levelPresenter.Initialize();
+        gameProgressPresenter.Initialize();
     }
 
     private void ActivateEvents()
     {
-        levelPresenter.OnChooseLevel += levelVisualizePresenter.SetData;
+
+        levelPresenter.OnChooseLevel += gameProgressPresenter.ChooseLevel;
+        gameProgressPresenter.OnSelectLevel += levelPresenter.SelectLevel;
+        gameProgressPresenter.OnSelectLevel += levelVisualizePresenter.SetLevel;
+        gameProgressPresenter.OnUnselectLevel += levelPresenter.UnselectLevel;
 
         ActivateTransitionEvents();
     }
 
     private void DeactivateEvents()
     {
-        levelPresenter.OnChooseLevel -= levelVisualizePresenter.SetData;
+        levelPresenter.OnChooseLevel -= gameProgressPresenter.ChooseLevel;
+        gameProgressPresenter.OnSelectLevel -= levelPresenter.SelectLevel;
+        gameProgressPresenter.OnSelectLevel -= levelVisualizePresenter.SetLevel;
+        gameProgressPresenter.OnUnselectLevel -= levelPresenter.UnselectLevel;
 
         DeactivateTransitionEvents();
     }
@@ -105,6 +116,7 @@ public class MainMenuEntryPoint : MonoBehaviour
 
         sceneRoot?.Dispose();
         particleEffectPresenter?.Dispose();
+        gameProgressPresenter?.Dispose();
     }
 
     private void OnDestroy()

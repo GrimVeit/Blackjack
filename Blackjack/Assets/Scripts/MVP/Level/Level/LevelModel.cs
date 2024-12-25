@@ -3,41 +3,23 @@ using UnityEngine;
 
 public class LevelModel
 {
-    public event Action<Level> OnChooseLevel;
     public event Action<int> OnSelectLevel;
     public event Action<int> OnUnselectLevel;
 
-    private Levels levels;
+    public event Action<int> OnSelectLevel_InputAction;
 
-    private Level currentLevel;
-
-    public LevelModel(Levels levels)
+    public void InputSelectLevel(int level)
     {
-        this.levels = levels;
+        OnSelectLevel_InputAction?.Invoke(level);
     }
 
-    public void Initialize()
+    public void SelectLevel(Level level)
     {
-        currentLevel = levels.GetLevelByID(PlayerPrefs.GetInt(PlayerPrefsKeys.LEVEL, 0));
-        OnChooseLevel?.Invoke(currentLevel);
-        OnSelectLevel?.Invoke(currentLevel.IDLevel);
+        OnSelectLevel?.Invoke(level.IDLevel);
     }
 
-    public void Dispose()
+    public void UnselectLevel(Level level)
     {
-        PlayerPrefs.SetInt(PlayerPrefsKeys.LEVEL, currentLevel.IDLevel);
-    }
-
-    public void SelectLevel(int id)
-    {
-        if (currentLevel?.IDLevel == id)
-            return;
-
-        OnUnselectLevel?.Invoke(currentLevel.IDLevel);
-
-        currentLevel = levels.GetLevelByID(id);
-        OnSelectLevel?.Invoke(currentLevel.IDLevel);
-        OnChooseLevel?.Invoke(currentLevel);
-
+        OnUnselectLevel?.Invoke(level.IDLevel);
     }
 }
