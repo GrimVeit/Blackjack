@@ -97,7 +97,7 @@ public class ChipView : View
 
     public void SpawnNumbers(float number)
     {
-        chipPrefabs.Sort((a, b) => b.ChipData.Nominal.CompareTo(a.ChipData.Nominal));
+        usingChips.Sort((a, b) => b.ChipData.Nominal.CompareTo(a.ChipData.Nominal));
 
         float num = number;
         Debug.Log(num);
@@ -106,7 +106,7 @@ public class ChipView : View
         {
             bool spawnedSomething = false;
 
-            foreach (var prefab in chipPrefabs)
+            foreach (var prefab in usingChips)
             {
                 while (num >= prefab.ChipData.Nominal)
                 {
@@ -120,6 +120,23 @@ public class ChipView : View
             if (!spawnedSomething)
             {
                 Debug.Log("Ostatok:" + num);
+            }
+        }
+    }
+
+
+    public void ActivateChips(List<int> betNominals)
+    {
+        for (int i = 0; i < betNominals.Count; i++)
+        {
+            Debug.Log(betNominals[i]);
+
+            for (int j = 0; j < chipPrefabs.Count; j++)
+            {
+                if (betNominals[i] == chipPrefabs[j].ChipData.Nominal)
+                {
+                    usingChips.Add(chipPrefabs[j]);
+                }
             }
         }
     }

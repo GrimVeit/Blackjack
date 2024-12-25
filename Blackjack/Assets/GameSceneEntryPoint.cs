@@ -99,12 +99,16 @@ public class GameSceneEntryPoint : MonoBehaviour
     {
         gameProgressPresenter.OnSelectLevel += betPresenter.SetLevel;
         gameProgressPresenter.OnSelectLevel += levelInfoPresenter.SetLevel;
+        gameProgressPresenter.OnSelectLevel += pseudoChipPresenter.SetLevel;
+        gameProgressPresenter.OnSelectLevel += chipPresenter.SetLevel;
     }
 
     private void DeactivateEvents()
     {
         gameProgressPresenter.OnSelectLevel -= betPresenter.SetLevel;
         gameProgressPresenter.OnSelectLevel -= levelInfoPresenter.SetLevel;
+        gameProgressPresenter.OnSelectLevel -= pseudoChipPresenter.SetLevel;
+        gameProgressPresenter.OnSelectLevel -= chipPresenter.SetLevel;
     }
 
     private void ActivateTransferEvents()

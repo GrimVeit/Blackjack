@@ -112,5 +112,10 @@ public class ChipPresenter
         chipModel.SpawnNumbers(number);
     }
 
+    public void SetLevel(Level level)
+    {
+        chipView.ActivateChips(level.BetNominals);
+    }
+
     #endregion
 }

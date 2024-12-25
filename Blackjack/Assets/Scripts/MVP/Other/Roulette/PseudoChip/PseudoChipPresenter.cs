@@ -75,5 +75,10 @@ public class PseudoChipPresenter
         pseudoChipModel.Deactivate();
     }
 
+    public void SetLevel(Level level)
+    {
+        pseudoChipView.ActivatePseudoChips(level.BetNominals);
+    }
+
     #endregion
 }

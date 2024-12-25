@@ -54,7 +54,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 76236923140265242}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -84,7 +84,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 76236923140265242}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 31a19414c41e5ae4aae2af33fee712f6, type: 3}
   m_Name: 
@@ -880,7 +880,19 @@ MonoBehaviour:
   - {fileID: 2672947370989290233}
   - {fileID: 3649285918124730983}
   - {fileID: 1953852955044503037}
+  - {fileID: 5816411730965482110}
+  - {fileID: 5071866193741803988}
+  - {fileID: 91104096957989648}
+  - {fileID: 3168090626489736101}
+  - {fileID: 1209327306155196254}
+  - {fileID: 3168697120360294383}
+  - {fileID: 8554938216224081972}
+  - {fileID: 7635603564335313059}
+  - {fileID: 8187127640809513208}
+  - {fileID: 5949111798092458169}
+  - {fileID: 5697856925836999166}
   chips: []
+  usingChips: []
   transformDeleteChip: {fileID: 5101783218124925833}
   retractLastChip: {fileID: 4653760442927310531}
 --- !u!1 &786353975249811202
@@ -3228,6 +3240,17 @@ MonoBehaviour:
   - {fileID: 8847359834817241919}
   - {fileID: 1755624548463274061}
   - {fileID: 5135442259062403681}
+  - {fileID: 3074317781866149039}
+  - {fileID: 3697981324005112909}
+  - {fileID: 4271488494630140035}
+  - {fileID: 6177819103702221314}
+  - {fileID: 8023512662153453086}
+  - {fileID: 3092745252813483805}
+  - {fileID: 1061358549127468780}
+  - {fileID: 7047049899157806809}
+  - {fileID: 920911191694488844}
+  - {fileID: 3311488401152336052}
+  - {fileID: 692911902716576204}
   currentPseudoChip: {fileID: 0}
 --- !u!1 &2989893156289432111
 GameObject:

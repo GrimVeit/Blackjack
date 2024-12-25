@@ -70,6 +70,23 @@ public class PseudoChipView : View
         currentPseudoChip.Move(vector);
     }
 
+
+    public void ActivatePseudoChips(List<int> betNominals)
+    {
+        for (int i = 0; i < betNominals.Count; i++)
+        {
+            Debug.Log(betNominals[i]);
+
+            for (int j = 0; j < pseudoChips.Count; j++)
+            {
+                if (betNominals[i] == pseudoChips[j].ChipData.Nominal)
+                {
+                    pseudoChips[j].ChipData.Parent.gameObject.SetActive(true);
+                }
+            }
+        }
+    }
+
     #region Input
 
     public void OnGrabPseudoChip(PseudoChip pseudoChip)
