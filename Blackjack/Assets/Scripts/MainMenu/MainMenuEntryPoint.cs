@@ -16,6 +16,7 @@ public class MainMenuEntryPoint : MonoBehaviour
 
     private LevelPresenter levelPresenter;
     private GameProgressPresenter gameProgressPresenter;
+    private DailyBonusPresenter dailyBonusPresenter;
     private LevelVisualizePresenter levelVisualizePresenter;
 
     public void Run(UIRootView uIRootView)
@@ -41,6 +42,8 @@ public class MainMenuEntryPoint : MonoBehaviour
 
         gameProgressPresenter = new GameProgressPresenter(new GameProgressModel(levels));
 
+        dailyBonusPresenter = new DailyBonusPresenter(new DailyBonusModel(), viewContainer.GetView<DailyBonusView>());
+
         levelPresenter = new LevelPresenter(new LevelModel(), viewContainer.GetView<LevelView>());
 
         sceneRoot.SetSoundProvider(soundPresenter);
@@ -53,6 +56,7 @@ public class MainMenuEntryPoint : MonoBehaviour
         bankPresenter.Initialize();
         particleEffectPresenter.Initialize();
         levelVisualizePresenter.Initialize();
+        dailyBonusPresenter.Initialize();
         levelPresenter.Initialize();
         gameProgressPresenter.Initialize();
     }
@@ -117,6 +121,7 @@ public class MainMenuEntryPoint : MonoBehaviour
         sceneRoot?.Dispose();
         particleEffectPresenter?.Dispose();
         gameProgressPresenter?.Dispose();
+        dailyBonusPresenter?.Dispose();
     }
 
     private void OnDestroy()

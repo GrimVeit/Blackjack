@@ -19,8 +19,6 @@ public class CooldownModel
     private bool isRewardAvailable => DateTime.Now >= nextRewardTime;
 
     private ISoundProvider soundProvider;
-    //private IParticleEffectProvider particleEffectProvider;
-    //private IParticleEffect effectReload;
 
     private IEnumerator countdownButton_coroutine;
 
@@ -29,13 +27,10 @@ public class CooldownModel
         KEY = key;
         this.timeToReload = timeToReload;
         this.soundProvider = soundProvider;
-        //this.particleEffectProvider = particleEffectProvider;
     }
 
     public void Initialize()
     {
-        //effectReload = particleEffectProvider.GetParticleEffect(ID);
-
         nextRewardTime = DateTime.Parse(PlayerPrefs.GetString(KEY, DateTime.Now.ToString()));
     }
 
@@ -47,7 +42,6 @@ public class CooldownModel
     public void Deactivate()
     {
         DeactivateCountdown();
-        //effectReload.Stop();
     }
 
     public void SetID(string ID)
