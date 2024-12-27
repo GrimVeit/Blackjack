@@ -16,7 +16,8 @@ public class DailyBonusModel
     public event Action<int> OnAlreadyClaimBonus;
     public event Action<int> OnNotClaimBonus;
 
-    private TimeSpan ostatokDateTime;
+    private TimeSpan ostatokForGetBonusDateTime;
+    private TimeSpan ostatokForFallenBonusDateTime;
 
     private List<DailyBonusData> bonusesDatas = new List<DailyBonusData>();
 
@@ -25,8 +26,10 @@ public class DailyBonusModel
     public readonly string FilePath = Path.Combine(Application.persistentDataPath, "DailyBonus.json");
 
     private DateTime currentDateTime => DateTime.UtcNow;
-    private DateTime nextClaimStart;
-    private DateTime nextClaimEnd;
+    private DateTime nextClaimStart => DateTime.Parse(currentDailyBonus.NextClaimStart);
+    private DateTime nextClaimEnd => DateTime.Parse(currentDailyBonus.NextClaimEnd);
+
+    private IEnumerator fallenBonusCoroutine;
 
     public void Initialize()
     {
@@ -43,16 +46,16 @@ public class DailyBonusModel
         {
             bonusesDatas = new List<DailyBonusData>()
             {
-                new DailyBonusData(0, 100, false, DateTime.UtcNow, DateTime.UtcNow + TimeSpan.FromDays(365)),
-                new DailyBonusData(1, 150, false, DateTime.UtcNow, DateTime.UtcNow + TimeSpan.FromDays(365)),
-                new DailyBonusData(2, 250, false, DateTime.UtcNow, DateTime.UtcNow + TimeSpan.FromDays(365)),
-                new DailyBonusData(3, 500, false, DateTime.UtcNow, DateTime.UtcNow + TimeSpan.FromDays(365)),
-                new DailyBonusData(4, 1000, false, DateTime.UtcNow, DateTime.UtcNow + TimeSpan.FromDays(365)),
-                new DailyBonusData(5, 1500, false, DateTime.UtcNow, DateTime.UtcNow + TimeSpan.FromDays(365)),
-                new DailyBonusData(6, 2500, false, DateTime.UtcNow, DateTime.UtcNow + TimeSpan.FromDays(365)),
-                new DailyBonusData(7, 5000, false, DateTime.UtcNow, DateTime.UtcNow + TimeSpan.FromDays(365)),
-                new DailyBonusData(8, 10000, false, DateTime.UtcNow, DateTime.UtcNow + TimeSpan.FromDays(365)),
-                new DailyBonusData(9, 25000, false, DateTime.UtcNow, DateTime.UtcNow + TimeSpan.FromDays(365))
+                new DailyBonusData(0, 100, false, DateTime.UtcNow, DateTime.MaxValue),
+                new DailyBonusData(1, 150, false, DateTime.UtcNow, DateTime.UtcNow),
+                new DailyBonusData(2, 250, false, DateTime.UtcNow, DateTime.UtcNow),
+                new DailyBonusData(3, 500, false, DateTime.UtcNow, DateTime.UtcNow),
+                new DailyBonusData(4, 1000, false, DateTime.UtcNow, DateTime.UtcNow),
+                new DailyBonusData(5, 1500, false, DateTime.UtcNow, DateTime.UtcNow),
+                new DailyBonusData(6, 2500, false, DateTime.UtcNow, DateTime.UtcNow),
+                new DailyBonusData(7, 5000, false, DateTime.UtcNow, DateTime.UtcNow),
+                new DailyBonusData(8, 10000, false, DateTime.UtcNow, DateTime.UtcNow),
+                new DailyBonusData(9, 25000, false, DateTime.UtcNow, DateTime.UtcNow)
             };
         }
 
@@ -80,28 +83,29 @@ public class DailyBonusModel
     private void CheckGetBonus()
     {
         currentDailyBonus = GetFirstNotClaimedBonus();
-        nextClaimStart = DateTime.Parse(currentDailyBonus.NextClaimStart);
-        nextClaimEnd = DateTime.Parse(currentDailyBonus.NextClaimEnd);
-
-        OnCurrentClaimBonus?.Invoke(currentDailyBonus.Day);
 
         if (currentDateTime > nextClaimEnd)
         {
+            OnDeactivatedClaimButton?.Invoke();
             RestartAll();
-            currentDailyBonus = GetFirstNotClaimedBonus();
-            return;
         }
 
         if (currentDateTime < nextClaimStart)
         {
-            ostatokDateTime = nextClaimStart - currentDateTime;
-            Coroutines.Start(Countdown_Coroutine());
+            OnDeactivatedClaimButton?.Invoke();
+            ostatokForGetBonusDateTime = nextClaimStart - currentDateTime;
+            Coroutines.Start(CountdownActivateBonus_Coroutine());
             return;
         }
 
         if(currentDateTime >= nextClaimStart)
         {
+            OnCurrentClaimBonus?.Invoke(currentDailyBonus.Day);
             OnActivatedClaimButton?.Invoke();
+
+            ostatokForFallenBonusDateTime = nextClaimEnd - currentDateTime;
+            fallenBonusCoroutine = CountdownDeactivateBonus_Coroutine();
+            Coroutines.Start(fallenBonusCoroutine);
         }
     }
 
@@ -112,32 +116,42 @@ public class DailyBonusModel
         currentDailyBonus.IsClaimed = true;
         OnAlreadyClaimBonus?.Invoke(currentDailyBonus.Day);
 
+        if(fallenBonusCoroutine != null)
+           Coroutines.Stop(fallenBonusCoroutine);
+
         if(currentDailyBonus.Day + 1 >= bonusesDatas.Count)
         {
+            OnDeactivatedClaimButton?.Invoke();
             RestartAll();
-            currentDailyBonus = GetFirstNotClaimedBonus();
         }
         else
         {
             currentDailyBonus = bonusesDatas[currentDailyBonus.Day + 1];
+            currentDailyBonus.NextClaimStart = (currentDateTime + TimeSpan.FromSeconds(5)).ToString();
+            currentDailyBonus.NextClaimEnd = (currentDateTime + TimeSpan.FromSeconds(10)).ToString();
         }
-
-        currentDailyBonus.NextClaimStart = (currentDateTime + TimeSpan.FromSeconds(10)).ToString();
-        currentDailyBonus.NextClaimEnd = (currentDateTime + TimeSpan.FromDays(20)).ToString();
 
         CheckGetBonus();
     }
 
     private void RestartAll()
     {
-        bonusesDatas.ForEach(Data => Data.IsClaimed = false);
+        for (int i = 0; i < bonusesDatas.Count; i++)
+        {
+            bonusesDatas[i].IsClaimed = false;
+            OnNotClaimBonus?.Invoke(bonusesDatas[i].Day);
+        }
+
+        currentDailyBonus = GetFirstNotClaimedBonus();
+        currentDailyBonus.NextClaimStart = (currentDateTime + TimeSpan.FromSeconds(5)).ToString();
+        currentDailyBonus.NextClaimEnd = (currentDateTime + TimeSpan.FromSeconds(10)).ToString();
     }
 
-    private IEnumerator Countdown_Coroutine()
+    private IEnumerator CountdownActivateBonus_Coroutine()
     {
         Debug.Log("ewdfef");
 
-        TimeSpan timeRemaining = ostatokDateTime;
+        TimeSpan timeRemaining = ostatokForGetBonusDateTime;
 
         while (true)
         {
@@ -145,11 +159,43 @@ public class DailyBonusModel
 
             if (timeRemaining.TotalSeconds <= 0)
             {
+                OnCurrentClaimBonus?.Invoke(currentDailyBonus.Day);
                 OnActivatedClaimButton?.Invoke();
+
+                ostatokForFallenBonusDateTime = nextClaimEnd - currentDateTime;
+                fallenBonusCoroutine = CountdownDeactivateBonus_Coroutine();
+                Coroutines.Start(fallenBonusCoroutine);
                 break;
             }
 
-            Debug.Log(string.Format("{0:D2}:{1:D2}:{2:D2}", timeRemaining.Hours, timeRemaining.Minutes, timeRemaining.Seconds));
+            Debug.Log(string.Format("TIME FOR GET BONUS: " + "{0:D2}:{1:D2}:{2:D2}", timeRemaining.Hours, timeRemaining.Minutes, timeRemaining.Seconds));
+            OnCountdownTimer?.Invoke(string.Format("{0:D2}:{1:D2}:{2:D2}", timeRemaining.Hours, timeRemaining.Minutes, timeRemaining.Seconds));
+
+            yield return new WaitForSeconds(1);
+        }
+
+        OnCountdownTimer?.Invoke("");
+    }
+
+    private IEnumerator CountdownDeactivateBonus_Coroutine()
+    {
+        Debug.Log("ewdfef");
+
+        TimeSpan timeRemaining = ostatokForFallenBonusDateTime;
+
+        while (true)
+        {
+            timeRemaining -= TimeSpan.FromSeconds(1);
+
+            if (timeRemaining.TotalSeconds <= 0)
+            {
+                OnDeactivatedClaimButton?.Invoke();
+                RestartAll();
+                CheckGetBonus();
+                break;
+            }
+
+            Debug.Log(string.Format("TIME FOR FALLEN BONUS: " + "{0:D2}:{1:D2}:{2:D2}", timeRemaining.Hours, timeRemaining.Minutes, timeRemaining.Seconds));
             OnCountdownTimer?.Invoke(string.Format("{0:D2}:{1:D2}:{2:D2}", timeRemaining.Hours, timeRemaining.Minutes, timeRemaining.Seconds));
 
             yield return new WaitForSeconds(1);
