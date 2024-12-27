@@ -16,8 +16,8 @@ public class DailyBonusModel
     public event Action<int> OnAlreadyClaimBonus;
     public event Action<int> OnNotClaimBonus;
 
-    private TimeSpan ostatokForGetBonusDateTime;
-    private TimeSpan ostatokForFallenBonusDateTime;
+    private TimeSpan ostatokForGetBonusDateTime => nextClaimStart - currentDateTime;
+    private TimeSpan ostatokForFallenBonusDateTime => nextClaimEnd - currentDateTime;
 
     private List<DailyBonusData> bonusesDatas = new List<DailyBonusData>();
 
@@ -93,7 +93,6 @@ public class DailyBonusModel
         if (currentDateTime < nextClaimStart)
         {
             OnDeactivatedClaimButton?.Invoke();
-            ostatokForGetBonusDateTime = nextClaimStart - currentDateTime;
             Coroutines.Start(CountdownActivateBonus_Coroutine());
             return;
         }
@@ -103,7 +102,6 @@ public class DailyBonusModel
             OnCurrentClaimBonus?.Invoke(currentDailyBonus.Day);
             OnActivatedClaimButton?.Invoke();
 
-            ostatokForFallenBonusDateTime = nextClaimEnd - currentDateTime;
             fallenBonusCoroutine = CountdownDeactivateBonus_Coroutine();
             Coroutines.Start(fallenBonusCoroutine);
         }
@@ -128,7 +126,7 @@ public class DailyBonusModel
         {
             currentDailyBonus = bonusesDatas[currentDailyBonus.Day + 1];
             currentDailyBonus.NextClaimStart = (currentDateTime + TimeSpan.FromSeconds(5)).ToString();
-            currentDailyBonus.NextClaimEnd = (currentDateTime + TimeSpan.FromSeconds(10)).ToString();
+            currentDailyBonus.NextClaimEnd = (currentDateTime + TimeSpan.FromSeconds(15)).ToString();
         }
 
         CheckGetBonus();
@@ -144,7 +142,7 @@ public class DailyBonusModel
 
         currentDailyBonus = GetFirstNotClaimedBonus();
         currentDailyBonus.NextClaimStart = (currentDateTime + TimeSpan.FromSeconds(5)).ToString();
-        currentDailyBonus.NextClaimEnd = (currentDateTime + TimeSpan.FromSeconds(10)).ToString();
+        currentDailyBonus.NextClaimEnd = (currentDateTime + TimeSpan.FromSeconds(15)).ToString();
     }
 
     private IEnumerator CountdownActivateBonus_Coroutine()
@@ -162,7 +160,6 @@ public class DailyBonusModel
                 OnCurrentClaimBonus?.Invoke(currentDailyBonus.Day);
                 OnActivatedClaimButton?.Invoke();
 
-                ostatokForFallenBonusDateTime = nextClaimEnd - currentDateTime;
                 fallenBonusCoroutine = CountdownDeactivateBonus_Coroutine();
                 Coroutines.Start(fallenBonusCoroutine);
                 break;
@@ -182,7 +179,7 @@ public class DailyBonusModel
         Debug.Log("ewdfef");
 
         TimeSpan timeRemaining = ostatokForFallenBonusDateTime;
-
+        Debug.Log(timeRemaining.Seconds);
         while (true)
         {
             timeRemaining -= TimeSpan.FromSeconds(1);

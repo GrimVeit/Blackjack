@@ -1,9 +1,11 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ChooseGamePanel_MainMenuScene : MovePanel
 {
+    [SerializeField] private List<TypeTextEffect> effects = new List<TypeTextEffect>();
     [SerializeField] private Button homeButton;
     [SerializeField] private Button playButton;
 
@@ -21,6 +23,22 @@ public class ChooseGamePanel_MainMenuScene : MovePanel
         
         homeButton.onClick.RemoveListener(HandleClickToHomeButton);
         playButton.onClick.RemoveListener(HandleClickToPlayButton);
+    }
+
+    public override void ActivatePanel()
+    {
+        effects.ForEach(x => x.StopAllCoroutines());
+        effects.ForEach(x => x.Activate());
+
+        base.ActivatePanel();
+    }
+
+    public override void DeactivatePanel()
+    {
+        effects.ForEach(x => x.StopAllCoroutines());
+        effects.ForEach(x => x.ClearText());
+
+        base.DeactivatePanel();
     }
 
     #region Input

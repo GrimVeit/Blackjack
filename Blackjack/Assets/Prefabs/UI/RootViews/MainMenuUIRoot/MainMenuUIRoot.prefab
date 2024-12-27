@@ -523,6 +523,7 @@ GameObject:
   - component: {fileID: 2708882703588247668}
   - component: {fileID: 4348693694440085640}
   - component: {fileID: 8362018371242323450}
+  - component: {fileID: 1748536394483774155}
   m_Layer: 5
   m_Name: Bahamas
   m_TagString: Untagged
@@ -633,6 +634,21 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1748536394483774155
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 806738568889377483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0237761041cc83345b8d9b85996909c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textComponent: {fileID: 4215454031312923271}
+  textDescription: Bagamas
+  timePause: 0.001
 --- !u!1 &812117067239505989
 GameObject:
   m_ObjectHideFlags: 0
@@ -1053,6 +1069,7 @@ GameObject:
   - component: {fileID: 3899087707659153300}
   - component: {fileID: 2753821417424302526}
   - component: {fileID: 8395873655425024656}
+  - component: {fileID: 4261120949566455019}
   m_Layer: 5
   m_Name: Macau
   m_TagString: Untagged
@@ -1163,6 +1180,21 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &4261120949566455019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1255949206922031665}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0237761041cc83345b8d9b85996909c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textComponent: {fileID: 2353025917630725987}
+  textDescription: Macau
+  timePause: 0.001
 --- !u!1 &1269596622450450472
 GameObject:
   m_ObjectHideFlags: 0
@@ -1872,6 +1904,7 @@ GameObject:
   - component: {fileID: 4123324404715783618}
   - component: {fileID: 1665671398378154692}
   - component: {fileID: 3634408789772756624}
+  - component: {fileID: 2995102404428620678}
   m_Layer: 5
   m_Name: MonteCarlo
   m_TagString: Untagged
@@ -1982,6 +2015,21 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &2995102404428620678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2044924915831775828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0237761041cc83345b8d9b85996909c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textComponent: {fileID: 6750115591426058193}
+  textDescription: Monte Carlo
+  timePause: 0.001
 --- !u!1 &2048930255840981279
 GameObject:
   m_ObjectHideFlags: 0
@@ -1994,6 +2042,7 @@ GameObject:
   - component: {fileID: 5234562703775161417}
   - component: {fileID: 2355904444399379893}
   - component: {fileID: 4810763215350807330}
+  - component: {fileID: 8766004751384983873}
   m_Layer: 5
   m_Name: London
   m_TagString: Untagged
@@ -2104,6 +2153,21 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &8766004751384983873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2048930255840981279}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0237761041cc83345b8d9b85996909c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textComponent: {fileID: 2628357173244566014}
+  textDescription: London
+  timePause: 0.001
 --- !u!1 &2143993557165728706
 GameObject:
   m_ObjectHideFlags: 0
@@ -3369,6 +3433,56 @@ MonoBehaviour:
   size: 83
   color: {r: 1, g: 0, b: 0, a: 1}
   drawType: 0
+--- !u!1 &2654202774322196622
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6913164924644936201}
+  - component: {fileID: 2270263699574987632}
+  m_Layer: 5
+  m_Name: TextTypeEffectView
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &6913164924644936201
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2654202774322196622}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4590952781356263494}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2270263699574987632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2654202774322196622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05714ccc2325844449e8b2b9dd5c1c87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tutorials:
+  - {fileID: 8736528153839827353}
 --- !u!1 &2678302300440405784
 GameObject:
   m_ObjectHideFlags: 0
@@ -7240,6 +7354,7 @@ GameObject:
   - component: {fileID: 3276408533400326958}
   - component: {fileID: 907582697125032585}
   - component: {fileID: 7410750478105137757}
+  - component: {fileID: 2804264244011452970}
   m_Layer: 5
   m_Name: Moscow
   m_TagString: Untagged
@@ -7350,6 +7465,21 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &2804264244011452970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5130405423153621379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0237761041cc83345b8d9b85996909c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textComponent: {fileID: 52407670651896615}
+  textDescription: Moscow
+  timePause: 0.001
 --- !u!1 &5138000158133113514
 GameObject:
   m_ObjectHideFlags: 0
@@ -7362,6 +7492,7 @@ GameObject:
   - component: {fileID: 5004621410665340718}
   - component: {fileID: 614567663349628181}
   - component: {fileID: 8838669469425553305}
+  - component: {fileID: 5908891751159363917}
   m_Layer: 5
   m_Name: Venice
   m_TagString: Untagged
@@ -7472,6 +7603,21 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &5908891751159363917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5138000158133113514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0237761041cc83345b8d9b85996909c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textComponent: {fileID: 4494507462452999509}
+  textDescription: Venice
+  timePause: 0.001
 --- !u!1 &5190811716068943981
 GameObject:
   m_ObjectHideFlags: 0
@@ -9256,6 +9402,7 @@ GameObject:
   - component: {fileID: 3709834759290378564}
   - component: {fileID: 8409063150052331714}
   - component: {fileID: 3205824411919261923}
+  - component: {fileID: 613992698114714999}
   m_Layer: 5
   m_Name: LosAngeles
   m_TagString: Untagged
@@ -9366,6 +9513,21 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &613992698114714999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6102207898953672805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0237761041cc83345b8d9b85996909c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textComponent: {fileID: 5123628464839346379}
+  textDescription: Los Angeles
+  timePause: 0.0001
 --- !u!1 &6139646729033503685
 GameObject:
   m_ObjectHideFlags: 0
@@ -10187,6 +10349,7 @@ GameObject:
   - component: {fileID: 4230277412744864764}
   - component: {fileID: 1038028821308951097}
   - component: {fileID: 369871438036915335}
+  - component: {fileID: 8736528153839827353}
   m_Layer: 5
   m_Name: Scroll View
   m_TagString: Untagged
@@ -10253,6 +10416,29 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &8736528153839827353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6724275112724522884}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7060a611ef3496843b31acc9082039c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ID: Towns
+  tutorialTexts:
+  - {fileID: 613992698114714999}
+  - {fileID: 1321391670230334302}
+  - {fileID: 4261120949566455019}
+  - {fileID: 8766004751384983873}
+  - {fileID: 2804264244011452970}
+  - {fileID: 2995102404428620678}
+  - {fileID: 5908891751159363917}
+  - {fileID: 1748536394483774155}
+  speedType: 0.002
 --- !u!1 &6770000038482458797
 GameObject:
   m_ObjectHideFlags: 0
@@ -11872,6 +12058,7 @@ GameObject:
   - component: {fileID: 2196212163851974494}
   - component: {fileID: 2764242016126023704}
   - component: {fileID: 2183359459974561356}
+  - component: {fileID: 1321391670230334302}
   m_Layer: 5
   m_Name: Paris
   m_TagString: Untagged
@@ -11982,6 +12169,21 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1321391670230334302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8121547853247092541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0237761041cc83345b8d9b85996909c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textComponent: {fileID: 8663689810904164433}
+  textDescription: Paris
+  timePause: 0.001
 --- !u!1 &8125510689914323025
 GameObject:
   m_ObjectHideFlags: 0
@@ -12706,6 +12908,8 @@ MonoBehaviour:
   to: {x: 0, y: 0, z: 0}
   time: 0.1
   canvasGroup: {fileID: 6157814134108988683}
+  effects:
+  - {fileID: 8736528153839827353}
   homeButton: {fileID: 8239340014945340381}
   playButton: {fileID: 4198257252279578830}
 --- !u!1 &8839030588366732476
@@ -13020,6 +13224,7 @@ RectTransform:
   - {fileID: 1197942771276954358}
   - {fileID: 3648654427311487807}
   - {fileID: 6778737106393034227}
+  - {fileID: 6913164924644936201}
   m_Father: {fileID: 2159982432725172011}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
