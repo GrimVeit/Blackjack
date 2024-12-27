@@ -18,6 +18,7 @@ public class MainMenuEntryPoint : MonoBehaviour
     private GameProgressPresenter gameProgressPresenter;
     private DailyBonusPresenter dailyBonusPresenter;
     private LevelVisualizePresenter levelVisualizePresenter;
+    private ScaleEffectPresenter scaleEffectPresenter;
 
     public void Run(UIRootView uIRootView)
     {
@@ -46,6 +47,8 @@ public class MainMenuEntryPoint : MonoBehaviour
 
         levelPresenter = new LevelPresenter(new LevelModel(), viewContainer.GetView<LevelView>());
 
+        scaleEffectPresenter = new ScaleEffectPresenter(new ScaleEffectModel(), viewContainer.GetView<ScaleEffectView>());
+
         sceneRoot.SetSoundProvider(soundPresenter);
         sceneRoot.Initialize();
         sceneRoot.Activate();
@@ -59,6 +62,7 @@ public class MainMenuEntryPoint : MonoBehaviour
         dailyBonusPresenter.Initialize();
         levelPresenter.Initialize();
         gameProgressPresenter.Initialize();
+        scaleEffectPresenter.Initialize();
     }
 
     private void ActivateEvents()
@@ -122,6 +126,7 @@ public class MainMenuEntryPoint : MonoBehaviour
         particleEffectPresenter?.Dispose();
         gameProgressPresenter?.Dispose();
         dailyBonusPresenter?.Dispose();
+        scaleEffectPresenter?.Dispose();
     }
 
     private void OnDestroy()

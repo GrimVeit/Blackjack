@@ -870,6 +870,7 @@ GameObject:
   - component: {fileID: 5348995465227818559}
   - component: {fileID: 8892207805557318912}
   - component: {fileID: 2211076069153979486}
+  - component: {fileID: 8563534910893423144}
   m_Layer: 5
   m_Name: DailyBonus_Day2
   m_TagString: Untagged
@@ -951,6 +952,20 @@ MonoBehaviour:
   day: 1
   objectClaim: {fileID: 5620957243661132933}
   objectNotClaim: {fileID: 2774910208133634452}
+--- !u!114 &8563534910893423144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 996934387648826154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e81e16cc91490c34eba2b1fd07a8728b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duration: 0.2
+  scaleElement: {fileID: 5861164050382697763}
 --- !u!1 &1202002932560743869
 GameObject:
   m_ObjectHideFlags: 0
@@ -1160,6 +1175,7 @@ GameObject:
   - component: {fileID: 8628171361674322524}
   - component: {fileID: 5455603009408336867}
   - component: {fileID: 4495259154163834975}
+  - component: {fileID: 2662401483100225404}
   m_Layer: 5
   m_Name: DailyBonus_Day6
   m_TagString: Untagged
@@ -1241,6 +1257,20 @@ MonoBehaviour:
   day: 5
   objectClaim: {fileID: 3429119338532139890}
   objectNotClaim: {fileID: 4342968005594454537}
+--- !u!114 &2662401483100225404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1269596622450450472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e81e16cc91490c34eba2b1fd07a8728b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duration: 0.2
+  scaleElement: {fileID: 3389699429972662445}
 --- !u!1 &1406807268692663112
 GameObject:
   m_ObjectHideFlags: 0
@@ -4953,6 +4983,8 @@ MonoBehaviour:
   to: {x: 0, y: 0, z: 0}
   time: 0.1
   canvasGroup: {fileID: 8352150206356382924}
+  scaleEffects:
+  - {fileID: 5381485541635949791}
   homeButton: {fileID: 8821986156595957041}
 --- !u!1 &3698044238623971559
 GameObject:
@@ -4966,6 +4998,7 @@ GameObject:
   - component: {fileID: 3823346042685287710}
   - component: {fileID: 7148510218813998188}
   - component: {fileID: 3805760618987968487}
+  - component: {fileID: 4719248216904021310}
   m_Layer: 5
   m_Name: DailyBonus_Day1
   m_TagString: Untagged
@@ -5047,6 +5080,20 @@ MonoBehaviour:
   day: 0
   objectClaim: {fileID: 5471408138655071425}
   objectNotClaim: {fileID: 4415469807051416524}
+--- !u!114 &4719248216904021310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3698044238623971559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e81e16cc91490c34eba2b1fd07a8728b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duration: 0.2
+  scaleElement: {fileID: 93651203917060771}
 --- !u!1 &3745888363423048427
 GameObject:
   m_ObjectHideFlags: 0
@@ -5329,6 +5376,7 @@ GameObject:
   - component: {fileID: 1731607657401453243}
   - component: {fileID: 4730590790746437177}
   - component: {fileID: 2632352836924156998}
+  - component: {fileID: 6337543139697920983}
   m_Layer: 5
   m_Name: DailyBonus_Day7
   m_TagString: Untagged
@@ -5410,6 +5458,20 @@ MonoBehaviour:
   day: 6
   objectClaim: {fileID: 843250988639654097}
   objectNotClaim: {fileID: 6665854672688266484}
+--- !u!114 &6337543139697920983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3821919400269712904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e81e16cc91490c34eba2b1fd07a8728b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duration: 0.2
+  scaleElement: {fileID: 5841072928133889721}
 --- !u!1 &3888630426022321065
 GameObject:
   m_ObjectHideFlags: 0
@@ -5572,6 +5634,7 @@ GameObject:
   - component: {fileID: 2318061289959372588}
   - component: {fileID: 2049833446093852830}
   - component: {fileID: 6390665409143229881}
+  - component: {fileID: 5381485541635949791}
   m_Layer: 5
   m_Name: Scroll View
   m_TagString: Untagged
@@ -5668,6 +5731,30 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &5381485541635949791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4172349632678049704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c09ae7e41b828a640aff6367428d51be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scaleEffects:
+  - {fileID: 4719248216904021310}
+  - {fileID: 8563534910893423144}
+  - {fileID: 8152305746553625021}
+  - {fileID: 8315339996553319893}
+  - {fileID: 9086590369742379523}
+  - {fileID: 2662401483100225404}
+  - {fileID: 6337543139697920983}
+  - {fileID: 6064349237897343718}
+  - {fileID: 3078276238841494365}
+  - {fileID: 1962403052128540078}
+  timeScale: 0.05
 --- !u!1 &4342968005594454537
 GameObject:
   m_ObjectHideFlags: 0
@@ -6175,6 +6262,7 @@ GameObject:
   - component: {fileID: 3128416181232741930}
   - component: {fileID: 73399160781999708}
   - component: {fileID: 9026107261643229271}
+  - component: {fileID: 1962403052128540078}
   m_Layer: 5
   m_Name: DailyBonus_Day10
   m_TagString: Untagged
@@ -6256,6 +6344,20 @@ MonoBehaviour:
   day: 9
   objectClaim: {fileID: 2361369854065551379}
   objectNotClaim: {fileID: 8977652735317022974}
+--- !u!114 &1962403052128540078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4572020589418763872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e81e16cc91490c34eba2b1fd07a8728b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duration: 0.2
+  scaleElement: {fileID: 3262686945437454310}
 --- !u!1 &4668152969530889968
 GameObject:
   m_ObjectHideFlags: 0
@@ -9046,6 +9148,7 @@ GameObject:
   - component: {fileID: 7208118146664791214}
   - component: {fileID: 2971596793080068627}
   - component: {fileID: 4583903866749546222}
+  - component: {fileID: 3078276238841494365}
   m_Layer: 5
   m_Name: DailyBonus_Day9
   m_TagString: Untagged
@@ -9127,6 +9230,20 @@ MonoBehaviour:
   day: 8
   objectClaim: {fileID: 2602870916000427119}
   objectNotClaim: {fileID: 3888630426022321065}
+--- !u!114 &3078276238841494365
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6086270954460648078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e81e16cc91490c34eba2b1fd07a8728b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duration: 0.2
+  scaleElement: {fileID: 736206166147039495}
 --- !u!1 &6102207898953672805
 GameObject:
   m_ObjectHideFlags: 0
@@ -9456,6 +9573,7 @@ GameObject:
   - component: {fileID: 3314967339199352562}
   - component: {fileID: 8980373371911310310}
   - component: {fileID: 7750950451273090852}
+  - component: {fileID: 8152305746553625021}
   m_Layer: 5
   m_Name: DailyBonus_Day3
   m_TagString: Untagged
@@ -9537,6 +9655,20 @@ MonoBehaviour:
   day: 2
   objectClaim: {fileID: 5190811716068943981}
   objectNotClaim: {fileID: 6797288625120411878}
+--- !u!114 &8152305746553625021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6216758722387367029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e81e16cc91490c34eba2b1fd07a8728b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duration: 0.2
+  scaleElement: {fileID: 6768049581286173649}
 --- !u!1 &6349861183812525797
 GameObject:
   m_ObjectHideFlags: 0
@@ -9824,6 +9956,7 @@ GameObject:
   - component: {fileID: 5537813645528580911}
   - component: {fileID: 3144978763965493443}
   - component: {fileID: 9192786321856712389}
+  - component: {fileID: 9086590369742379523}
   m_Layer: 5
   m_Name: DailyBonus_Day5
   m_TagString: Untagged
@@ -9905,6 +10038,20 @@ MonoBehaviour:
   day: 4
   objectClaim: {fileID: 8839030588366732476}
   objectNotClaim: {fileID: 6548366197158213083}
+--- !u!114 &9086590369742379523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6589003280070663323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e81e16cc91490c34eba2b1fd07a8728b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duration: 0.2
+  scaleElement: {fileID: 4423128635079904711}
 --- !u!1 &6665854672688266484
 GameObject:
   m_ObjectHideFlags: 0
@@ -10438,6 +10585,56 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!1 &7290376948488480802
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6778737106393034227}
+  - component: {fileID: 902629846424981849}
+  m_Layer: 5
+  m_Name: ScaleEffectView
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &6778737106393034227
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7290376948488480802}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4590952781356263494}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &902629846424981849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7290376948488480802}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fe0cfa03dedabd4b9af9badfb2c9ba2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scaleEffects:
+  - {fileID: 5381485541635949791}
 --- !u!1 &7417263164772949295
 GameObject:
   m_ObjectHideFlags: 0
@@ -10600,6 +10797,7 @@ GameObject:
   - component: {fileID: 2481334782638744176}
   - component: {fileID: 6241388400901959224}
   - component: {fileID: 1949488767688347207}
+  - component: {fileID: 8315339996553319893}
   m_Layer: 5
   m_Name: DailyBonus_Day4
   m_TagString: Untagged
@@ -10681,6 +10879,20 @@ MonoBehaviour:
   day: 3
   objectClaim: {fileID: 8426615911027651850}
   objectNotClaim: {fileID: 7847906378312523218}
+--- !u!114 &8315339996553319893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7423776593891296168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e81e16cc91490c34eba2b1fd07a8728b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duration: 0.2
+  scaleElement: {fileID: 4030218813626730203}
 --- !u!1 &7495888837398473642
 GameObject:
   m_ObjectHideFlags: 0
@@ -10963,6 +11175,7 @@ GameObject:
   - component: {fileID: 2569922647466441936}
   - component: {fileID: 3148785893879209564}
   - component: {fileID: 8387664454278872682}
+  - component: {fileID: 6064349237897343718}
   m_Layer: 5
   m_Name: DailyBonus_Day8
   m_TagString: Untagged
@@ -11044,6 +11257,20 @@ MonoBehaviour:
   day: 7
   objectClaim: {fileID: 1454121627798666435}
   objectNotClaim: {fileID: 8125510689914323025}
+--- !u!114 &6064349237897343718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7616670775533495230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e81e16cc91490c34eba2b1fd07a8728b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duration: 0.2
+  scaleElement: {fileID: 7542593160294377034}
 --- !u!1 &7617204968996360122
 GameObject:
   m_ObjectHideFlags: 0
@@ -12792,6 +13019,7 @@ RectTransform:
   - {fileID: 5042683080192324050}
   - {fileID: 1197942771276954358}
   - {fileID: 3648654427311487807}
+  - {fileID: 6778737106393034227}
   m_Father: {fileID: 2159982432725172011}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
