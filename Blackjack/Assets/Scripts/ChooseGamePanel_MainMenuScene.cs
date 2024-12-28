@@ -5,7 +5,8 @@ using UnityEngine.UI;
 
 public class ChooseGamePanel_MainMenuScene : MovePanel
 {
-    [SerializeField] private List<TypeTextEffect> effects = new List<TypeTextEffect>();
+    [SerializeField] private List<TypeTextEffect> textEffects = new List<TypeTextEffect>();
+    [SerializeField] private List<ScaleEffectCombination> scaleEffects = new List<ScaleEffectCombination>();
     [SerializeField] private Button homeButton;
     [SerializeField] private Button playButton;
 
@@ -27,16 +28,18 @@ public class ChooseGamePanel_MainMenuScene : MovePanel
 
     public override void ActivatePanel()
     {
-        effects.ForEach(x => x.StopAllCoroutines());
-        effects.ForEach(x => x.Activate());
+        textEffects.ForEach(x => x.StopAllCoroutines());
+        textEffects.ForEach(x => x.Activate());
+        scaleEffects.ForEach(data => data.ActivateEffect());
 
         base.ActivatePanel();
     }
 
     public override void DeactivatePanel()
     {
-        effects.ForEach(x => x.StopAllCoroutines());
-        effects.ForEach(x => x.ClearText());
+        textEffects.ForEach(x => x.StopAllCoroutines());
+        textEffects.ForEach(x => x.ClearText());
+        scaleEffects.ForEach(data => data.DeactivateEffect());
 
         base.DeactivatePanel();
     }

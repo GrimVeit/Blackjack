@@ -95,6 +95,11 @@ public class BetPresenter : IBetProvider
         model.Deactivate();
     }
 
+    public void DisplayWin(int win)
+    {
+        view.DisplayWin(win);
+    }
+
     #endregion
 }
 

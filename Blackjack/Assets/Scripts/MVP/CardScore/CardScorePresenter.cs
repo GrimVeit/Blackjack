@@ -38,6 +38,12 @@ public class CardScorePresenter
     public int ScorePlayer => model.ScorePlayer;
     public int ScoreDealer => model.ScoreDealer;
 
+    public event Action OnPlayerBlackjack
+    {
+        add { model.OnPlayerBlackjack += value; }
+        remove { model.OnPlayerBlackjack -= value; }
+    }
+
     public event Action OnWin
     {
         add { model.OnWin += value; }

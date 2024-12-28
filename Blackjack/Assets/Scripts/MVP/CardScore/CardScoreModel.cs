@@ -6,6 +6,7 @@ using UnityEngine;
 public class CardScoreModel
 {
     public event Action OnWin;
+    public event Action OnPlayerBlackjack;
     public event Action OnLose;
 
     public event Action<int> OnChangeScore_Player;
@@ -19,6 +20,12 @@ public class CardScoreModel
         ScorePlayer += score;
 
         OnChangeScore_Player?.Invoke(ScorePlayer);
+
+        if(ScorePlayer == 21)
+        {
+            OnPlayerBlackjack?.Invoke();
+            return;
+        }
 
         if(ScorePlayer > 21)
         {

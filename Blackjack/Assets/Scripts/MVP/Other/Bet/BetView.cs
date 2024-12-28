@@ -9,6 +9,7 @@ public class BetView : View
     public event Action OnClickToMaxBetButton;
 
     [SerializeField] private TextMeshProUGUI textBet;
+    [SerializeField] private TextMeshProUGUI textWin;
 
     [SerializeField] private Button buttonDoubleBet;
     [SerializeField] private Button buttonMaxBet;
@@ -40,6 +41,11 @@ public class BetView : View
     public void DeactivateStartButton()
     {
         buttonStartPlay.SetActive(false);
+    }
+
+    public void DisplayWin(int win)
+    {
+        textWin.text = win.ToString();
     }
 
     #region Input

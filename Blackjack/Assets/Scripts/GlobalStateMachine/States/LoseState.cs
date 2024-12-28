@@ -52,7 +52,7 @@ public class LoseState : IGlobalState
 
     private IEnumerator Timer()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(2);
 
         ActivateState_BettingState();
     }

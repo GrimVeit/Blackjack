@@ -35,6 +35,7 @@ public class PlayerTurnState : IGlobalState
         chipPresenter.OnRemoveAllChips += betPresenter.ReturnBet;
 
         cardScorePresenter.OnLose += ActivateState_BeitingState;
+        cardScorePresenter.OnPlayerBlackjack += ActivateState_DealerTurnState;
 
         cardPresenter_Player.OnAddNominal += cardScorePresenter.AddScore_Player;
 
@@ -56,6 +57,7 @@ public class PlayerTurnState : IGlobalState
         chipPresenter.OnRemoveAllChips -= betPresenter.ReturnBet;
 
         cardScorePresenter.OnLose -= ActivateState_BeitingState;
+        cardScorePresenter.OnPlayerBlackjack -= ActivateState_DealerTurnState;
 
         cardPresenter_Player.OnAddNominal -= cardScorePresenter.AddScore_Player;
 

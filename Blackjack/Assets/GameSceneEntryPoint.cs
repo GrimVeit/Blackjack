@@ -27,6 +27,9 @@ public class GameSceneEntryPoint : MonoBehaviour
     private GameProgressPresenter gameProgressPresenter;
     private LevelInfoPresenter levelInfoPresenter;
 
+    private TypeTextEffectPresenter textEffectPresenter;
+    private ScaleEffectPresenter scaleEffectPresenter;
+
     private GlobalStateMachine globalStateMachine;
 
     public void Run(UIRootView uIRootView)
@@ -68,6 +71,12 @@ public class GameSceneEntryPoint : MonoBehaviour
 
         cardScorePresenter = new CardScorePresenter(new CardScoreModel(), viewContainer.GetView<CardScoreView>());
         cardScorePresenter.Initialize();
+
+        textEffectPresenter = new TypeTextEffectPresenter(new TypeTextEffectModel(), viewContainer.GetView<TypeTextEffectView>());
+        textEffectPresenter.Initialize();
+
+        scaleEffectPresenter = new ScaleEffectPresenter(new ScaleEffectModel(), viewContainer.GetView<ScaleEffectView>());
+        scaleEffectPresenter.Initialize();
 
         levelInfoPresenter = new LevelInfoPresenter(new LevelInfoModel(), viewContainer.GetView<LevelInfoView>());
         levelInfoPresenter.Initialize();
@@ -140,6 +149,8 @@ public class GameSceneEntryPoint : MonoBehaviour
         cardPresenter_Dealer?.Dispose();
         cardScorePresenter?.Dispose();
         gameProgressPresenter?.Dispose();
+        textEffectPresenter?.Dispose();
+        scaleEffectPresenter?.Dispose();
         globalStateMachine?.Dispose();
     }
 

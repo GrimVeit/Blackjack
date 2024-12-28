@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class WinState : IGlobalState
@@ -37,6 +36,7 @@ public class WinState : IGlobalState
         chipPresenter.OnRemoveAllChips += betPresenter.ReturnBet;
 
         betPresenter.Activate();
+        betPresenter.DisplayWin(betPresenter.CurrentBet / 2);
         bankPresenter.SendMoney(betPresenter.CurrentBet / 2);
         chipPresenter.RetractAllChips();
 
@@ -62,7 +62,7 @@ public class WinState : IGlobalState
 
     private IEnumerator Timer()
     {
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(2);
 
         ActivateState_BettingState();
     }
