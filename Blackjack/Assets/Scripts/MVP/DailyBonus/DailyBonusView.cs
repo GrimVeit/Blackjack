@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,6 +9,7 @@ public class DailyBonusView : View
 {
     [SerializeField] private List<DailyBonus> dailyBonuses = new List<DailyBonus>();
     [SerializeField] private Button buttonClaim;
+    [SerializeField] private DailyBonusTimer bonusTimer;
 
     public void Initialize()
     {
@@ -44,6 +46,26 @@ public class DailyBonusView : View
     {
         dailyBonuses.FirstOrDefault(data => data.Day == day).CloseClaim();
     }
+
+    #region Timer
+
+    public void ActivateTimer(int day)
+    {
+        bonusTimer.SetTransform(dailyBonuses.FirstOrDefault(data => data.Day == day).TransformBonus);
+        bonusTimer.ActivateTimer();
+    }
+
+    public void DeactivateTimer()
+    {
+        bonusTimer.DeactivateTimer();
+    }
+
+    public void SetTime(string time)
+    {
+        bonusTimer.SetTime(time);
+    }
+
+    #endregion
 
     #region Input
 

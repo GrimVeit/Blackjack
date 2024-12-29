@@ -404,9 +404,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Moscow
-
-'
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b0d3e01f5f035fe438d15566b17341f9, type: 2}
   m_sharedMaterial: {fileID: -4988259015084475937, guid: b0d3e01f5f035fe438d15566b17341f9, type: 2}
@@ -566,7 +564,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scaleMax: {x: 1.1, y: 1.1, z: 1.1}
   scaleMin: {x: 1, y: 1, z: 1}
-  duration: 0.4
+  duration: 0.7
   isAwake: 0
   scaleElement: {fileID: 4248069038944619843}
 --- !u!1 &709097655304786252
@@ -1213,7 +1211,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scaleMax: {x: 1.1, y: 1.1, z: 1.1}
   scaleMin: {x: 1, y: 1, z: 1}
-  duration: 0.4
+  duration: 0.7
   isAwake: 0
   scaleElement: {fileID: 7643740932442956362}
 --- !u!1 &1255949206922031665
@@ -1928,7 +1926,7 @@ MonoBehaviour:
   panel: {fileID: 1784917576225280181}
   from: {x: 0, y: 100, z: 0}
   to: {x: 0, y: 0, z: 0}
-  time: 0.1
+  time: 0.2
   canvasGroup: {fileID: 4119736492332294127}
   effects:
   - {fileID: 6969508007442915362}
@@ -2931,7 +2929,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Macau
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b0d3e01f5f035fe438d15566b17341f9, type: 2}
   m_sharedMaterial: {fileID: -4988259015084475937, guid: b0d3e01f5f035fe438d15566b17341f9, type: 2}
@@ -3755,7 +3753,7 @@ MonoBehaviour:
   panel: {fileID: 2678302300440405784}
   from: {x: 0, y: 100, z: 0}
   to: {x: 0, y: 0, z: 0}
-  time: 0.1
+  time: 0.2
   canvasGroup: {fileID: 9044625538504252063}
   effects:
   - {fileID: 7501880126717433378}
@@ -3998,7 +3996,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Paris
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b0d3e01f5f035fe438d15566b17341f9, type: 2}
   m_sharedMaterial: {fileID: -4988259015084475937, guid: b0d3e01f5f035fe438d15566b17341f9, type: 2}
@@ -4132,7 +4130,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Los Angeles
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b0d3e01f5f035fe438d15566b17341f9, type: 2}
   m_sharedMaterial: {fileID: -4988259015084475937, guid: b0d3e01f5f035fe438d15566b17341f9, type: 2}
@@ -4266,7 +4264,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Monte Carlo
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b0d3e01f5f035fe438d15566b17341f9, type: 2}
   m_sharedMaterial: {fileID: -4988259015084475937, guid: b0d3e01f5f035fe438d15566b17341f9, type: 2}
@@ -4910,7 +4908,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Venice
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b0d3e01f5f035fe438d15566b17341f9, type: 2}
   m_sharedMaterial: {fileID: -4988259015084475937, guid: b0d3e01f5f035fe438d15566b17341f9, type: 2}
@@ -5162,11 +5160,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 3392006312722554367}
-  - {fileID: 2656278526411839440}
   - {fileID: 452105869635874237}
-  - {fileID: 7253965453766437503}
   - {fileID: 2216379451432381864}
+  - {fileID: 3392006312722554367}
+  - {fileID: 7253965453766437503}
+  - {fileID: 2656278526411839440}
   m_Father: {fileID: 2341416344511403699}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -5239,7 +5237,7 @@ MonoBehaviour:
   panel: {fileID: 3531876242303792233}
   from: {x: 0, y: 100, z: 0}
   to: {x: 0, y: 0, z: 0}
-  time: 0.1
+  time: 0.2
   canvasGroup: {fileID: 8352150206356382924}
   scaleEffects:
   - {fileID: 7849262011059771920}
@@ -5268,6 +5266,7 @@ MonoBehaviour:
   - {fileID: 3078276238841494365}
   - {fileID: 1962403052128540078}
   - {fileID: 1886349008584345933}
+  - {fileID: 3361294197166331677}
   - {fileID: 7736985426325627969}
   timeScale: 0.15
 --- !u!1 &3698044238623971559
@@ -6012,7 +6011,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scaleMax: {x: 1.1, y: 1.1, z: 1.1}
   scaleMin: {x: 1, y: 1, z: 1}
-  duration: 0.4
+  duration: 0.7
   isAwake: 0
   scaleElement: {fileID: 434070692483253301}
 --- !u!1 &4476140515312861848
@@ -6830,7 +6829,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scaleMax: {x: 1.1, y: 1.1, z: 1.1}
   scaleMin: {x: 1, y: 1, z: 1}
-  duration: 0.4
+  duration: 0.7
   isAwake: 0
   scaleElement: {fileID: 6074992654517374511}
 --- !u!1 &4813410785890116687
@@ -7950,7 +7949,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scaleMax: {x: 1.1, y: 1.1, z: 1.1}
   scaleMin: {x: 1, y: 1, z: 1}
-  duration: 0.4
+  duration: 0.7
   isAwake: 0
   scaleElement: {fileID: 4528575895419938015}
 --- !u!1 &5382535412845049257
@@ -8093,7 +8092,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: London
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b0d3e01f5f035fe438d15566b17341f9, type: 2}
   m_sharedMaterial: {fileID: -4988259015084475937, guid: b0d3e01f5f035fe438d15566b17341f9, type: 2}
@@ -8413,7 +8412,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scaleMax: {x: 1.1, y: 1.1, z: 1.1}
   scaleMin: {x: 1, y: 1, z: 1}
-  duration: 0.4
+  duration: 0.7
   isAwake: 0
   scaleElement: {fileID: 9121808089523802284}
 --- !u!1 &5519795521873094240
@@ -8566,6 +8565,7 @@ MonoBehaviour:
   - {fileID: 4583903866749546222}
   - {fileID: 9026107261643229271}
   buttonClaim: {fileID: 5398583876735290662}
+  bonusTimer: {fileID: 7055818953948828565}
 --- !u!1 &5620957243661132933
 GameObject:
   m_ObjectHideFlags: 0
@@ -9237,6 +9237,7 @@ GameObject:
   - component: {fileID: 948387998749902589}
   - component: {fileID: 1204601182137728479}
   - component: {fileID: 5398583876735290662}
+  - component: {fileID: 3361294197166331677}
   m_Layer: 5
   m_Name: Claim_Button
   m_TagString: Untagged
@@ -9345,6 +9346,20 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &3361294197166331677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5922061326431614763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e81e16cc91490c34eba2b1fd07a8728b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duration: 0.1
+  scaleElement: {fileID: 7253965453766437503}
 --- !u!1 &5967396159447564814
 GameObject:
   m_ObjectHideFlags: 0
@@ -9697,7 +9712,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scaleMax: {x: 1.1, y: 1.1, z: 1.1}
   scaleMin: {x: 1, y: 1, z: 1}
-  duration: 0.4
+  duration: 0.7
   isAwake: 0
   scaleElement: {fileID: 4653780206117074430}
 --- !u!1 &6086270954460648078
@@ -10497,7 +10512,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scaleMax: {x: 1.1, y: 1.1, z: 1.1}
   scaleMin: {x: 1, y: 1, z: 1}
-  duration: 0.4
+  duration: 0.7
   isAwake: 0
   scaleElement: {fileID: 1827456058627118256}
 --- !u!1 &6575184313190153348
@@ -10591,7 +10606,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scaleMax: {x: 1.1, y: 1.1, z: 1.1}
   scaleMin: {x: 1, y: 1, z: 1}
-  duration: 0.4
+  duration: 0.7
   isAwake: 0
   scaleElement: {fileID: 8489476166885071929}
 --- !u!1 &6584065888292970597
@@ -10605,8 +10620,9 @@ GameObject:
   - component: {fileID: 2216379451432381864}
   - component: {fileID: 7137097084533436656}
   - component: {fileID: 869231102696630866}
+  - component: {fileID: 7055818953948828565}
   m_Layer: 5
-  m_Name: Text (TMP)
+  m_Name: Timer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10659,7 +10675,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 00:00:03
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b0d3e01f5f035fe438d15566b17341f9, type: 2}
   m_sharedMaterial: {fileID: -4988259015084475937, guid: b0d3e01f5f035fe438d15566b17341f9, type: 2}
@@ -10728,6 +10744,19 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!114 &7055818953948828565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6584065888292970597}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 415239c498ff28949bc76e6cd8295a45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  textTimer: {fileID: 869231102696630866}
 --- !u!1 &6589003280070663323
 GameObject:
   m_ObjectHideFlags: 0
@@ -12272,7 +12301,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scaleMax: {x: 1.1, y: 1.1, z: 1.1}
   scaleMin: {x: 1, y: 1, z: 1}
-  duration: 0.4
+  duration: 0.7
   isAwake: 0
   scaleElement: {fileID: 8864007848278852444}
 --- !u!1 &7950604394716834952
@@ -12340,7 +12369,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Bahamas
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: b0d3e01f5f035fe438d15566b17341f9, type: 2}
   m_sharedMaterial: {fileID: -4988259015084475937, guid: b0d3e01f5f035fe438d15566b17341f9, type: 2}
@@ -13285,7 +13314,7 @@ MonoBehaviour:
   panel: {fileID: 8803518209400458072}
   from: {x: 0, y: 100, z: 0}
   to: {x: 0, y: 0, z: 0}
-  time: 0.1
+  time: 0.2
   canvasGroup: {fileID: 6157814134108988683}
   textEffects:
   - {fileID: 8736528153839827353}

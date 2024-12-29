@@ -100,7 +100,6 @@ public class ChipView : View
         usingChips.Sort((a, b) => b.ChipData.Nominal.CompareTo(a.ChipData.Nominal));
 
         float num = number;
-        Debug.Log(num);
 
         while(num > 0)
         {
@@ -108,7 +107,7 @@ public class ChipView : View
 
             foreach (var prefab in usingChips)
             {
-                while (num >= prefab.ChipData.Nominal)
+                if(num >= prefab.ChipData.Nominal)
                 {
                     num -= prefab.ChipData.Nominal;
                     spawnedSomething = true;
@@ -120,6 +119,7 @@ public class ChipView : View
             if (!spawnedSomething)
             {
                 Debug.Log("Ostatok:" + num);
+                break;
             }
         }
     }

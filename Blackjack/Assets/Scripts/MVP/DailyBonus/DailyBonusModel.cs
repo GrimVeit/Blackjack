@@ -7,6 +7,8 @@ using UnityEngine;
 
 public class DailyBonusModel
 {
+    public event Action<int> OnActivateTimer;
+    public event Action OnDeactivateTimer;
     public event Action<string> OnCountdownTimer;
 
     public event Action OnActivatedClaimButton;
@@ -165,14 +167,16 @@ public class DailyBonusModel
 
     private IEnumerator CountdownActivateBonus_Coroutine()
     {
+        OnActivateTimer?.Invoke(currentDailyBonus.Day);
+
         TimeSpan timeRemaining = ostatokForGetBonusDateTime;
 
         while (true)
         {
-            timeRemaining -= TimeSpan.FromSeconds(1);
-
-            if (timeRemaining.TotalSeconds <= 0)
+            if (timeRemaining.TotalSeconds <= 1)
             {
+                OnDeactivateTimer?.Invoke();
+
                 OnCurrentClaimBonus?.Invoke(currentDailyBonus.Day);
                 OnActivatedClaimButton?.Invoke();
 
@@ -183,6 +187,8 @@ public class DailyBonusModel
 
             Debug.Log(string.Format("TIME FOR GET BONUS: " + "{0:D2}:{1:D2}:{2:D2}", timeRemaining.Hours, timeRemaining.Minutes, timeRemaining.Seconds));
             OnCountdownTimer?.Invoke(string.Format("{0:D2}:{1:D2}:{2:D2}", timeRemaining.Hours, timeRemaining.Minutes, timeRemaining.Seconds));
+
+            timeRemaining -= TimeSpan.FromSeconds(1);
 
             yield return new WaitForSeconds(1);
         }
@@ -196,9 +202,7 @@ public class DailyBonusModel
         Debug.Log(timeRemaining.Seconds);
         while (true)
         {
-            timeRemaining -= TimeSpan.FromSeconds(1);
-
-            if (timeRemaining.TotalSeconds <= 0)
+            if (timeRemaining.TotalSeconds <= 1)
             {
                 OnDeactivatedClaimButton?.Invoke();
                 RestartAll();
@@ -208,6 +212,8 @@ public class DailyBonusModel
 
             Debug.Log(string.Format("TIME FOR FALLEN BONUS: " + "{0:D2}:{1:D2}:{2:D2}", timeRemaining.Hours, timeRemaining.Minutes, timeRemaining.Seconds));
             OnCountdownTimer?.Invoke(string.Format("{0:D2}:{1:D2}:{2:D2}", timeRemaining.Hours, timeRemaining.Minutes, timeRemaining.Seconds));
+
+            timeRemaining -= TimeSpan.FromSeconds(1);
 
             yield return new WaitForSeconds(1);
         }

@@ -108,12 +108,15 @@ public class BetModel
 
         var bet = moneyProvider.GetMoney() - CurrentBet;
 
-        if(bet >= maxBet - CurrentBet)
+        Debug.Log("MAX BET");
+
+        if (bet >= maxBet - CurrentBet)
         {
             OnCountForMaxBet?.Invoke(maxBet - CurrentBet);
+            return;
         }
 
-        if(bet >= minBet && bet < maxBet)
+        if (bet >= minBet && bet < maxBet)
         {
             OnCountForMaxBet?.Invoke(bet);
         }

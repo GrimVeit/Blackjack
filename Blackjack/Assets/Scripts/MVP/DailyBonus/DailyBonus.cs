@@ -4,6 +4,7 @@ using UnityEngine.UI;
 public class DailyBonus : MonoBehaviour
 {
     public int Day => day;
+    public Transform TransformBonus => imageBonus.transform;
 
     [SerializeField] private int day;
     [SerializeField] private GameObject objectClaim;

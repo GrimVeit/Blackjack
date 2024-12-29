@@ -1,10 +1,13 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class BetFooterPanel : MovePanel
 {
     public event Action OnClickToPlayGame;
+
+    [SerializeField] private List<ScaleEffectCombination> combinations = new List<ScaleEffectCombination>();
 
     [SerializeField] private Button buttonStartPlayGame;
 
@@ -20,6 +23,20 @@ public class BetFooterPanel : MovePanel
         base.Dispose();
 
         buttonStartPlayGame.onClick.RemoveListener(HandleClickToPlayGameButton);
+    }
+
+    public override void ActivatePanel()
+    {
+        combinations.ForEach(data => data.ActivateEffect());
+
+        base.ActivatePanel();
+    }
+
+    public override void DeactivatePanel()
+    {
+        combinations.ForEach(data => data.DeactivateEffect());
+
+        base.DeactivatePanel();
     }
 
     #region Input

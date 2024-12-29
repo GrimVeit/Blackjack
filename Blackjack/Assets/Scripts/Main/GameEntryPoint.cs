@@ -62,7 +62,7 @@ public class GameEntryPoint
 
     private IEnumerator LoadAndStartGameScene()
     {
-        rootView.SetLoadScreen(0);
+        rootView.SetLoadScreen(1);
         yield return rootView.ShowLoadingScreen();
 
         yield return new WaitForSeconds(0.3f);

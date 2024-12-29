@@ -9,6 +9,8 @@ public class GameFooterPanel : MovePanel
     public event Action OnClickToAddCardButton;
     public event Action OnClickToDealerTurnButton;
 
+    [SerializeField] private List<ScaleEffectCombination> combinations = new List<ScaleEffectCombination>();
+
     [SerializeField] private Button buttonAddCard;
     [SerializeField] private Button buttonDealerTurn;
 
@@ -26,6 +28,20 @@ public class GameFooterPanel : MovePanel
 
         buttonAddCard.onClick.RemoveListener(HandleClickToAddCardButton);
         buttonDealerTurn.onClick.RemoveListener(HandleClickToDealerTurnButton);
+    }
+
+    public override void ActivatePanel()
+    {
+        combinations.ForEach(data => data.ActivateEffect());
+
+        base.ActivatePanel();
+    }
+
+    public override void DeactivatePanel()
+    {
+        combinations.ForEach(data => data.DeactivateEffect());
+
+        base.DeactivatePanel();
     }
 
     #region Input

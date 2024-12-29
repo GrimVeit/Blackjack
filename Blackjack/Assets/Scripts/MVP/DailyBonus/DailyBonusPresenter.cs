@@ -39,6 +39,10 @@ public class DailyBonusPresenter
         model.OnNotClaimBonus += view.CloseClaim;
         model.OnActivatedClaimButton += view.ActivateClaimButton;
         model.OnDeactivatedClaimButton += view.DeactivateClaimButton;
+
+        model.OnActivateTimer += view.ActivateTimer;
+        model.OnDeactivateTimer += view.DeactivateTimer;
+        model.OnCountdownTimer += view.SetTime;
     }
 
     private void DeactivateEvents()
@@ -50,5 +54,9 @@ public class DailyBonusPresenter
         model.OnNotClaimBonus -= view.CloseClaim;
         model.OnActivatedClaimButton -= view.ActivateClaimButton;
         model.OnDeactivatedClaimButton -= view.DeactivateClaimButton;
+
+        model.OnActivateTimer -= view.ActivateTimer;
+        model.OnDeactivateTimer -= view.DeactivateTimer;
+        model.OnCountdownTimer -= view.SetTime;
     }
 }
