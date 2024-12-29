@@ -32,7 +32,7 @@ public class BankPresenter : IMoneyProvider
         bankModel.Destroy();
     }
 
-    public void SendMoney(int money)
+    public void SendMoney(float money)
     {
         bankModel.SendMoney(money);
     }
@@ -56,7 +56,7 @@ public interface IMoneyProvider
     float GetMoney();
 
     event Action<float> OnChangeMoney;
-    void SendMoney(int money);
+    void SendMoney(float money);
     bool CanAfford(float money);
 }
 

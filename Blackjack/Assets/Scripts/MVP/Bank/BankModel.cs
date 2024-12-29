@@ -12,7 +12,7 @@ public class BankModel
 
     public void Initialize()
     {
-        Money = PlayerPrefs.GetInt(BANK_MONEY, 1000);
+        Money = PlayerPrefs.GetFloat(BANK_MONEY, 1000);
     }
 
     public void Destroy()
@@ -30,6 +30,7 @@ public class BankModel
         {
             OnRemoveMoney?.Invoke();
         }
+
         Money += money;
         OnChangeMoney?.Invoke(Money);
     }

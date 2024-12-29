@@ -45,7 +45,7 @@ public class MainMenuEntryPoint : MonoBehaviour
 
         gameProgressPresenter = new GameProgressPresenter(new GameProgressModel(levels));
 
-        dailyBonusPresenter = new DailyBonusPresenter(new DailyBonusModel(), viewContainer.GetView<DailyBonusView>());
+        dailyBonusPresenter = new DailyBonusPresenter(new DailyBonusModel(bankPresenter), viewContainer.GetView<DailyBonusView>());
 
         levelPresenter = new LevelPresenter(new LevelModel(), viewContainer.GetView<LevelView>());
 
@@ -72,7 +72,6 @@ public class MainMenuEntryPoint : MonoBehaviour
 
     private void ActivateEvents()
     {
-
         levelPresenter.OnChooseLevel += gameProgressPresenter.ChooseLevel;
         gameProgressPresenter.OnSelectLevel += levelPresenter.SelectLevel;
         gameProgressPresenter.OnSelectLevel += levelVisualizePresenter.SetLevel;
@@ -128,9 +127,13 @@ public class MainMenuEntryPoint : MonoBehaviour
         DeactivateEvents();
 
         sceneRoot?.Dispose();
+        soundPresenter?.Dispose();
+        bankPresenter?.Dispose();
         particleEffectPresenter?.Dispose();
-        gameProgressPresenter?.Dispose();
+        levelVisualizePresenter?.Dispose();
         dailyBonusPresenter?.Dispose();
+        levelPresenter?.Dispose();
+        gameProgressPresenter?.Dispose();
         scaleEffectPresenter?.Dispose();
         typeTextEffectPresenter?.Dispose();
     }

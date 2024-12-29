@@ -30,4 +30,11 @@ public class ScaleEffect_Yoyo : ScaleEffect
 
         tweenYoyo = scaleElement.DOScale(scaleMax, duration).SetLoops(-1, LoopType.Yoyo);
     }
+
+    public override void DeactivateEffect()
+    {
+        tweenYoyo?.Kill();
+
+        tweenYoyo = scaleElement.DOScale(scaleMin, duration);
+    }
 }
