@@ -145,8 +145,8 @@ public class DailyBonusModel
         else
         {
             currentDailyBonus = bonusesDatas[currentDailyBonus.Day + 1];
-            currentDailyBonus.NextClaimStart = (currentDateTime + TimeSpan.FromSeconds(5)).ToString();
-            currentDailyBonus.NextClaimEnd = (currentDateTime + TimeSpan.FromSeconds(15)).ToString();
+            currentDailyBonus.NextClaimStart = (currentDateTime + TimeSpan.FromDays(1)).ToString();
+            currentDailyBonus.NextClaimEnd = (currentDateTime + TimeSpan.FromDays(2)).ToString();
         }
 
         CheckGetBonus();
@@ -161,8 +161,8 @@ public class DailyBonusModel
         }
 
         currentDailyBonus = GetFirstNotClaimedBonus();
-        currentDailyBonus.NextClaimStart = (currentDateTime + TimeSpan.FromSeconds(5)).ToString();
-        currentDailyBonus.NextClaimEnd = (currentDateTime + TimeSpan.FromSeconds(15)).ToString();
+        currentDailyBonus.NextClaimStart = (currentDateTime + TimeSpan.FromDays(1)).ToString();
+        currentDailyBonus.NextClaimEnd = (currentDateTime + TimeSpan.FromDays(2)).ToString();
     }
 
     private IEnumerator CountdownActivateBonus_Coroutine()
