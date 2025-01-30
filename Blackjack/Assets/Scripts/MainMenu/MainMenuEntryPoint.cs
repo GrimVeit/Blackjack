@@ -22,6 +22,9 @@ public class MainMenuEntryPoint : MonoBehaviour
     private ScaleEffectPresenter scaleEffectPresenter;
     private TypeTextEffectPresenter typeTextEffectPresenter;
 
+    private RoulettePresenter roulettePresenter;
+    private MidnightTimerPresenter midnightTimerPresenter;
+
     public void Run(UIRootView uIRootView)
     {
         sceneRoot = Instantiate(menuRootPrefab);
@@ -53,6 +56,10 @@ public class MainMenuEntryPoint : MonoBehaviour
 
         typeTextEffectPresenter = new TypeTextEffectPresenter(new TypeTextEffectModel(), viewContainer.GetView<TypeTextEffectView>());
 
+        roulettePresenter = new RoulettePresenter(new RouletteModel(soundPresenter), viewContainer.GetView<RouletteView>());
+
+        midnightTimerPresenter = new MidnightTimerPresenter(new MidnightTimerModel(), viewContainer.GetView<MidnightTimerView>());
+
         sceneRoot.SetSoundProvider(soundPresenter);
         sceneRoot.Initialize();
         sceneRoot.Activate();
@@ -68,6 +75,9 @@ public class MainMenuEntryPoint : MonoBehaviour
         gameProgressPresenter.Initialize();
         scaleEffectPresenter.Initialize();
         typeTextEffectPresenter.Initialize();
+
+        roulettePresenter.Initialize();
+        midnightTimerPresenter.Initialize();
     }
 
     private void ActivateEvents()
@@ -136,6 +146,9 @@ public class MainMenuEntryPoint : MonoBehaviour
         gameProgressPresenter?.Dispose();
         scaleEffectPresenter?.Dispose();
         typeTextEffectPresenter?.Dispose();
+
+        roulettePresenter?.Dispose();
+        midnightTimerPresenter?.Dispose();
     }
 
     private void OnDestroy()

@@ -185,7 +185,7 @@ public class DailyBonusModel
                 break;
             }
 
-            Debug.Log(string.Format("TIME FOR GET BONUS: " + "{0:D2}:{1:D2}:{2:D2}", timeRemaining.Hours, timeRemaining.Minutes, timeRemaining.Seconds));
+            //Debug.Log(string.Format("TIME FOR GET BONUS: " + "{0:D2}:{1:D2}:{2:D2}", timeRemaining.Hours, timeRemaining.Minutes, timeRemaining.Seconds));
             OnCountdownTimer?.Invoke(string.Format("{0:D2}:{1:D2}:{2:D2}", timeRemaining.Hours, timeRemaining.Minutes, timeRemaining.Seconds));
 
             timeRemaining -= TimeSpan.FromSeconds(1);
@@ -210,7 +210,7 @@ public class DailyBonusModel
                 break;
             }
 
-            Debug.Log(string.Format("TIME FOR FALLEN BONUS: " + "{0:D2}:{1:D2}:{2:D2}", timeRemaining.Hours, timeRemaining.Minutes, timeRemaining.Seconds));
+            //Debug.Log(string.Format("TIME FOR FALLEN BONUS: " + "{0:D2}:{1:D2}:{2:D2}", timeRemaining.Hours, timeRemaining.Minutes, timeRemaining.Seconds));
             OnCountdownTimer?.Invoke(string.Format("{0:D2}:{1:D2}:{2:D2}", timeRemaining.Hours, timeRemaining.Minutes, timeRemaining.Seconds));
 
             timeRemaining -= TimeSpan.FromSeconds(1);

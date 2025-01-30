@@ -15,7 +15,7 @@ public class DailyBonus : MonoBehaviour
 
     public void AlreadyClaim()
     {
-        Debug.Log($"DAY {day}: ALREADY");
+        //Debug.Log($"DAY {day}: ALREADY");
 
         scaleEffect.DeactivateEffect();
         objectClaim.SetActive(true);
@@ -24,7 +24,7 @@ public class DailyBonus : MonoBehaviour
 
     public void CurrentClaim()
     {
-        Debug.Log($"DAY {day}: CURRENT");
+        //Debug.Log($"DAY {day}: CURRENT");
 
         scaleEffect.ActivateEffect();
         objectClaim.SetActive(false);
@@ -33,7 +33,7 @@ public class DailyBonus : MonoBehaviour
 
     public void CloseClaim()
     {
-        Debug.Log($"DAY {day}: CLOSE");
+        //Debug.Log($"DAY {day}: CLOSE");
 
         scaleEffect.DeactivateEffect();
         objectClaim.SetActive(false);

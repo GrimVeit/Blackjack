@@ -17,4 +17,6 @@ public static class PlayerPrefsKeys
     public const string IMAGE_INDEX = "IMAGE_INDEX";
 
     public const string LEVEL = "LEVEL";
+
+    public const string NEXT_MIDNIGHT_DATETIME = "NEXT_MIDNIGHT_DATETIME";
 }
