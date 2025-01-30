@@ -16,6 +16,8 @@ public class MidnightTimerModel
 
     public void Initialize()
     {
+        Debug.Log(DateTime.UtcNow);
+
         LoadNextMidnightTimer();
 
         if (DateTime.UtcNow >= nextMidnightUtc)
@@ -44,6 +46,8 @@ public class MidnightTimerModel
         while (true)
         {
             timeRemaining = nextMidnightUtc - DateTime.UtcNow;
+
+            //Debug.Log(nextMidnightUtc);
 
             OnItterationCountdown?.Invoke(string.Format(
                 "{0:D2}:{1:D2}:{2:D2}", 
@@ -79,12 +83,12 @@ public class MidnightTimerModel
         }
         else
         {
-            nextMidnightUtc = GetNextMidnightDatetime();
+            nextMidnightUtc = DateTime.MinValue;
         }
     }
 
     private void SaveNextMidnightTimer()
     {
-        PlayerPrefs.SetString(PlayerPrefsKeys.NEXT_MIDNIGHT_DATETIME, nextMidnightUtc.ToString("o"));
+        PlayerPrefs.SetString(PlayerPrefsKeys.NEXT_MIDNIGHT_DATETIME, nextMidnightUtc.ToString());
     }
 }

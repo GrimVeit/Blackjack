@@ -60,7 +60,7 @@ public class MainMenuEntryPoint : MonoBehaviour
 
         roulettePresenter = new RoulettePresenter(new RouletteModel(soundPresenter), viewContainer.GetView<RouletteView>());
 
-        rouletteBetPresenter = new RouletteBetPresenter(new RouletteBetModel(), viewContainer.GetView<RouletteBetView>());
+        rouletteBetPresenter = new RouletteBetPresenter(new RouletteBetModel(bankPresenter), viewContainer.GetView<RouletteBetView>());
 
         rouletteBallPresenter = new RouletteBallPresenter(new RouletteBallModel(soundPresenter), viewContainer.GetView<RouletteBallView>());
 
@@ -95,6 +95,7 @@ public class MainMenuEntryPoint : MonoBehaviour
         gameProgressPresenter.OnSelectLevel += levelVisualizePresenter.SetLevel;
         gameProgressPresenter.OnUnselectLevel += levelPresenter.UnselectLevel;
 
+        midnightTimerPresenter.OnResetCountdown += rouletteBetPresenter.ActivateBet;
         rouletteBetPresenter.OnChooseBet += roulettePresenter.StartSpin;
         rouletteBetPresenter.OnChooseBet += rouletteBallPresenter.StartSpin;
         rouletteBallPresenter.OnBallStopped += roulettePresenter.RollBallToSlot;
@@ -110,6 +111,7 @@ public class MainMenuEntryPoint : MonoBehaviour
         gameProgressPresenter.OnSelectLevel -= levelVisualizePresenter.SetLevel;
         gameProgressPresenter.OnUnselectLevel -= levelPresenter.UnselectLevel;
 
+        midnightTimerPresenter.OnResetCountdown -= rouletteBetPresenter.ActivateBet;
         rouletteBetPresenter.OnChooseBet -= roulettePresenter.StartSpin;
         rouletteBetPresenter.OnChooseBet -= rouletteBallPresenter.StartSpin;
         rouletteBallPresenter.OnBallStopped -= roulettePresenter.RollBallToSlot;
@@ -124,6 +126,7 @@ public class MainMenuEntryPoint : MonoBehaviour
 
         sceneRoot.OnClickToDailyReward_MainPanel += sceneRoot.OpenDailyRewardPanel;
         sceneRoot.OnClickToPlayGame_MainPanel += sceneRoot.OpenChooseGamePanel;
+        sceneRoot.OnClickToRoulette_MainPanel += sceneRoot.OpenRoulettePanel;
 
         sceneRoot.OnClickToHome_DailyRewardPanel += sceneRoot.OpenMainPanel;
 
@@ -131,7 +134,14 @@ public class MainMenuEntryPoint : MonoBehaviour
         sceneRoot.OnClickToPlay_ChooseGamePanel += sceneRoot.OpenGameDescriptionPanel;
 
         sceneRoot.OnClickToCancel_GameDescriptionPanel += sceneRoot.OpenChooseGamePanel;
+        sceneRoot.OnClickToHome_RoulettePanel += sceneRoot.OpenMainPanel;
         sceneRoot.OnClickToHome_GameDescriptionPanel += sceneRoot.OpenMainPanel;
+
+        rouletteBetPresenter.OnSuccess += sceneRoot.OpenWinPanel;
+        rouletteBetPresenter.OnFailure += sceneRoot.OpenLosePanel;
+
+        sceneRoot.OnClickToExit_WinPanel += sceneRoot.CloseWinPanel;
+        sceneRoot.OnClickToExit_LosePanel += sceneRoot.CloseLosePanel;
     }
 
     private void DeactivateTransitionEvents()
@@ -140,6 +150,7 @@ public class MainMenuEntryPoint : MonoBehaviour
 
         sceneRoot.OnClickToDailyReward_MainPanel -= sceneRoot.OpenDailyRewardPanel;
         sceneRoot.OnClickToPlayGame_MainPanel -= sceneRoot.OpenChooseGamePanel;
+        sceneRoot.OnClickToRoulette_MainPanel -= sceneRoot.OpenRoulettePanel;
 
         sceneRoot.OnClickToHome_DailyRewardPanel -= sceneRoot.OpenMainPanel;
 
@@ -147,7 +158,14 @@ public class MainMenuEntryPoint : MonoBehaviour
         sceneRoot.OnClickToPlay_ChooseGamePanel -= sceneRoot.OpenGameDescriptionPanel;
 
         sceneRoot.OnClickToCancel_GameDescriptionPanel -= sceneRoot.OpenChooseGamePanel;
+        sceneRoot.OnClickToHome_RoulettePanel -= sceneRoot.OpenMainPanel;
         sceneRoot.OnClickToHome_GameDescriptionPanel -= sceneRoot.OpenMainPanel;
+
+        rouletteBetPresenter.OnSuccess -= sceneRoot.OpenWinPanel;
+        rouletteBetPresenter.OnFailure -= sceneRoot.OpenLosePanel;
+
+        sceneRoot.OnClickToExit_WinPanel -= sceneRoot.CloseWinPanel;
+        sceneRoot.OnClickToExit_LosePanel -= sceneRoot.CloseLosePanel;
     }
 
     private void Dispose()

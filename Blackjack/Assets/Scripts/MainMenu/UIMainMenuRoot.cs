@@ -7,6 +7,10 @@ public class UIMainMenuRoot : MonoBehaviour
     [SerializeField] private DailyRewardPanel_MainMenuScene dailyRewardPanel;
     [SerializeField] private ChooseGamePanel_MainMenuScene chooseGamePanel;
     [SerializeField] private GameDescriptionPanel descriptionPanel;
+    [SerializeField] private RoulettePanel roulettePanel;
+
+    [SerializeField] private WinPanel winPanel;
+    [SerializeField] private LosePanel losePanel;
 
     private ISoundProvider soundProvider;
 
@@ -23,6 +27,10 @@ public class UIMainMenuRoot : MonoBehaviour
         dailyRewardPanel.Initialize();
         chooseGamePanel.Initialize();
         descriptionPanel.Initialize();
+
+        roulettePanel.Initialize();
+        winPanel.Initialize();
+        losePanel.Initialize();
     }
 
     public void Dispose()
@@ -31,6 +39,10 @@ public class UIMainMenuRoot : MonoBehaviour
         dailyRewardPanel.Dispose();
         chooseGamePanel.Dispose();
         descriptionPanel.Dispose();
+
+        roulettePanel.Dispose();
+        winPanel.Dispose();
+        losePanel.Dispose();
     }
 
     public void Activate()
@@ -63,6 +75,34 @@ public class UIMainMenuRoot : MonoBehaviour
     public void OpenGameDescriptionPanel()
     {
         OpenPanel(descriptionPanel);
+    }
+
+    public void OpenRoulettePanel()
+    {
+        OpenPanel(roulettePanel);
+    }
+
+
+
+
+    public void OpenWinPanel()
+    {
+        OpenOtherPanel(winPanel);
+    }
+
+    public void CloseWinPanel()
+    {
+        CloseOtherPanel(winPanel);
+    }
+
+    public void OpenLosePanel()
+    {
+        OpenOtherPanel(losePanel);
+    }
+
+    public void CloseLosePanel()
+    {
+        CloseOtherPanel(losePanel);
     }
 
 
@@ -100,6 +140,12 @@ public class UIMainMenuRoot : MonoBehaviour
     {
         add { mainPanel.OnClickToDailyReward += value; }
         remove { mainPanel.OnClickToDailyReward -= value; }
+    }
+
+    public event Action OnClickToRoulette_MainPanel
+    {
+        add { mainPanel.OnClickToRoulette += value; }
+        remove { mainPanel.OnClickToRoulette -= value; }
     }
 
 
@@ -140,10 +186,29 @@ public class UIMainMenuRoot : MonoBehaviour
         remove { descriptionPanel.OnClickToHome -= value; }
     }
 
+    public event Action OnClickToHome_RoulettePanel
+    {
+        add { roulettePanel.OnClickExit += value; }
+        remove { roulettePanel.OnClickExit -= value; }
+    }
+
     public event Action OnClickToStartPlayGame
     {
         add { descriptionPanel.OnClickToStartPlayGame += value; }
         remove { descriptionPanel.OnClickToStartPlayGame -= value; }
+    }
+
+
+    public event Action OnClickToExit_WinPanel
+    {
+        add { winPanel.OnClickExitWin += value; }
+        remove { winPanel.OnClickExitWin -= value; }
+    }
+
+    public event Action OnClickToExit_LosePanel
+    {
+        add { losePanel.OnClickExitLose += value; }
+        remove { losePanel.OnClickExitLose -= value; }
     }
 
     #endregion

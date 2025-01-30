@@ -8,17 +8,20 @@ public class RouletteBetView : View
 {
     [SerializeField] private Button buttonRed;
     [SerializeField] private Button buttonBlack;
+    [SerializeField] private Button buttonGetBonus;
 
     public void Initialize()
     {
         buttonRed.onClick.AddListener(()=> OnChooseRed?.Invoke());
         buttonBlack.onClick.AddListener(()=> OnChooseBlack?.Invoke());
+        buttonGetBonus.onClick.AddListener(()=> OnGetBonus?.Invoke());
     }
 
     public void Dispose()
     {
         buttonRed.onClick.RemoveListener(() => OnChooseRed?.Invoke());
         buttonBlack.onClick.RemoveListener(() => OnChooseBlack?.Invoke());
+        buttonGetBonus.onClick.RemoveListener(() => OnGetBonus?.Invoke());
     }
 
     public void Activate()
@@ -37,6 +40,7 @@ public class RouletteBetView : View
 
     public event Action OnChooseRed;
     public event Action OnChooseBlack;
+    public event Action OnGetBonus;
 
     #endregion
 }

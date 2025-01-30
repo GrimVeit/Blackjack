@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -36,4 +37,14 @@ public class MidnightTimerPresenter
     {
         model.OnItterationCountdown -= view.SetTimer;
     }
+
+    #region Input
+
+    public event Action OnResetCountdown
+    {
+        add { model.OnResetCountdown += value; }
+        remove { model.OnResetCountdown -= value; }
+    }
+
+    #endregion
 }

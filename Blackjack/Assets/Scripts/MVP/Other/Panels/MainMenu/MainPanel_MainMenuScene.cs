@@ -9,6 +9,7 @@ public class MainPanel_MainMenuScene : MovePanel
 
     [SerializeField] private Button buttonPlayGame;
     [SerializeField] private Button buttonDailyReward;
+    [SerializeField] private Button buttonRoulette;
 
     public override void Initialize()
     {
@@ -16,6 +17,7 @@ public class MainPanel_MainMenuScene : MovePanel
 
         buttonPlayGame.onClick.AddListener(HandleClickToPlayGame);
         buttonDailyReward.onClick.AddListener(HandleClickToDailyReward);
+        buttonRoulette.onClick.AddListener(HandleClickToRoulette);
     }
 
     public override void Dispose()
@@ -24,6 +26,7 @@ public class MainPanel_MainMenuScene : MovePanel
 
         buttonPlayGame.onClick.RemoveListener(HandleClickToPlayGame);
         buttonPlayGame.onClick.RemoveListener(HandleClickToDailyReward);
+        buttonRoulette.onClick.RemoveListener(HandleClickToRoulette);
     }
 
     public override void ActivatePanel()
@@ -44,6 +47,7 @@ public class MainPanel_MainMenuScene : MovePanel
 
     public event Action OnClickToPlayGame;
     public event Action OnClickToDailyReward;
+    public event Action OnClickToRoulette;
 
     private void HandleClickToPlayGame()
     {
@@ -53,6 +57,11 @@ public class MainPanel_MainMenuScene : MovePanel
     private void HandleClickToDailyReward()
     {
         OnClickToDailyReward?.Invoke();
+    }
+
+    private void HandleClickToRoulette()
+    {
+        OnClickToRoulette?.Invoke();
     }
 
     #endregion

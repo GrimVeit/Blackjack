@@ -13,11 +13,18 @@ public class RouletteBetModel
 
     private ColorNumber colorBet;
 
-    private bool isActivate;
+    private bool isActivate = true;
+
+    private IMoneyProvider moneyProvider;
+
+    public RouletteBetModel(IMoneyProvider moneyProvider)
+    {
+        this.moneyProvider = moneyProvider;
+    }
 
     public void Initialize()
     {
-        isActivate = PlayerPrefs.GetInt(PlayerPrefsKeys.IS_ACTIVE_ROULETTE) == 1 ? true : false;
+        isActivate = PlayerPrefs.GetInt(PlayerPrefsKeys.IS_ACTIVE_ROULETTE, 1) == 1;
 
         if (isActivate)
         {
@@ -37,7 +44,7 @@ public class RouletteBetModel
     public void SetBetBlack()
     {
         colorBet = ColorNumber.Black;
-
+        isActivate = false;
         OnChooseBet?.Invoke();
         OnDeactivate?.Invoke();
     }
@@ -45,7 +52,7 @@ public class RouletteBetModel
     public void SetBetRed()
     {
         colorBet = ColorNumber.Red;
-
+        isActivate = false;
         OnChooseBet?.Invoke();
         OnDeactivate?.Invoke();
     }
@@ -54,6 +61,7 @@ public class RouletteBetModel
     {
         if(colorBet == color)
         {
+            moneyProvider.SendMoney(1000);
             OnSuccess?.Invoke();
         }
         else
@@ -64,6 +72,7 @@ public class RouletteBetModel
 
     public void ActivateBet()
     {
+        isActivate = true;
         OnActivate?.Invoke();
     }
 }
