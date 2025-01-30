@@ -9,6 +9,12 @@ EditorBuildSettings:
     path: Assets/Scenes/BootScene.unity
     guid: dc83cd17a90757f42a13c70255400d00
   - enabled: 1
+    path: Assets/Scenes/CountryCheckerScene.unity
+    guid: 2c8cabb3cf56e564892bbfbf4f9df8ae
+  - enabled: 1
+    path: Assets/Scenes/OtherScene.unity
+    guid: 58bf98b2d2b10be42838d64d8d398dac
+  - enabled: 1
     path: Assets/Scenes/MenuScene.unity
     guid: c058da9cb0f9d5d40bf579251f71191f
   - enabled: 1
