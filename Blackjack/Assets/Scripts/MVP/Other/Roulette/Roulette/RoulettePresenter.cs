@@ -28,7 +28,6 @@ public class RoulettePresenter
 
     private void ActivateEvents()
     {
-        rouletteView.OnStartSpin += rouletteModel.StartSpin;
         rouletteView.OnGetRouletteNumber += rouletteModel.GetRouletteNumber;
 
         rouletteModel.OnStartSpin += rouletteView.StartSpin;
@@ -37,7 +36,6 @@ public class RoulettePresenter
 
     private void DeactivateEvents()
     {
-        rouletteView.OnStartSpin -= rouletteModel.StartSpin;
         rouletteView.OnGetRouletteNumber -= rouletteModel.GetRouletteNumber;
 
         rouletteModel.OnStartSpin -= rouletteView.StartSpin;
@@ -45,6 +43,11 @@ public class RoulettePresenter
     }
 
     #region Input
+
+    public void StartSpin()
+    {
+        rouletteModel.StartSpin();
+    }
 
     public void RollBallToSlot(Vector3 vector)
     {

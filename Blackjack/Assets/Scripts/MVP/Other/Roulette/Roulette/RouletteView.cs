@@ -9,7 +9,6 @@ using UnityEngine.UI;
 
 public class RouletteView : View
 {
-    [SerializeField] private List<Button> spinButtons = new List<Button>();
     [SerializeField] private Vector3 spinVector;
     [SerializeField] private Transform spinTransform;
     [SerializeField] private Transform centerPoint;
@@ -25,12 +24,12 @@ public class RouletteView : View
 
     public void Initialize()
     {
-        spinButtons.ForEach(button => button.onClick.AddListener(HandlerClickToSpinButton));
+
     }
 
     public void Dispose()
     {
-        spinButtons.ForEach(button => button.onClick.RemoveListener(HandlerClickToSpinButton));
+
     }
 
     public void RollBallToSlot(Vector3 vector)
@@ -84,12 +83,6 @@ public class RouletteView : View
     #region Input
 
     public event Action<RouletteSlotValue> OnGetRouletteNumber;
-    public event Action OnStartSpin;
-
-    private void HandlerClickToSpinButton()
-    {
-        OnStartSpin?.Invoke();
-    }
 
     #endregion
 }

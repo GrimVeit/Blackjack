@@ -5,131 +5,77 @@ using UnityEngine;
 
 public class RouletteBetPresenter
 {
-    private RouletteBetModel rouletteBetModel;
-    private RouletteBetView rouletteBetView;
+    private RouletteBetModel model;
+    private RouletteBetView view;
 
     public RouletteBetPresenter(RouletteBetModel rouletteBetModel, RouletteBetView rouletteBetView)
     {
-        this.rouletteBetModel = rouletteBetModel;
-        this.rouletteBetView = rouletteBetView;
+        this.model = rouletteBetModel;
+        this.view = rouletteBetView;
     }
 
     public void Initialize()
     {
         ActivateEvents();
 
-        rouletteBetView.Initialize();
+        model.Initialize();
+        view.Initialize();
     }
 
     public void Dispose()
     {
         DeactivateEvents();
 
-        rouletteBetView.Dispose();
+        model.Dispose();
+        view.Dispose();
     }
 
     private void ActivateEvents()
     {
-        rouletteBetView.OnChooseCell_Action += rouletteBetModel.ChooseCell;
-        rouletteBetView.OnResetCell_Action += rouletteBetModel.ResetCell;
+        view.OnChooseBlack += model.SetBetBlack;
+        view.OnChooseRed += model.SetBetRed;
 
-        rouletteBetView.OnStartShowResult += rouletteBetModel.StartShowResult;
-        rouletteBetView.OnFinishShowResult += rouletteBetModel.FinishShowResult;
-        rouletteBetView.OnStartHideResult += rouletteBetModel.StartHideResult;
-        rouletteBetView.OnFinishHideResult += rouletteBetModel.FinishHideResult;
-
-        rouletteBetModel.OnChangeBet += rouletteBetView.BetDisplay;
-        rouletteBetModel.OnChangeBetCount += rouletteBetView.BetCountDisplay;
-        rouletteBetModel.OnChangeWin += rouletteBetView.WinDisplay;
-        rouletteBetModel.OnChangeProfit += rouletteBetView.ProfitDisplay;
-
-        rouletteBetModel.OnShowResult += rouletteBetView.ShowResult;
-        rouletteBetModel.OnHideResult += rouletteBetView.HideResult;
+        model.OnActivate += view.Activate;
+        model.OnDeactivate += view.Deactivate;
     }
 
     private void DeactivateEvents()
     {
-        rouletteBetView.OnChooseCell_Action -= rouletteBetModel.ChooseCell;
-        rouletteBetView.OnResetCell_Action -= rouletteBetModel.ResetCell;
+        view.OnChooseBlack -= model.SetBetBlack;
+        view.OnChooseRed -= model.SetBetRed;
 
-        rouletteBetView.OnStartShowResult -= rouletteBetModel.StartShowResult;
-        rouletteBetView.OnFinishShowResult -= rouletteBetModel.FinishShowResult;
-        rouletteBetView.OnStartHideResult -= rouletteBetModel.StartHideResult;
-        rouletteBetView.OnFinishHideResult -= rouletteBetModel.FinishHideResult;
-
-        rouletteBetModel.OnChangeBet -= rouletteBetView.BetDisplay;
-        rouletteBetModel.OnChangeBetCount -= rouletteBetView.BetCountDisplay;
-        rouletteBetModel.OnChangeWin -= rouletteBetView.WinDisplay;
-        rouletteBetModel.OnChangeProfit -= rouletteBetView.ProfitDisplay;
-
-        rouletteBetModel.OnShowResult -= rouletteBetView.ShowResult;
-        rouletteBetModel.OnHideResult -= rouletteBetView.HideResult;
+        model.OnActivate -= view.Activate;
+        model.OnDeactivate -= view.Deactivate;
     }
 
     #region Input
 
-    public void ReturnChips()
+    public event Action OnChooseBet
     {
-        rouletteBetModel.ReturnChips();
+        add { model.OnChooseBet += value; }
+        remove { model.OnChooseBet -= value; }
     }
 
-    public void ShowResult()
+    public event Action OnSuccess
     {
-        rouletteBetModel.ShowResult();
+        add { model.OnSuccess += value; }
+        remove { model.OnSuccess -= value; }
     }
 
-    public void HideResult()
+    public event Action OnFailure
     {
-        rouletteBetModel.HideResult();
+        add { model.OnFailure += value; }
+        remove { model.OnFailure -= value; }
     }
 
-    public void GetRouletteSlotValue(RouletteSlotValue rouletteSlotValue)
+    public void SetResult(RouletteSlotValue rouletteSlotValue)
     {
-        rouletteBetModel.GetRouletteSlotValue(rouletteSlotValue);
+        model.SetResult(rouletteSlotValue.RouletteNumber.Color);
     }
 
-    public void SearchWin()
+    public void ActivateBet()
     {
-        rouletteBetModel.SearchWin();
-    }
-
-
-    public event Action OnStartShowResult
-    {
-        add { rouletteBetModel.OnStartShowResult += value; }
-        remove { rouletteBetModel.OnStartShowResult -= value; }
-    }
-
-    public event Action OnFinishShowResult
-    {
-        add { rouletteBetModel.OnFinishShowResult += value; }
-        remove { rouletteBetModel.OnFinishShowResult -= value; }
-    }
-
-    public event Action OnStartHideResult
-    {
-        add { rouletteBetModel.OnStartHideResult += value; }
-        remove { rouletteBetModel.OnStartHideResult -= value; }
-    }
-
-    public event Action OnFinishHideResult
-    {
-        add { rouletteBetModel.OnFinishHideResult += value; }
-        remove { rouletteBetModel.OnFinishHideResult -= value; }
-    }
-
-
-
-    public event Action<Chip> OnNoneRetractedChip
-    {
-        add { rouletteBetModel.OnNoneRetractedChip += value; }
-        remove { rouletteBetModel.OnNoneRetractedChip -= value; }
-    }
-
-    public event Action<Chip> OnDestroyedChip
-    {
-        add { rouletteBetModel.OnDestroyedChip += value; }
-        remove { rouletteBetModel.OnDestroyedChip -= value; }
+        model.ActivateBet();
     }
 
     #endregion

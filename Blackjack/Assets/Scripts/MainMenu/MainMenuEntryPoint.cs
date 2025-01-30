@@ -23,6 +23,8 @@ public class MainMenuEntryPoint : MonoBehaviour
     private TypeTextEffectPresenter typeTextEffectPresenter;
 
     private RoulettePresenter roulettePresenter;
+    private RouletteBallPresenter rouletteBallPresenter;
+    private RouletteBetPresenter rouletteBetPresenter;
     private MidnightTimerPresenter midnightTimerPresenter;
 
     public void Run(UIRootView uIRootView)
@@ -58,6 +60,10 @@ public class MainMenuEntryPoint : MonoBehaviour
 
         roulettePresenter = new RoulettePresenter(new RouletteModel(soundPresenter), viewContainer.GetView<RouletteView>());
 
+        rouletteBetPresenter = new RouletteBetPresenter(new RouletteBetModel(), viewContainer.GetView<RouletteBetView>());
+
+        rouletteBallPresenter = new RouletteBallPresenter(new RouletteBallModel(soundPresenter), viewContainer.GetView<RouletteBallView>());
+
         midnightTimerPresenter = new MidnightTimerPresenter(new MidnightTimerModel(), viewContainer.GetView<MidnightTimerView>());
 
         sceneRoot.SetSoundProvider(soundPresenter);
@@ -77,6 +83,8 @@ public class MainMenuEntryPoint : MonoBehaviour
         typeTextEffectPresenter.Initialize();
 
         roulettePresenter.Initialize();
+        rouletteBetPresenter.Initialize();
+        rouletteBallPresenter.Initialize();
         midnightTimerPresenter.Initialize();
     }
 
@@ -87,6 +95,11 @@ public class MainMenuEntryPoint : MonoBehaviour
         gameProgressPresenter.OnSelectLevel += levelVisualizePresenter.SetLevel;
         gameProgressPresenter.OnUnselectLevel += levelPresenter.UnselectLevel;
 
+        rouletteBetPresenter.OnChooseBet += roulettePresenter.StartSpin;
+        rouletteBetPresenter.OnChooseBet += rouletteBallPresenter.StartSpin;
+        rouletteBallPresenter.OnBallStopped += roulettePresenter.RollBallToSlot;
+        roulettePresenter.OnGetRouletteSlotValue += rouletteBetPresenter.SetResult;
+
         ActivateTransitionEvents();
     }
 
@@ -96,6 +109,11 @@ public class MainMenuEntryPoint : MonoBehaviour
         gameProgressPresenter.OnSelectLevel -= levelPresenter.SelectLevel;
         gameProgressPresenter.OnSelectLevel -= levelVisualizePresenter.SetLevel;
         gameProgressPresenter.OnUnselectLevel -= levelPresenter.UnselectLevel;
+
+        rouletteBetPresenter.OnChooseBet -= roulettePresenter.StartSpin;
+        rouletteBetPresenter.OnChooseBet -= rouletteBallPresenter.StartSpin;
+        rouletteBallPresenter.OnBallStopped -= roulettePresenter.RollBallToSlot;
+        roulettePresenter.OnGetRouletteSlotValue -= rouletteBetPresenter.SetResult;
 
         DeactivateTransitionEvents();
     }
@@ -148,6 +166,8 @@ public class MainMenuEntryPoint : MonoBehaviour
         typeTextEffectPresenter?.Dispose();
 
         roulettePresenter?.Dispose();
+        rouletteBetPresenter?.Dispose();
+        rouletteBallPresenter?.Dispose();
         midnightTimerPresenter?.Dispose();
     }
 

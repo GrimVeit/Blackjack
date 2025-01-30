@@ -2,113 +2,41 @@ using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class RouletteBetView : View
 {
-    public event Action<BetCell, Chip, Bet> OnChooseCell_Action;
-    public event Action<BetCell, Chip, Bet> OnResetCell_Action;
-
-    [SerializeField] private List<BetCell> betCells = new List<BetCell>();
-    [SerializeField] private RouletteBetDisplayView displayView;
-    [SerializeField] private TextMeshProUGUI textBet;
-    [SerializeField] private TextMeshProUGUI textBetCounts;
-    [SerializeField] private TextMeshProUGUI textWin;
-    [SerializeField] private TextMeshProUGUI textProfit;
-
-    [SerializeField] private RouletteMainResultView rouletteMainResult;
+    [SerializeField] private Button buttonRed;
+    [SerializeField] private Button buttonBlack;
 
     public void Initialize()
     {
-        displayView.Initialize();
-        rouletteMainResult.Initialize();
-
-        for (int i = 0; i < betCells.Count; i++)
-        {
-            betCells[i].OnChooseCell += OnChooseCell;
-            betCells[i].OnResetCell += OnResetCell;
-        }
+        buttonRed.onClick.AddListener(()=> OnChooseRed?.Invoke());
+        buttonBlack.onClick.AddListener(()=> OnChooseBlack?.Invoke());
     }
 
     public void Dispose()
     {
-        displayView.Dispose();
-        rouletteMainResult.Dispose();
-
-        for (int i = 0; i < betCells.Count; i++)
-        {
-            betCells[i].OnChooseCell -= OnChooseCell;
-            betCells[i].OnResetCell -= OnResetCell;
-        }
+        buttonRed.onClick.RemoveListener(() => OnChooseRed?.Invoke());
+        buttonBlack.onClick.RemoveListener(() => OnChooseBlack?.Invoke());
     }
 
-    public void BetDisplay(int bet)
+    public void Activate()
     {
-        textBet.text = bet.ToString();
-        displayView.SendMoneyDisplay(bet);
+        buttonBlack.gameObject.SetActive(true);
+        buttonRed.gameObject.SetActive(true);
     }
 
-    public void BetCountDisplay(int count)
+    public void Deactivate()
     {
-        textBetCounts.text = count.ToString();
-    }
-
-    public void WinDisplay(int win)
-    {
-        textWin.text = win.ToString();
-    }
-
-    public void ProfitDisplay(int profit)
-    {
-        textProfit.text = profit.ToString();
-    }
-
-    public void ShowResult()
-    {
-        rouletteMainResult.Show();
-    }
-
-    public void HideResult()
-    {
-        rouletteMainResult.Hide();
+        buttonBlack.gameObject.SetActive(false);
+        buttonRed.gameObject.SetActive(false);
     }
 
     #region Input
 
-    private void OnChooseCell(BetCell betCell, Chip chip, Bet bet)
-    {
-        OnChooseCell_Action?.Invoke(betCell, chip, bet);
-    }
-
-    private void OnResetCell(BetCell betCell, Chip chip, Bet bet)
-    {
-        OnResetCell_Action?.Invoke(betCell, chip, bet);
-    }
-
-
-
-    public event Action OnStartShowResult
-    {
-        add { rouletteMainResult.OnStartShowResult += value; }
-        remove { rouletteMainResult.OnStartShowResult -= value; }
-    }
-
-    public event Action OnFinishShowResult
-    {
-        add { rouletteMainResult.OnFinishShowResult += value; }
-        remove { rouletteMainResult.OnFinishShowResult -= value; }
-    }
-
-    public event Action OnStartHideResult
-    {
-        add { rouletteMainResult.OnStartHideResult += value; }
-        remove { rouletteMainResult.OnStartHideResult -= value; }
-    }
-
-    public event Action OnFinishHideResult
-    {
-        add { rouletteMainResult.OnFinishHideResult += value; }
-        remove { rouletteMainResult.OnFinishHideResult -= value; }
-    }
+    public event Action OnChooseRed;
+    public event Action OnChooseBlack;
 
     #endregion
 }

@@ -19,4 +19,6 @@ public static class PlayerPrefsKeys
     public const string LEVEL = "LEVEL";
 
     public const string NEXT_MIDNIGHT_DATETIME = "NEXT_MIDNIGHT_DATETIME";
+
+    public const string IS_ACTIVE_ROULETTE = "IS_ACTIVE_ROULETTE";
 }

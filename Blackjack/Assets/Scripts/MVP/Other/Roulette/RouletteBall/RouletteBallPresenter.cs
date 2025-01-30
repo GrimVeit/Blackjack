@@ -29,7 +29,6 @@ public class RouletteBallPresenter
 
     private void ActivateEvents()
     {
-        rouletteBallView.OnClickToSpinButton += rouletteBallModel.StartSpin;
         rouletteBallView.OnBallStopped += rouletteBallModel.BallStopped;
 
         rouletteBallModel.OnStartSpin += rouletteBallView.StartSpin;
@@ -37,7 +36,6 @@ public class RouletteBallPresenter
 
     private void DeactivateEvents()
     {
-        rouletteBallView.OnClickToSpinButton -= rouletteBallModel.StartSpin;
         rouletteBallView.OnBallStopped -= rouletteBallModel.BallStopped;
 
         rouletteBallModel.OnStartSpin -= rouletteBallView.StartSpin;
@@ -49,6 +47,11 @@ public class RouletteBallPresenter
     {
         add { rouletteBallModel.OnBallStopped += value; }
         remove { rouletteBallModel.OnBallStopped -= value; }
+    }
+
+    public void StartSpin()
+    {
+        rouletteBallModel.StartSpin();
     }
 
     #endregion

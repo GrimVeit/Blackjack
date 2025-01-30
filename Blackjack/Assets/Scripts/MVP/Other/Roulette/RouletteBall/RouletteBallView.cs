@@ -7,7 +7,6 @@ using UnityEngine.UI;
 public class RouletteBallView : View
 {
     public event Action<Vector3> OnBallStopped;
-    public event Action OnClickToSpinButton;
 
     [SerializeField] private Transform transformParent;
     [SerializeField] private Transform centerPoint;
@@ -20,23 +19,19 @@ public class RouletteBallView : View
     [SerializeField] private float startSpeed;
     [SerializeField] private float endSpeed = 0;
 
-    [SerializeField] private Button spinButton;
-
     private float currentRadius;
     private float currentSpeed;
     private float angle;
 
     public void Initialize()
     {
-        spinButton.onClick.AddListener(HandlerClickSpinButton);
-
         startRadius = Vector3.Distance(transformStart.position, centerPoint.position);
         endRadius = Vector3.Distance(transformEnd.position, centerPoint.position);
     }
 
     public void Dispose()
     {
-        spinButton.onClick.RemoveListener(HandlerClickSpinButton);
+
     }
 
     public void StartSpin()
@@ -68,13 +63,4 @@ public class RouletteBallView : View
 
         OnBallStopped?.Invoke(ball.transform.position);
     }
-
-    #region Input
-
-    private void HandlerClickSpinButton()
-    {
-        OnClickToSpinButton?.Invoke();
-    }
-
-    #endregion
 }
