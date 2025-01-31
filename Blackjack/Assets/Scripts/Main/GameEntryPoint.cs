@@ -36,7 +36,7 @@ public class GameEntryPoint
 
     private void Run()
     {
-        coroutines.StartCoroutine(LoadAndStartMainMenu());
+        coroutines.StartCoroutine(LoadAndStartCountryChecker());
     }
 
     private IEnumerator LoadAndStartCountryChecker()
